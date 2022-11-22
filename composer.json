@@ -1,0 +1,35 @@
+{
+    "name": "taecontrol/larastats",
+    "description": "Website monitoring platform",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Taecontrol\\Larastats\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Taecontrol\\Larastats\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Taecontrol\\Larastats\\LarastatsServiceProvider"
+            ]
+        }
+    }
+}
