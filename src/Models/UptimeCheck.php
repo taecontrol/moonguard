@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Client\Response;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
+use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 use Taecontrol\Larastats\Enums\UptimeStatus;
+use Taecontrol\Larastats\Repositories\SiteRepository;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 
-class UptimeCheck extends Model
+class UptimeCheck extends Model implements LarastatsUptimeCheck
 {
     protected $fillable = [
         'site_id',
@@ -27,10 +29,10 @@ class UptimeCheck extends Model
 
     public function site(): BelongsTo
     {
-        return $this->belongsTo(config('larastats.site.model'));
+        return $this->belongsTo(SiteRepository::resolveModelClass());
     }
 
-    public function saveSuccessfulCheck(Response $response)
+    public function saveSuccessfulCheck(Response $response): void
     {
         $this->status = UptimeStatus::UP;
         $this->check_failure_reason = '';
@@ -43,7 +45,7 @@ class UptimeCheck extends Model
         $this->save();
     }
 
-    public function saveFailedCheck(Response|Exception $response)
+    public function saveFailedCheck(Response|Exception $response): void
     {
         $this->status = UptimeStatus::DOWN;
         $this->check_times_failed_in_a_row++;
@@ -61,7 +63,7 @@ class UptimeCheck extends Model
         return $this->request_duration_ms->toRawMilliseconds() >= $maxRequestDuration->toRawMilliseconds();
     }
 
-    protected function wasFailing(): Attribute
+    public function wasFailing(): Attribute
     {
         return Attribute::make(
             get: fn () => ! is_null($this->check_failed_event_fired_on_date),

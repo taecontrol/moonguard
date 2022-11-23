@@ -3,10 +3,16 @@
 namespace Taecontrol\Larastats\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Url\Url;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
+use Taecontrol\Larastats\Collections\SiteCollection;
+use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
 
-class Site extends Model
+class Site extends Model implements LarastatsSite
 {
     protected $fillable = [
         'url',
@@ -38,5 +44,22 @@ class Site extends Model
     public function scopeWhereIsNotOnMaintenance(Builder $query): Builder
     {
         return $query->whereNull('down_for_maintenance_at');
+    }
+
+    public function url(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Url::fromString($this->attributes['url']),
+        );
+    }
+
+    public function uptimeCheck(): HasOne
+    {
+        return $this->hasOne(UptimeCheckRepository::resolveModelClass());
+    }
+
+    public function newCollection(array $models = []): SiteCollection
+    {
+        return new SiteCollection($models);
     }
 }
