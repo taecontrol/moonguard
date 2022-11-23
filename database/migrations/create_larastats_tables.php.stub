@@ -1,6 +1,8 @@
 <?php
 
 use Taecontrol\Larastats\Enums\UptimeStatus;
+use Taecontrol\Larastats\Enums\SslCertificateStatus;
+use Taecontrol\Larastats\Repositories\SiteRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -38,7 +40,22 @@ class CreateLarastatsTables extends Migration {
             $table->text('check_additional_headers')->nullable();
             $table->string('check_response_checker')->nullable();
 
-            $table->foreignIdFor(config('larastats.site.model'))
+            $table->foreignIdFor(SiteRepository::resolveModelClass())
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->timestamps();
+        });
+
+        Schema::create('ssl_certificate_checks', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('status')->default(SslCertificateStatus::NOT_YET_CHECKED->value);
+            $table->string('issuer')->nullable();
+            $table->timestamp('expiration_date')->nullable();
+            $table->string('check_failure_reason')->nullable();
+
+            $table->foreignIdFor(SiteRepository::resolveModelClass())
                 ->constrained()
                 ->onDelete('cascade');
 
@@ -49,11 +66,15 @@ class CreateLarastatsTables extends Migration {
     public function down()
     {
         Schema::table('uptime_checks', function (Blueprint $table) {
-            $table->dropForeignIdFor(config(larastats.site.model));
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
+
+        Schema::table('ssl_certificate_checks', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
         });
 
         Schema::dropIfExists('uptime_checks');
-
+        Schema::dropIfExists('ssl_certificate_checks');
         Schema::dropIfExists('sites');
     }
 };

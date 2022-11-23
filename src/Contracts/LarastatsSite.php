@@ -14,6 +14,7 @@ use Taecontrol\Larastats\ValueObjects\RequestDuration;
  * @property RequestDuration $max_request_duration_ms
  * @property Url $url
  * @property LarastatsUptimeCheck $uptimeCheck
+ * @property LarastatsSslCertificateCheck $sslCertificateCheck
  */
 interface LarastatsSite
 {

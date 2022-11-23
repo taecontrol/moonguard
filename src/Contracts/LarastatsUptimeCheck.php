@@ -4,7 +4,6 @@ namespace Taecontrol\Larastats\Contracts;
 
 use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
@@ -19,8 +18,6 @@ use Taecontrol\Larastats\ValueObjects\RequestDuration;
  * @property int $check_times_failed_in_a_row
  * @property bool $was_failing
  * @property LarastatsSite $site
- *
- * @extends Model
  */
 interface LarastatsUptimeCheck
 {

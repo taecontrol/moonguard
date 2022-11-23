@@ -12,5 +12,11 @@ return [
 
         'notify_failed_check_after_consecutive_failures' => 1,
         'resend_uptime_check_failed_notification_every_minutes' => 5,
-    ]
+    ],
+    'ssl_certificate_check' => [
+        'model' => \Taecontrol\Larastats\Models\SslCertificateCheck::class,
+
+        'notify_expiring_soon_if_certificate_expires_within_days' => 7,
+        'cron_schedule' => '* * * * *'
+    ],
 ];

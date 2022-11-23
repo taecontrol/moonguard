@@ -3,6 +3,7 @@
 namespace Taecontrol\Larastats;
 
 use Illuminate\Support\ServiceProvider;
+use Taecontrol\Larastats\Console\Commands\CheckSslCertificateCommand;
 use Taecontrol\Larastats\Console\Commands\CheckUptimeCommand;
 
 class LarastatsServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class LarastatsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 CheckUptimeCommand::class,
+                CheckSslCertificateCommand::class,
             ]);
         }
     }

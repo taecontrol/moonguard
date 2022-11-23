@@ -8,6 +8,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
+use Taecontrol\Larastats\Services\SslCertificateCheckService;
 use Taecontrol\Larastats\Services\UptimeCheckService;
 
 class SiteCollection extends Collection
@@ -26,5 +27,13 @@ class SiteCollection extends Collection
          * @throws InvalidPeriodException
          */ fn (LarastatsSite $site) => $uptimeCheckService->check($site, $responses[$site->url->__toString()])
         );
+    }
+
+    public function checkSslCertificate(): void
+    {
+        /** @var SslCertificateCheckService $sslCertificateCheckService */
+        $sslCertificateCheckService = app(SslCertificateCheckService::class);
+
+        $this->each(fn (LarastatsSite $site) => $sslCertificateCheckService->check($site));
     }
 }

@@ -10,6 +10,7 @@ use Spatie\Url\Url;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Collections\SiteCollection;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
 
 class Site extends Model implements LarastatsSite
@@ -56,6 +57,11 @@ class Site extends Model implements LarastatsSite
     public function uptimeCheck(): HasOne
     {
         return $this->hasOne(UptimeCheckRepository::resolveModelClass());
+    }
+
+    public function sslCertificateCheck(): HasOne
+    {
+        return $this->hasOne(SslCertificateCheckRepository::resolveModelClass());
     }
 
     public function newCollection(array $models = []): SiteCollection

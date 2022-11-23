@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c100472db0a6839c292b13c82ee8a580",
+    "content-hash": "52668cf17e88da74be6a7169c5ff7c45",
     "packages": [
         {
             "name": "brick/math",
@@ -2679,6 +2679,74 @@
                 "source": "https://github.com/spatie/macroable/tree/2.0.0"
             },
             "time": "2021-03-26T22:39:02+00:00"
+        },
+        {
+            "name": "spatie/ssl-certificate",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/ssl-certificate.git",
+                "reference": "e84ece1491f3fb7868992c83390236f61ddafaa6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/ssl-certificate/zipball/e84ece1491f3fb7868992c83390236f61ddafaa6",
+                "reference": "e84ece1491f3fb7868992c83390236f61ddafaa6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "ext-json": "*",
+                "nesbot/carbon": "^2.23",
+                "php": "^8.0",
+                "spatie/macroable": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0",
+                "spatie/phpunit-snapshot-assertions": "^4.2.3",
+                "spatie/ray": "^1.30"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Spatie\\SslCertificate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A class to easily query the properties of an ssl certificate",
+            "homepage": "https://github.com/spatie/ssl-certificate",
+            "keywords": [
+                "spatie",
+                "ssl-certificate"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/ssl-certificate/tree/2.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2022-10-28T15:29:19+00:00"
         },
         {
             "name": "spatie/url",
