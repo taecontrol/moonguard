@@ -1,0 +1,26 @@
+{
+  "name": "larastats",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "watch": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --watch",
+    "build": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --minify && npm run purge",
+    "purge": "filament-purge -i dist/css/plugin.css -o dist/css/plugin.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guetteman/larastats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guetteman/larastats/issues"
+  },
+  "homepage": "https://github.com/guetteman/larastats#readme",
+  "dependencies": {
+    "@awcodes/filament-plugin-purge": "^1.0.2"
+  }
+}
