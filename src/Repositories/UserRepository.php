@@ -9,8 +9,7 @@ class UserRepository
 {
     public static function all(): Collection
     {
-        $userModelClass = UserRepository::resolveModelClass();
-        return $userModelClass::all();
+        return self::resolveModelClass()::all();
     }
 
     public static function resolveModelClass(): string

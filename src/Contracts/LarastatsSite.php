@@ -4,6 +4,7 @@ namespace Taecontrol\Larastats\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Url\Url;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
@@ -15,6 +16,7 @@ use Taecontrol\Larastats\ValueObjects\RequestDuration;
  * @property Url $url
  * @property LarastatsUptimeCheck $uptimeCheck
  * @property LarastatsSslCertificateCheck $sslCertificateCheck
+ * @property LarastatsExceptionLog $exceptionLogs
  */
 interface LarastatsSite
 {
@@ -25,6 +27,10 @@ interface LarastatsSite
     public function scopeWhereIsNotOnMaintenance(Builder $query): Builder;
 
     public function uptimeCheck(): HasOne;
+
+    public function sslCertificateCheck(): HasOne;
+
+    public function exceptionLogs(): HasMany;
 
     public function url(): Attribute;
 }

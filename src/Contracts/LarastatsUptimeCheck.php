@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 
 /**
+ * @property string|int $id
  * @property string|int $site_id
  * @property Carbon $last_check_date
  * @property Carbon $status_last_change_date

@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats;
+namespace Taecontrol\Larastats\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -19,13 +19,13 @@ class LarastatsServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/larastats.php', 'larastats');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/larastats.php', 'larastats');
     }
 
     protected function publishConfigFiles(): void
     {
         $this->publishes([
-            __DIR__.'/../config/larastats.php' => config_path('larastats.php')
+            __DIR__ . '/../../config/larastats.php' => config_path('larastats.php')
         ], ['larastats-config']);
     }
 
@@ -33,7 +33,7 @@ class LarastatsServiceProvider extends ServiceProvider
     {
         if (!class_exists('CreateLarastatsTables')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_larastats_tables.php.stub' =>
+                __DIR__ . '/../../database/migrations/create_larastats_tables.php.stub' =>
                     database_path('migrations/' . date('Y_m_d_His', time()) . '_create_larastats_tables.php')
             ], ['larastats-migrations']);
         }
@@ -57,7 +57,7 @@ class LarastatsServiceProvider extends ServiceProvider
         ];
 
         Route::group($routesConfiguration, function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
         });
     }
 }

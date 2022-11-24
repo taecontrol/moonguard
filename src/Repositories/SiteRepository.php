@@ -8,6 +8,11 @@ use Taecontrol\Larastats\Models\Site;
 
 class SiteRepository
 {
+    public static function findOrFail(string|int $id): LarastatsSite
+    {
+        return static::resolveModelClass()::findOrFail($id);
+    }
+
     public static function query(): Builder
     {
         return static::resolveModelClass()::query();

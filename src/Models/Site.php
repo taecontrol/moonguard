@@ -5,11 +5,13 @@ namespace Taecontrol\Larastats\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Url\Url;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Collections\SiteCollection;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
 
@@ -62,6 +64,11 @@ class Site extends Model implements LarastatsSite
     public function sslCertificateCheck(): HasOne
     {
         return $this->hasOne(SslCertificateCheckRepository::resolveModelClass());
+    }
+
+    public function exceptionLogs(): HasMany
+    {
+        return $this->hasMany(ExceptionLogRepository::resolveModelClass());
     }
 
     public function newCollection(array $models = []): SiteCollection
