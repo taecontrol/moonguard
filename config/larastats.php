@@ -17,6 +17,13 @@ return [
         'model' => \Taecontrol\Larastats\Models\SslCertificateCheck::class,
 
         'notify_expiring_soon_if_certificate_expires_within_days' => 7,
-        'cron_schedule' => '* * * * *'
+        'cron_schedule' => '* * * * *',
     ],
+    'exception_log' => [
+        'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
+    ],
+    'routes' => [
+        'prefix' => 'api',
+        'middleware' => 'api'
+    ]
 ];

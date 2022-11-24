@@ -2,6 +2,7 @@
 
 use Taecontrol\Larastats\Enums\UptimeStatus;
 use Taecontrol\Larastats\Enums\SslCertificateStatus;
+use Taecontrol\Larastats\Enums\ExceptionLogStatus;
 use Taecontrol\Larastats\Repositories\SiteRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -61,6 +62,24 @@ class CreateLarastatsTables extends Migration {
 
             $table->timestamps();
         });
+
+        Schema::create('exception_logs', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('message');
+            $table->string('type');
+            $table->string('file');
+            $table->string('status')->default(ExceptionLogStatus::UNRESOLVED->value);
+            $table->unsignedInteger('line');
+            $table->json('trace');
+            $table->json('request')->nullable();
+            $table->timestamp('thrown_at');
+
+            $table->foreignIdFor(SiteRepository::resolveModelClass())
+                ->constrained();
+
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -73,8 +92,13 @@ class CreateLarastatsTables extends Migration {
             $table->dropForeignIdFor(SiteRepository::resolveModelClass());
         });
 
+        Schema::table('exception_logs', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
+
         Schema::dropIfExists('uptime_checks');
         Schema::dropIfExists('ssl_certificate_checks');
+        Schema::dropIfExists('exception_logs');
         Schema::dropIfExists('sites');
     }
 };
