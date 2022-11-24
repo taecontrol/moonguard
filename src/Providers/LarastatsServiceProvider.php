@@ -15,6 +15,7 @@ class LarastatsServiceProvider extends ServiceProvider
         $this->publishMigrations();
         $this->publishCommands();
         $this->publishRoutes();
+        $this->publishViews();
     }
 
     public function register(): void
@@ -59,5 +60,14 @@ class LarastatsServiceProvider extends ServiceProvider
         Route::group($routesConfiguration, function () {
             $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
         });
+    }
+
+    protected function publishViews()
+    {
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'larastats');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/larastats'),
+        ], 'larastats-views');
     }
 }
