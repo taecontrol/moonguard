@@ -4,6 +4,7 @@ use Taecontrol\Larastats\Enums\UptimeStatus;
 use Taecontrol\Larastats\Enums\SslCertificateStatus;
 use Taecontrol\Larastats\Enums\ExceptionLogStatus;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -63,10 +64,27 @@ class CreateLarastatsTables extends Migration {
             $table->timestamps();
         });
 
+        Schema::create('exception_log_groups', function (Blueprint $table) {
+            $table->id();
+
+            $table->text('message');
+            $table->string('type');
+            $table->string('file');
+            $table->unsignedInteger('line');
+            $table->timestamp('first_seen');
+            $table->timestamp('last_seen');
+            $table->timestamps();
+
+            $table->foreignIdFor(SiteRepository::resolveModelClass())
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+        });
+
         Schema::create('exception_logs', function (Blueprint $table) {
             $table->id();
 
-            $table->string('message');
+            $table->text('message');
             $table->string('type');
             $table->string('file');
             $table->string('status')->default(ExceptionLogStatus::UNRESOLVED->value);
@@ -77,6 +95,11 @@ class CreateLarastatsTables extends Migration {
 
             $table->foreignIdFor(SiteRepository::resolveModelClass())
                 ->constrained();
+
+            $table->foreignIdFor(ExceptionLogGroupRepository::resolveModelClass())
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
 
             $table->timestamps();
         });
@@ -94,11 +117,17 @@ class CreateLarastatsTables extends Migration {
 
         Schema::table('exception_logs', function (Blueprint $table) {
             $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+            $table->dropForeignIdFor(ExceptionLogGroupRepository::resolveModelClass());
+        });
+
+        Schema::table('exception_log_groups', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
         });
 
         Schema::dropIfExists('uptime_checks');
         Schema::dropIfExists('ssl_certificate_checks');
         Schema::dropIfExists('exception_logs');
+        Schema::dropIfExists('exception_log_groups');
         Schema::dropIfExists('sites');
     }
 };

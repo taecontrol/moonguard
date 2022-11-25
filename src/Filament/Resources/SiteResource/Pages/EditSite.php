@@ -43,8 +43,6 @@ class EditSite extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\Action::make('exceptions')
-                ->url("/admin/sites/{$this->record->id}/exceptions"),
             Actions\DeleteAction::make(),
         ];
     }

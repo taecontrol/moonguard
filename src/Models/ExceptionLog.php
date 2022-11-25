@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
 use Taecontrol\Larastats\Enums\ExceptionLogStatus;
+use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\Larastats\Repositories\SiteRepository;
 
 class ExceptionLog extends Model implements LarastatsExceptionLog
 {
     protected $fillable = [
         'site_id',
+        'exception_log_group_id',
         'message',
         'type',
         'file',
@@ -32,5 +34,10 @@ class ExceptionLog extends Model implements LarastatsExceptionLog
     public function site(): BelongsTo
     {
         return $this->belongsTo(SiteRepository::resolveModelClass());
+    }
+
+    public function exceptionLogGroup(): BelongsTo
+    {
+        return $this->belongsTo(ExceptionLogGroupRepository::resolveModelClass());
     }
 }

@@ -57,7 +57,7 @@
                                     class="text-red-500 text-sm uppercase font-bold">{{ $site->sslCertificateCheck->status->value }}</span>
                             @endif
                         </div>
-                        <a class="flex items-center justify-between text-gray-500 hover:underline hover:text-gray-800" href="/admin/sites/{{$site->id}}/exceptions">
+                        <a class="flex items-center justify-between text-gray-500 hover:underline hover:text-gray-800" href="{{ route('filament.resources.larastats/exceptions.index', ['tableFilters[sites][value]' => $site->id]) }}">
                             <span>Exceptions</span>
                             <span>{{ $site->exception_logs_count }}</span>
                         </a>

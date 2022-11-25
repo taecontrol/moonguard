@@ -32,5 +32,7 @@ interface LarastatsSite
 
     public function exceptionLogs(): HasMany;
 
+    public function exceptionLogsGroup(): HasMany;
+
     public function url(): Attribute;
 }

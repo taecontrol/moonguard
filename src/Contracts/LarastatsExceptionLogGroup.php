@@ -3,14 +3,15 @@
 namespace Taecontrol\Larastats\Contracts;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property string|int $site_id
  * @property LarastatsSite $site
  */
-interface LarastatsExceptionLog
+interface LarastatsExceptionLogGroup
 {
-    public function site(): BelongsTo;
+    public function exceptionLogs(): HasMany;
 
-    public function exceptionLogGroup(): BelongsTo;
+    public function site(): BelongsTo;
 }

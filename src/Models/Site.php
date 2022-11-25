@@ -11,6 +11,7 @@ use Spatie\Url\Url;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Collections\SiteCollection;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
@@ -69,6 +70,11 @@ class Site extends Model implements LarastatsSite
     public function exceptionLogs(): HasMany
     {
         return $this->hasMany(ExceptionLogRepository::resolveModelClass());
+    }
+
+    public function exceptionLogsGroup(): HasMany
+    {
+        return $this->hasMany(ExceptionLogGroupRepository::class);
     }
 
     public function newCollection(array $models = []): SiteCollection

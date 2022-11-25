@@ -22,6 +22,9 @@ return [
     'exception_log' => [
         'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
     ],
+    'exception_log_group' => [
+        'model' => \Taecontrol\Larastats\Models\ExceptionLogGroup::class,
+    ],
     'routes' => [
         'prefix' => 'api',
         'middleware' => 'api'

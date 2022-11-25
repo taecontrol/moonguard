@@ -2,9 +2,6 @@
   "name": "larastats",
   "version": "1.0.0",
   "description": "",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "watch": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --watch",
     "build": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --minify && npm run purge",
@@ -21,6 +18,7 @@
   },
   "homepage": "https://github.com/guetteman/larastats#readme",
   "dependencies": {
-    "@awcodes/filament-plugin-purge": "^1.0.2"
+    "@awcodes/filament-plugin-purge": "^1.0.2",
+    "tailwindcss": "^3.2.4"
   }
 }
