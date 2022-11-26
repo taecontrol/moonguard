@@ -69,7 +69,7 @@ class LarastatsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'larastats');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/larastats'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/larastats'),
         ], 'larastats-views');
     }
 }
