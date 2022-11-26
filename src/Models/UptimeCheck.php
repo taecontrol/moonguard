@@ -11,6 +11,8 @@ use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 use Taecontrol\Larastats\Enums\UptimeStatus;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Larastats\Services\UptimeCheckService;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 
 class UptimeCheck extends Model implements LarastatsUptimeCheck
@@ -67,6 +69,13 @@ class UptimeCheck extends Model implements LarastatsUptimeCheck
     {
         return Attribute::make(
             get: fn () => ! is_null($this->check_failed_event_fired_on_date),
+        );
+    }
+
+    public function isEnabled(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => UptimeCheckRepository::isEnabled(),
         );
     }
 

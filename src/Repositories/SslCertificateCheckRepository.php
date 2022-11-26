@@ -7,6 +7,11 @@ use Taecontrol\Larastats\Models\SslCertificateCheck;
 
 class SslCertificateCheckRepository
 {
+    public static function isEnabled(): bool
+    {
+        return config('larastats.ssl_certificate_check.enabled');
+    }
+
     public static function resolveModel(): LarastatsSslCertificateCheck
     {
         $modelClass = static::resolveModelClass();
