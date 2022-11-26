@@ -21,7 +21,7 @@ class UptimeCheckRecoveredNotification extends Notification implements ShouldQue
 
     public function via(): array
     {
-        return ['mail', 'slack'];
+        return config('larastats.notifications.channels');
     }
 
     public function toMail(): MailMessage

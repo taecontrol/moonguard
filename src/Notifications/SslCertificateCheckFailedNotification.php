@@ -20,7 +20,7 @@ class SslCertificateCheckFailedNotification extends Notification implements Shou
 
     public function via(): array
     {
-        return ['mail', 'slack'];
+        return config('larastats.notifications.channels');
     }
 
     public function toMail(): MailMessage

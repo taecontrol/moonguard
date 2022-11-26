@@ -21,7 +21,7 @@ class UptimeCheckFailedNotification extends Notification implements ShouldQueue
 
     public function via(): array
     {
-        return ['mail', 'slack'];
+        return config('larastats.notifications.channels');
     }
 
     public function toMail(): MailMessage

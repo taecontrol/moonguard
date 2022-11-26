@@ -52,5 +52,8 @@ return [
                 \Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener::class,
             ]
         ]
+    ],
+    'notifications' => [
+        'channels' => ['mail', 'slack']
     ]
 ];
