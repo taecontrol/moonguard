@@ -7,6 +7,11 @@ use Taecontrol\Larastats\Models\UptimeCheck;
 
 class UptimeCheckRepository
 {
+    public static function isEnabled(): bool
+    {
+        return config('larastats.uptime_check.enabled');
+    }
+
     public static function resolveModel(): LarastatsUptimeCheck
     {
         $modelClass = static::resolveModelClass();

@@ -18,6 +18,7 @@ use Taecontrol\Larastats\ValueObjects\RequestDuration;
  * @property RequestDuration $request_duration_ms
  * @property int $check_times_failed_in_a_row
  * @property bool $was_failing
+ * @property bool $is_enabled
  * @property LarastatsSite $site
  */
 interface LarastatsUptimeCheck
@@ -31,4 +32,6 @@ interface LarastatsUptimeCheck
     public function requestTookTooLong(): bool;
 
     public function wasFailing(): Attribute;
+
+    public function isEnabled(): Attribute;
 }

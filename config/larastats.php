@@ -8,6 +8,7 @@ return [
         'model' => \Taecontrol\Larastats\Models\Site::class,
     ],
     'uptime_check' => [
+        'enabled' => false,
         'model' => \Taecontrol\Larastats\Models\UptimeCheck::class,
 
         'notify_failed_check_after_consecutive_failures' => 1,

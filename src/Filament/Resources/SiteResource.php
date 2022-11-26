@@ -20,6 +20,7 @@ use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\CreateSite;
 use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\EditSite;
 use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\ListSites;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
 
 class SiteResource extends Resource
 {
@@ -44,6 +45,7 @@ class SiteResource extends Resource
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('max_request_duration_ms')
+                    ->when(UptimeCheckRepository::isEnabled())
                     ->label('Max. request duration')
                     ->default(1000)
                     ->numeric()
@@ -53,6 +55,7 @@ class SiteResource extends Resource
                 Fieldset::make('Enabled checks')
                     ->schema([
                         Checkbox::make('uptime_check_enabled')
+                            ->when(UptimeCheckRepository::isEnabled())
                             ->label('Uptime check'),
                         Checkbox::make('ssl_certificate_check_enabled')
                             ->label('SSL certificate check'),

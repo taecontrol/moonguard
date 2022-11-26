@@ -24,28 +24,8 @@
                     </a>
 
                     <div class="pt-2 space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500">Uptime</span>
-                            @if(! $site->uptimeCheck || $site->uptimeCheck?->status === \Taecontrol\Larastats\Enums\UptimeStatus::NOT_YET_CHECKED)
-                                <span class="rounded-full h-4 w-4 bg-gray-300"></span>
-                            @elseif($site->uptimeCheck->status === \Taecontrol\Larastats\Enums\UptimeStatus::UP)
-                                <span class="text-green-500 text-sm font-bold">UP</span>
-                            @else
-                                <span class="text-red-500 text-sm font-bold">DOWN</span>
-                            @endif
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500">Performance</span>
-                            @if(! $site->uptimeCheck || $site->uptimeCheck?->status === \Taecontrol\Larastats\Enums\UptimeStatus::NOT_YET_CHECKED)
-                                <span class="text-gray-500">---</span>
-                            @elseif($site->uptimeCheck->status === \Taecontrol\Larastats\Enums\UptimeStatus::UP)
-                                <span
-                                    class="text-green-500 text-sm font-bold">{{ $site->uptimeCheck->request_duration_ms->toMilliseconds() }}</span>
-                            @else
-                                <span
-                                    class="text-red-500">{{ $site->uptimeCheck->request_duration_ms->noValue() }}</span>
-                            @endif
-                        </div>
+                        <x-larastats::site-stats-widget.uptime-list-item  :site="$site"/>
+                        <x-larastats::site-stats-widget.performace-list-item :site="$site" />
                         <div class="flex items-center justify-between">
                             <span class="text-gray-500">Certificate</span>
                             @if(! $site->sslCertificateCheck || $site->sslCertificateCheck?->status === \Taecontrol\Larastats\Enums\SslCertificateStatus::NOT_YET_CHECKED)
