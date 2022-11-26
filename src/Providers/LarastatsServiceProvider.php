@@ -21,6 +21,8 @@ class LarastatsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/larastats.php', 'larastats');
+
+        $this->app->register(EventServiceProvider::class);
     }
 
     protected function publishConfigFiles(): void
@@ -67,7 +69,7 @@ class LarastatsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'larastats');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/larastats'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/larastats'),
         ], 'larastats-views');
     }
 }

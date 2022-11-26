@@ -33,5 +33,27 @@ return [
     'routes' => [
         'prefix' => 'api',
         'middleware' => 'api'
+    ],
+    'events' => [
+        'listen' => [
+            \Taecontrol\Larastats\Events\UptimeCheckRecoveredEvent::class => [
+                \Taecontrol\Larastats\Listeners\UptimeCheckRecoveredListener::class,
+            ],
+            \Taecontrol\Larastats\Events\UptimeCheckFailedEvent::class => [
+                \Taecontrol\Larastats\Listeners\UptimeCheckFailedListener::class,
+            ],
+            \Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent::class => [
+                \Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent::class,
+            ],
+            \Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent::class => [
+                \Taecontrol\Larastats\Listeners\SslCertificateExpiresSoonListener::class,
+            ],
+            \Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent::class => [
+                \Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener::class,
+            ]
+        ]
+    ],
+    'notifications' => [
+        'channels' => ['mail', 'slack']
     ]
 ];

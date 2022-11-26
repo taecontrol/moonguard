@@ -4,13 +4,11 @@ namespace Taecontrol\Larastats\Services;
 
 use Exception;
 use Spatie\SslCertificate\SslCertificate;
-use Illuminate\Support\Facades\Notification;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
-use Taecontrol\Larastats\Notifications\SslCertificateCheckFailedNotification;
-use Taecontrol\Larastats\Notifications\SslCertificateExpiresSoonNotification;
+use Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent;
+use Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
-use Taecontrol\Larastats\Repositories\UserRepository;
 
 class SslCertificateCheckService
 {
@@ -41,7 +39,7 @@ class SslCertificateCheckService
             $this->sslCertificateCheck->certificateIsValid()
             && $this->sslCertificateCheck->certificateIsAboutToExpire(config('larastats.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days'))
         ) {
-            Notification::send(UserRepository::all(), new SslCertificateExpiresSoonNotification($this->sslCertificateCheck));
+            event(new SslCertificateExpiresSoonEvent($this->sslCertificateCheck));
         }
 
         if ($this->sslCertificateCheck->certificateIsInvalid()) {
@@ -64,6 +62,6 @@ class SslCertificateCheckService
 
     protected function notifyFailure(): void
     {
-        Notification::send(UserRepository::all(), new SslCertificateCheckFailedNotification($this->sslCertificateCheck));
+        event(new SslCertificateCheckFailedEvent($this->sslCertificateCheck));
     }
 }
