@@ -5,15 +5,13 @@ namespace Taecontrol\Larastats\Services;
 use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Notification;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent;
+use Taecontrol\Larastats\Events\UptimeCheckFailedEvent;
+use Taecontrol\Larastats\Events\UptimeCheckRecoveredEvent;
 use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
-use Taecontrol\Larastats\Notifications\RequestTookLongerThanMaxDurationNotification;
-use Taecontrol\Larastats\Notifications\UptimeCheckFailedNotification;
-use Taecontrol\Larastats\Notifications\UptimeCheckRecoveredNotification;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Repositories\UserRepository;
 use Taecontrol\Larastats\ValueObjects\Period;
 
 class UptimeCheckService
@@ -72,7 +70,7 @@ class UptimeCheckService
         $this->uptimeCheck->saveFailedCheck($response);
 
         if ($this->shouldNotifyAboutUptimeFailing()) {
-            $this->updateFailedEventWasFiredTo(now());
+            $this->updateFailedEventWasFiredAt(now());
             $this->notifyAboutDowntime();
         }
     }
@@ -85,7 +83,7 @@ class UptimeCheckService
         $this->uptimeCheck->saveFailedCheck($exception);
 
         if ($this->shouldNotifyAboutUptimeFailing()) {
-            $this->updateFailedEventWasFiredTo(now());
+            $this->updateFailedEventWasFiredAt(now());
             $this->notifyAboutDowntime();
         }
     }
@@ -95,7 +93,7 @@ class UptimeCheckService
      *
      * @return void
      */
-    protected function updateFailedEventWasFiredTo(?Carbon $date): void
+    protected function updateFailedEventWasFiredAt(?Carbon $date): void
     {
         $this->uptimeCheck->check_failed_event_fired_on_date = $date;
         $this->uptimeCheck->save();
@@ -112,9 +110,9 @@ class UptimeCheckService
         $lastStatusChangeDate = $this->uptimeCheck->status_last_change_date ? clone $this->uptimeCheck->status_last_change_date : null;
         $downtimePeriod = new Period($lastStatusChangeDate, now());
 
-        Notification::send(UserRepository::all(), new UptimeCheckRecoveredNotification($this->uptimeCheck, $downtimePeriod));
+        event(new UptimeCheckRecoveredEvent($this->uptimeCheck, $downtimePeriod));
 
-        $this->updateFailedEventWasFiredTo(null);
+        $this->updateFailedEventWasFiredAt(null);
     }
 
     /**
@@ -123,11 +121,7 @@ class UptimeCheckService
     protected function notifyRequestTookLongerThanMaxRequestDuration(): void
     {
         $maxRequestDuration = $this->uptimeCheck->site->max_request_duration_ms;
-
-        Notification::send(
-            UserRepository::all(),
-            new RequestTookLongerThanMaxDurationNotification($this->uptimeCheck, $maxRequestDuration),
-        );
+        event(new RequestTookLongerThanMaxDurationEvent($this->uptimeCheck, $maxRequestDuration));
     }
 
     /**
@@ -138,7 +132,7 @@ class UptimeCheckService
     protected function notifyAboutDowntime(): void
     {
         $downtimePeriod = new Period($this->uptimeCheck->status_last_change_date, $this->uptimeCheck->last_check_date);
-        Notification::send(UserRepository::all(), new UptimeCheckFailedNotification($this->uptimeCheck, $downtimePeriod));
+        event(new UptimeCheckFailedEvent($this->uptimeCheck, $downtimePeriod));
     }
 
     protected function shouldNotifyAboutUptimeFailing(): bool

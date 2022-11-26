@@ -21,6 +21,8 @@ class LarastatsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/larastats.php', 'larastats');
+
+        $this->app->register(EventServiceProvider::class);
     }
 
     protected function publishConfigFiles(): void
