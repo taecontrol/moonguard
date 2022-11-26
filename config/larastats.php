@@ -44,6 +44,12 @@ return [
             ],
             \Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent::class => [
                 \Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent::class,
+            ],
+            \Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent::class => [
+                \Taecontrol\Larastats\Listeners\SslCertificateExpiresSoonListener::class,
+            ],
+            \Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent::class => [
+                \Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener::class,
             ]
         ]
     ]
