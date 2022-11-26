@@ -7,6 +7,11 @@ use Taecontrol\Larastats\Models\ExceptionLog;
 
 class ExceptionLogRepository
 {
+    public static function isEnabled(): bool
+    {
+        return config('larastats.exceptions.enabled');
+    }
+
     public static function resolveModel(): LarastatsExceptionLog
     {
         $modelClass = static::resolveModelClass();
@@ -16,6 +21,6 @@ class ExceptionLogRepository
 
     public static function resolveModelClass(): string
     {
-        return config('larastats.exception_log.model') ?? ExceptionLog::class;
+        return config('larastats.exceptions.exception_log.model') ?? ExceptionLog::class;
     }
 }

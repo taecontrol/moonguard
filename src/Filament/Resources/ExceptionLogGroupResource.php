@@ -53,6 +53,11 @@ class ExceptionLogGroupResource extends Resource
         return ExceptionLogGroupRepository::resolveModelClass();
     }
 
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return ExceptionLogGroupRepository::isEnabled();
+    }
+
     public static function getPages(): array
     {
         return [

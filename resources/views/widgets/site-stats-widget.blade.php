@@ -27,10 +27,7 @@
                         <x-larastats::site-stats-widget.uptime-list-item  :site="$site"/>
                         <x-larastats::site-stats-widget.performace-list-item :site="$site" />
                         <x-larastats::site-stats-widget.certificate-list-item :site="$site" />
-                        <a class="flex items-center justify-between text-gray-500 hover:underline hover:text-gray-800" href="{{ route('filament.resources.larastats/exceptions.index', ['tableFilters[sites][value]' => $site->id]) }}">
-                            <span>Exceptions</span>
-                            <span>{{ $site->exception_logs_count }}</span>
-                        </a>
+                        <x-larastats::site-stats-widget.exceptions-list-item :site="$site" />
                     </div>
                 </div>
             </x-filament::card>

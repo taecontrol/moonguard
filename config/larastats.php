@@ -21,11 +21,14 @@ return [
         'notify_expiring_soon_if_certificate_expires_within_days' => 7,
         'cron_schedule' => '* * * * *',
     ],
-    'exception_log' => [
-        'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
-    ],
-    'exception_log_group' => [
-        'model' => \Taecontrol\Larastats\Models\ExceptionLogGroup::class,
+    'exceptions' => [
+        'enabled' => true,
+        'exception_log' => [
+            'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
+        ],
+        'exception_log_group' => [
+            'model' => \Taecontrol\Larastats\Models\ExceptionLogGroup::class,
+        ],
     ],
     'routes' => [
         'prefix' => 'api',

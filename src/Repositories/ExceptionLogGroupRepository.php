@@ -8,6 +8,11 @@ use Taecontrol\Larastats\Models\ExceptionLogGroup;
 
 class ExceptionLogGroupRepository
 {
+    public static function isEnabled(): bool
+    {
+        return config('larastats.exceptions.enabled');
+    }
+
     public static function findOrFail(string|int $id): LarastatsExceptionLogGroup
     {
         return static::resolveModelClass()::findOrFail($id);
@@ -32,6 +37,6 @@ class ExceptionLogGroupRepository
 
     public static function resolveModelClass(): string
     {
-        return config('larastats.exception_log_group.model') ?? ExceptionLogGroup::class;
+        return config('larastats.exceptions.exception_log_group.model') ?? ExceptionLogGroup::class;
     }
 }
