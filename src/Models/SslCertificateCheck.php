@@ -3,6 +3,7 @@
 namespace Taecontrol\Larastats\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\SslCertificate\SslCertificate;
@@ -10,6 +11,7 @@ use Spatie\Url\Url;
 use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Enums\SslCertificateStatus;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 
 class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
 {
@@ -59,5 +61,12 @@ class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
     public function certificateIsAboutToExpire(int $maxDaysToExpire): bool
     {
         return $this->expiration_date?->diffInDays() <= $maxDaysToExpire;
+    }
+
+    public function isEnabled(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => SslCertificateCheckRepository::isEnabled(),
+        );
     }
 }

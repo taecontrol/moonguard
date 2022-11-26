@@ -18,7 +18,7 @@
         @foreach($sites as $site)
             <x-filament::card>
                 <div class="divide-y divide-gray-200">
-                    <a class="pb-2" href="/admin/sites/{{$site->id}}/edit">
+                    <a class="pb-2" href="{{ route('filament.resources.larastats/sites.edit', ['record' => $site->id]) }}">
                         <h3 class="font-bold text-xl">{{ $site->name }}</h3>
                         <span class="text-sm text-gray-400">{{$site->url}}</span>
                     </a>
@@ -26,17 +26,7 @@
                     <div class="pt-2 space-y-2">
                         <x-larastats::site-stats-widget.uptime-list-item  :site="$site"/>
                         <x-larastats::site-stats-widget.performace-list-item :site="$site" />
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500">Certificate</span>
-                            @if(! $site->sslCertificateCheck || $site->sslCertificateCheck?->status === \Taecontrol\Larastats\Enums\SslCertificateStatus::NOT_YET_CHECKED)
-                                <span class="text-gray-500">---</span>
-                            @elseif($site->sslCertificateCheck->status === \Taecontrol\Larastats\Enums\SslCertificateStatus::VALID)
-                                <span class="text-green-500 text-sm font-bold">OK</span>
-                            @else
-                                <span
-                                    class="text-red-500 text-sm uppercase font-bold">{{ $site->sslCertificateCheck->status->value }}</span>
-                            @endif
-                        </div>
+                        <x-larastats::site-stats-widget.certificate-list-item :site="$site" />
                         <a class="flex items-center justify-between text-gray-500 hover:underline hover:text-gray-800" href="{{ route('filament.resources.larastats/exceptions.index', ['tableFilters[sites][value]' => $site->id]) }}">
                             <span>Exceptions</span>
                             <span>{{ $site->exception_logs_count }}</span>
