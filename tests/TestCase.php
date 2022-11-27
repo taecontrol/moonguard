@@ -26,7 +26,12 @@ class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
+        config()->set('database.default', 'sqlite');
+        config()->set('database.connections.sqlite', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
 
         $migration = include __DIR__.'/../database/migrations/create_larastats_tables.php.stub';
 
