@@ -1,10 +1,11 @@
 <?php
 
-namespace Taecontrol\Tests;
+namespace Taecontrol\Larastats\Tests;
 
+use Orchestra\Testbench\TestCase as Orchestra;
 use Taecontrol\Larastats\Providers\LarastatsServiceProvider;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends Orchestra
 {
     public function setUp(): void
     {
