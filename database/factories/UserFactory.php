@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Tests\Factories;
+namespace Taecontrol\Larastats\Database\Factories;
 
 use Illuminate\Support\Str;
 use Taecontrol\Larastats\Models\User;

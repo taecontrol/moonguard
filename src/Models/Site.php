@@ -2,21 +2,21 @@
 
 namespace Taecontrol\Larastats\Models;
 
+use Spatie\Url\Url;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\Url\Url;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Collections\SiteCollection;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Taecontrol\Larastats\Database\Factories\SiteFactory;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Tests\Factories\SiteFactory;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
+use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 
 class Site extends Model implements LarastatsSite
 {

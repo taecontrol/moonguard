@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Tests\Factories;
+namespace Taecontrol\Larastats\Database\Factories;
 
 use Taecontrol\Larastats\Models\Site;
 use Taecontrol\Larastats\Enums\UptimeStatus;

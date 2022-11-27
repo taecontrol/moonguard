@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Taecontrol\\Larastats\\": "src/"
+            "Taecontrol\\Larastats\\": "src/",
+            "Taecontrol\\Larastats\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
