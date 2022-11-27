@@ -4,6 +4,7 @@ namespace Taecontrol\Larastats\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -15,9 +16,12 @@ use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Larastats\Tests\Factories\SiteFactory;
 
 class Site extends Model implements LarastatsSite
 {
+    use HasFactory;
+
     protected $fillable = [
         'url',
         'name',
@@ -80,5 +84,10 @@ class Site extends Model implements LarastatsSite
     public function newCollection(array $models = []): SiteCollection
     {
         return new SiteCollection($models);
+    }
+
+    protected static function newFactory(): SiteFactory
+    {
+        return SiteFactory::new();
     }
 }

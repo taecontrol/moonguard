@@ -4,6 +4,7 @@ namespace Taecontrol\Larastats\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Client\Response;
@@ -13,10 +14,13 @@ use Taecontrol\Larastats\Enums\UptimeStatus;
 use Taecontrol\Larastats\Repositories\SiteRepository;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
 use Taecontrol\Larastats\Services\UptimeCheckService;
+use Taecontrol\Larastats\Tests\Factories\UptimeCheckFactory;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 
 class UptimeCheck extends Model implements LarastatsUptimeCheck
 {
+    use HasFactory;
+
     protected $fillable = [
         'site_id',
     ];
@@ -92,5 +96,10 @@ class UptimeCheck extends Model implements LarastatsUptimeCheck
                 $uptime->status_last_change_date = now();
             }
         });
+    }
+
+    protected static function newFactory(): UptimeCheckFactory
+    {
+        return UptimeCheckFactory::new();
     }
 }
