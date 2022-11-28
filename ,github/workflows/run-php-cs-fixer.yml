@@ -1,4 +1,4 @@
-name: Run Php-cs-fixer
+name: Run Php-cs-fixer (dry)
 
 on:
   push:
