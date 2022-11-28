@@ -8,10 +8,10 @@ use Filament\Resources\Resource;
 use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages\ListExceptionLogGroups;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages\SiteExceptions;
-use Taecontrol\Larastats\Filament\Tables\Columns\ExceptionLogGroupColumn;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Larastats\Filament\Tables\Columns\ExceptionLogGroupColumn;
+use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages\SiteExceptions;
+use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages\ListExceptionLogGroups;
 
 class ExceptionLogGroupResource extends Resource
 {
@@ -53,16 +53,16 @@ class ExceptionLogGroupResource extends Resource
         return ExceptionLogGroupRepository::resolveModelClass();
     }
 
-    protected static function shouldRegisterNavigation(): bool
-    {
-        return ExceptionLogGroupRepository::isEnabled();
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => ListExceptionLogGroups::route('/'),
             'show' => SiteExceptions::route('/show/{record}'),
         ];
+    }
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return ExceptionLogGroupRepository::isEnabled();
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Taecontrol\Larastats\Http\Controllers;
 
+use Taecontrol\Larastats\Repositories\SiteRepository;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Http\Requests\StoreExceptionLogRequest;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Larastats\Repositories\SiteRepository;
 
 class ExceptionLogsController extends Controller
 {

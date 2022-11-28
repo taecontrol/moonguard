@@ -17,14 +17,14 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Taecontrol\\Larastats\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Taecontrol\\Larastats\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-          LarastatsServiceProvider::class,
+            LarastatsServiceProvider::class,
         ];
     }
 
@@ -51,7 +51,7 @@ class TestCase extends Orchestra
             $table->timestamps();
         });
 
-        $migration = include __DIR__.'/../database/migrations/create_larastats_tables.php.stub';
+        $migration = include __DIR__ . '/../database/migrations/create_larastats_tables.php.stub';
         $migration->up();
     }
 }

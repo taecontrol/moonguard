@@ -2,14 +2,14 @@
 
 namespace Taecontrol\Larastats\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Taecontrol\Larastats\Enums\ExceptionLogStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Taecontrol\Larastats\Repositories\SiteRepository;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
 use Taecontrol\Larastats\Database\Factories\ExceptionLogFactory;
-use Taecontrol\Larastats\Enums\ExceptionLogStatus;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Larastats\Repositories\SiteRepository;
 
 class ExceptionLog extends Model implements LarastatsExceptionLog
 {

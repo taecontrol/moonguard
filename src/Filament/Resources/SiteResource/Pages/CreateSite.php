@@ -3,8 +3,8 @@
 namespace Taecontrol\Larastats\Filament\Resources\SiteResource\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use Taecontrol\Larastats\Filament\Resources\SiteResource;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Larastats\Filament\Resources\SiteResource;
 
 class CreateSite extends CreateRecord
 {

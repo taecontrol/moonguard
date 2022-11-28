@@ -2,14 +2,14 @@
 
 namespace Taecontrol\Larastats\Collections;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Eloquent\Collection;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Larastats\Services\UptimeCheckService;
 use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
 use Taecontrol\Larastats\Services\SslCertificateCheckService;
-use Taecontrol\Larastats\Services\UptimeCheckService;
 
 class SiteCollection extends Collection
 {

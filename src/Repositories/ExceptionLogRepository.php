@@ -2,8 +2,8 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
 use Taecontrol\Larastats\Models\ExceptionLog;
+use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
 
 class ExceptionLogRepository
 {

@@ -6,8 +6,8 @@ use Exception;
 use Spatie\Url\Url;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Taecontrol\Larastats\Filament\Resources\SiteResource;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Larastats\Filament\Resources\SiteResource;
 
 class EditSite extends EditRecord
 {

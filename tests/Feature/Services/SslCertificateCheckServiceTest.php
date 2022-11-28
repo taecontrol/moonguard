@@ -16,7 +16,6 @@ use Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent;
 use Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent;
 use Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener;
 use Taecontrol\Larastats\Listeners\SslCertificateExpiresSoonListener;
-use Taecontrol\Larastats\Notifications\SslCertificateExpiresSoonNotification;
 
 class SslCertificateCheckServiceTest extends TestCase
 {

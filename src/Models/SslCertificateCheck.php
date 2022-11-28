@@ -3,17 +3,17 @@
 namespace Taecontrol\Larastats\Models;
 
 use Exception;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Taecontrol\Larastats\Database\Factories\SslCertificateCheckFactory;
 use Taecontrol\Larastats\Enums\SslCertificateStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Larastats\Database\Factories\SslCertificateCheckFactory;
 
 class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
 {

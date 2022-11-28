@@ -2,15 +2,17 @@
 
 namespace Taecontrol\Larastats\Events;
 
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 use Taecontrol\Larastats\ValueObjects\Period;
+use Illuminate\Foundation\Events\Dispatchable;
+use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 
 class UptimeCheckRecoveredEvent
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(public LarastatsUptimeCheck $uptimeCheck, public Period $downtimePeriod)
-    {}
+    {
+    }
 }

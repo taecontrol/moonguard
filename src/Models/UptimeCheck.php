@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\Larastats\Repositories\SiteRepository;
-use Taecontrol\Larastats\Services\UptimeCheckService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;

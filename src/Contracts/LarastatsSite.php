@@ -2,11 +2,11 @@
 
 namespace Taecontrol\Larastats\Contracts;
 
+use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\Url\Url;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 
 /**

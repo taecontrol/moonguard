@@ -3,16 +3,16 @@
 namespace Taecontrol\Larastats\Services;
 
 use Exception;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Client\Response;
+use Taecontrol\Larastats\ValueObjects\Period;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
-use Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent;
 use Taecontrol\Larastats\Events\UptimeCheckFailedEvent;
+use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 use Taecontrol\Larastats\Events\UptimeCheckRecoveredEvent;
 use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\ValueObjects\Period;
+use Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent;
 
 class UptimeCheckService
 {

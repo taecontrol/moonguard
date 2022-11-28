@@ -3,10 +3,10 @@
 namespace Taecontrol\Larastats\Contracts;
 
 use Exception;
+use Spatie\Url\Url;
+use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\SslCertificate\SslCertificate;
-use Spatie\Url\Url;
 
 /**
  * @property string|int $site_id

@@ -34,7 +34,7 @@ class ExampleTest extends TestCase
         /** @var UptimeCheck */
         $uptimeCheckFactory = UptimeCheck::factory()
             ->create([
-                'site_id' => $site->id
+                'site_id' => $site->id,
             ]);
 
         $this->assertNotNull($uptimeCheckFactory);

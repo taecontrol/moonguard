@@ -8,8 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 
 class RequestTookLongerThanMaxDurationNotification extends Notification implements ShouldQueue
 {
