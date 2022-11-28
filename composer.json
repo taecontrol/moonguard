@@ -39,5 +39,8 @@
                 "Taecontrol\\Larastats\\Providers\\LarastatsFilamentServiceProvider"
             ]
         }
-    }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }    
 }
