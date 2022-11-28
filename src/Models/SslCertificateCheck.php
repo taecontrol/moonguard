@@ -3,18 +3,22 @@
 namespace Taecontrol\Larastats\Models;
 
 use Exception;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\SslCertificate\SslCertificate;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Url\Url;
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\SslCertificate\SslCertificate;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Taecontrol\Larastats\Database\Factories\SslCertificateCheckFactory;
 use Taecontrol\Larastats\Enums\SslCertificateStatus;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 
 class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
 {
+    use HasFactory;
+
     protected $casts = [
         'status' => SslCertificateStatus::class,
         'expiration_date' => 'immutable_datetime',
@@ -68,5 +72,10 @@ class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
         return Attribute::make(
             get: fn () => SslCertificateCheckRepository::isEnabled(),
         );
+    }
+
+    protected static function newFactory(): SslCertificateCheckFactory
+    {
+        return SslCertificateCheckFactory::new();
     }
 }

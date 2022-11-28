@@ -27,7 +27,7 @@ class UptimeCheckFactory extends Factory
             'check_payload' => null,
             'check_additional_headers' => null,
             'check_response_checker' => null,
-            'site_id' => Site::factory(),
+            'site_id' => fn () => Site::factory(),
         ];
     }
 }
