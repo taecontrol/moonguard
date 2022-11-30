@@ -10,7 +10,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 interface LarastatsExceptionLog
 {
-    public function site(): BelongsTo;
-
     public function exceptionLogGroup(): BelongsTo;
 }

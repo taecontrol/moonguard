@@ -14,7 +14,6 @@ use Taecontrol\Larastats\Collections\SiteCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\Database\Factories\SiteFactory;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 
@@ -69,11 +68,6 @@ class Site extends Model implements LarastatsSite
     public function sslCertificateCheck(): HasOne
     {
         return $this->hasOne(SslCertificateCheckRepository::resolveModelClass());
-    }
-
-    public function exceptionLogs(): HasMany
-    {
-        return $this->hasMany(ExceptionLogRepository::resolveModelClass());
     }
 
     public function exceptionLogsGroup(): HasMany

@@ -51,7 +51,7 @@ class TestCase extends Orchestra
             $table->timestamps();
         });
 
-        $migration = include __DIR__ . '/../database/migrations/create_larastats_tables.php.stub';
-        $migration->up();
+        include_once __DIR__ . '/../database/migrations/create_larastats_tables.php.stub';
+        (new \CreateLarastatsTables)->up();
     }
 }

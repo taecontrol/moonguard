@@ -3,6 +3,7 @@
 namespace Taecontrol\Larastats\Http\Controllers;
 
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Http\Requests\StoreExceptionLogRequest;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
@@ -40,12 +41,13 @@ class ExceptionLogsController extends Controller
                 'last_seen' => $request->input('thrown_at'),
             ]);
         }
-        $site->exceptionLogs()->create(
-            array_merge(
-                ['exception_log_group_id' => $group->id],
-                $request->validated()
-            )
+
+        $exception = array_merge(
+            $request->safe()->except('api_token'),
+            ['exception_log_group_id' => $group->id],
         );
+
+        ExceptionLogRepository::create($exception);
 
         return response()->json([
             'success' => true,

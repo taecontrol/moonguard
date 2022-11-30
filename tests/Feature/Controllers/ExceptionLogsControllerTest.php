@@ -38,7 +38,6 @@ class ExceptionLogsControllerTest extends TestCase
 
         $this->assertDatabaseCount('exception_logs', 1);
         $this->assertDatabaseHas('exception_logs', [
-            'site_id' => $site->id,
             'message' => $data['message'],
             'type' => $data['type'],
             'line' => $data['line'],

@@ -30,8 +30,6 @@ interface LarastatsSite
 
     public function sslCertificateCheck(): HasOne;
 
-    public function exceptionLogs(): HasMany;
-
     public function exceptionLogsGroup(): HasMany;
 
     public function url(): Attribute;
