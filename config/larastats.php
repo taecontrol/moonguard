@@ -33,7 +33,7 @@ return [
     ],
     'routes' => [
         'prefix' => 'api',
-        'middleware' => 'throttle:api',
+        'middleware' => 'api',
     ],
     'events' => [
         'listen' => [

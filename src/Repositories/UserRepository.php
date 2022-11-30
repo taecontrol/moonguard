@@ -2,8 +2,8 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
+use Taecontrol\Larastats\Models\User;
 use Illuminate\Database\Eloquent\Collection;
-use Taecontrol\Larastats\Contracts\LarastatsUser;
 
 class UserRepository extends ModelRepository
 {

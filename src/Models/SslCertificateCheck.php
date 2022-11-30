@@ -13,6 +13,7 @@ use Taecontrol\Larastats\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Larastats\Database\Factories\SslCertificateCheckFactory;
 
 class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
 {

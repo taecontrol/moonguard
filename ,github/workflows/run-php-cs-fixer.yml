@@ -1,0 +1,28 @@
+name: Run Php-cs-fixer (dry)
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  Php-cs-fixer:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.1'
+
+    - uses: actions/checkout@v3
+
+    - name: Install Composer Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Run php-cs-fixer
+      run: vendor/bin/php-cs-fixer fix --dry-run

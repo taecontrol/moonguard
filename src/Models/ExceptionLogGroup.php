@@ -9,6 +9,7 @@ use Taecontrol\Larastats\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
+use Taecontrol\Larastats\Database\Factories\ExceptionLogGroupFactory;
 
 class ExceptionLogGroup extends Model implements LarastatsExceptionLogGroup
 {

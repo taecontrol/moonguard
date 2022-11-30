@@ -5,6 +5,7 @@ namespace Taecontrol\Larastats\Http\Controllers;
 use Taecontrol\Larastats\Models\Site;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
 use Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent;

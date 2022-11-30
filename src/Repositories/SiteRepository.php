@@ -2,6 +2,8 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
+use Taecontrol\Larastats\Models\Site;
+use Illuminate\Database\Eloquent\Builder;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 
 class SiteRepository extends ModelRepository

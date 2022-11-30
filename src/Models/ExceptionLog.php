@@ -9,6 +9,7 @@ use Taecontrol\Larastats\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
+use Taecontrol\Larastats\Database\Factories\ExceptionLogFactory;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 
 class ExceptionLog extends Model implements LarastatsExceptionLog
@@ -37,7 +38,7 @@ class ExceptionLog extends Model implements LarastatsExceptionLog
     public function site(): HasOneThrough
     {
         return $this->hasOneThrough(
-            SiteRepository::resolveModelClass(),
+            SiteRepository::resolveModelClass(), 
             ExceptionLogGroupRepository::resolveModelClass()
         );
     }

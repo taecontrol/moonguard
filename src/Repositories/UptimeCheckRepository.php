@@ -2,6 +2,7 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
+use Taecontrol\Larastats\Models\UptimeCheck;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 
 class UptimeCheckRepository extends ModelRepository
