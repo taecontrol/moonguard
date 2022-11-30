@@ -42,12 +42,9 @@ class ExceptionLogsController extends Controller
             ]);
         }
 
-        $exception = array_merge(
+        $group->exceptionLogs()->create(
             $request->safe()->except('api_token'),
-            ['exception_log_group_id' => $group->id],
         );
-
-        ExceptionLogRepository::create($exception);
 
         return response()->json([
             'success' => true,
