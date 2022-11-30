@@ -39,9 +39,4 @@ class ExceptionLogGroup extends Model implements LarastatsExceptionLogGroup
     {
         return $this->belongsTo(SiteRepository::resolveModelClass());
     }
-
-    protected static function newFactory(): ExceptionLogGroupFactory
-    {
-        return ExceptionLogGroupFactory::new();
-    }
 }

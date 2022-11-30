@@ -36,9 +36,4 @@ class User extends Model implements LarastatsUser
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected static function newFactory(): UserFactory
-    {
-        return UserFactory::new();
-    }
 }

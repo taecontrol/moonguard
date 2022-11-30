@@ -73,9 +73,4 @@ class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
             get: fn () => SslCertificateCheckRepository::isEnabled(),
         );
     }
-
-    protected static function newFactory(): SslCertificateCheckFactory
-    {
-        return SslCertificateCheckFactory::new();
-    }
 }

@@ -79,9 +79,4 @@ class Site extends Model implements LarastatsSite
     {
         return new SiteCollection($models);
     }
-
-    protected static function newFactory(): SiteFactory
-    {
-        return SiteFactory::new();
-    }
 }

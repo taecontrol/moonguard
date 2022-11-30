@@ -96,9 +96,4 @@ class UptimeCheck extends Model implements LarastatsUptimeCheck
             }
         });
     }
-
-    protected static function newFactory(): UptimeCheckFactory
-    {
-        return UptimeCheckFactory::new();
-    }
 }
