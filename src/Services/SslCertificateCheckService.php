@@ -5,9 +5,9 @@ namespace Taecontrol\Larastats\Services;
 use Exception;
 use Spatie\SslCertificate\SslCertificate;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent;
 use Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent;
+use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 
 class SslCertificateCheckService

@@ -2,8 +2,8 @@
 
 namespace Taecontrol\Larastats\Contracts;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property string|int $site_id

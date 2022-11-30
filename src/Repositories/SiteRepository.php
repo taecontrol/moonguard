@@ -2,9 +2,9 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
+use Taecontrol\Larastats\Models\Site;
 use Illuminate\Database\Eloquent\Builder;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Models\Site;
 
 class SiteRepository
 {

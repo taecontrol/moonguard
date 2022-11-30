@@ -23,7 +23,7 @@ class ListExceptionLogGroups extends ListRecords
 
     protected function getTableRecordUrlUsing(): Closure
     {
-        return fn(Model $record): string => route(
+        return fn (Model $record): string => route(
             'filament.resources.larastats/exceptions.show',
             ['record' => $record]
         );

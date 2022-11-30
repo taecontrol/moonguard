@@ -32,7 +32,7 @@ return [
     ],
     'routes' => [
         'prefix' => 'api',
-        'middleware' => 'api'
+        'middleware' => 'api',
     ],
     'events' => [
         'listen' => [
@@ -50,10 +50,10 @@ return [
             ],
             \Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent::class => [
                 \Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener::class,
-            ]
-        ]
+            ],
+        ],
     ],
     'notifications' => [
-        'channels' => ['mail', 'slack']
-    ]
+        'channels' => ['mail', 'slack'],
+    ],
 ];

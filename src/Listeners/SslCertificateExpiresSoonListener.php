@@ -3,9 +3,9 @@
 namespace Taecontrol\Larastats\Listeners;
 
 use Illuminate\Support\Facades\Notification;
+use Taecontrol\Larastats\Repositories\UserRepository;
 use Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent;
 use Taecontrol\Larastats\Notifications\SslCertificateExpiresSoonNotification;
-use Taecontrol\Larastats\Repositories\UserRepository;
 
 class SslCertificateExpiresSoonListener
 {

@@ -5,11 +5,11 @@ namespace Taecontrol\Larastats\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Taecontrol\Larastats\ValueObjects\Period;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
-use Taecontrol\Larastats\ValueObjects\Period;
 
 class UptimeCheckFailedNotification extends Notification implements ShouldQueue
 {

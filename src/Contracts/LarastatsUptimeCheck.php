@@ -3,10 +3,10 @@
 namespace Taecontrol\Larastats\Contracts;
 
 use Exception;
+use Illuminate\Support\Carbon;
+use Illuminate\Http\Client\Response;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Carbon;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 
 /**

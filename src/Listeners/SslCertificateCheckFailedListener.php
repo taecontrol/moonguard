@@ -3,9 +3,9 @@
 namespace Taecontrol\Larastats\Listeners;
 
 use Illuminate\Support\Facades\Notification;
+use Taecontrol\Larastats\Repositories\UserRepository;
 use Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent;
 use Taecontrol\Larastats\Notifications\SslCertificateCheckFailedNotification;
-use Taecontrol\Larastats\Repositories\UserRepository;
 
 class SslCertificateCheckFailedListener
 {

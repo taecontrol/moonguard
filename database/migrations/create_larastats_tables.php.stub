@@ -93,9 +93,6 @@ class CreateLarastatsTables extends Migration {
             $table->json('request')->nullable();
             $table->timestamp('thrown_at');
 
-            $table->foreignIdFor(SiteRepository::resolveModelClass())
-                ->constrained();
-
             $table->foreignIdFor(ExceptionLogGroupRepository::resolveModelClass())
                 ->constrained()
                 ->cascadeOnDelete()

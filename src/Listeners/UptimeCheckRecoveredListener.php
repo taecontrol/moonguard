@@ -3,9 +3,9 @@
 namespace Taecontrol\Larastats\Listeners;
 
 use Illuminate\Support\Facades\Notification;
+use Taecontrol\Larastats\Repositories\UserRepository;
 use Taecontrol\Larastats\Events\UptimeCheckRecoveredEvent;
 use Taecontrol\Larastats\Notifications\UptimeCheckRecoveredNotification;
-use Taecontrol\Larastats\Repositories\UserRepository;
 
 class UptimeCheckRecoveredListener
 {
