@@ -3,6 +3,7 @@
 namespace Taecontrol\Larastats\Contracts;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 /**
  * @property string|int $site_id
@@ -10,5 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 interface LarastatsExceptionLog
 {
+    public function site(): HasOneThrough;
+
     public function exceptionLogGroup(): BelongsTo;
 }

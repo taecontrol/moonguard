@@ -2,6 +2,7 @@
 
 namespace Taecontrol\Larastats\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Collections\SiteCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Taecontrol\Larastats\Database\Factories\SiteFactory;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 
@@ -70,9 +71,17 @@ class Site extends Model implements LarastatsSite
         return $this->hasOne(SslCertificateCheckRepository::resolveModelClass());
     }
 
-    public function exceptionLogsGroup(): HasMany
+    public function exceptionLogs(): HasManyThrough
     {
-        return $this->hasMany(ExceptionLogGroupRepository::class);
+        return $this->hasManyThrough(
+            ExceptionLogRepository::resolveModelClass(), 
+            ExceptionLogGroupRepository::resolveModelClass()
+        );
+    }
+
+    public function exceptionLogGroups(): HasMany
+    {
+        return $this->hasMany(ExceptionLogGroupRepository::resolveModelClass());
     }
 
     public function newCollection(array $models = []): SiteCollection
