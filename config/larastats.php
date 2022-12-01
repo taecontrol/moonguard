@@ -23,6 +23,9 @@ return [
     ],
     'exceptions' => [
         'enabled' => true,
+        'notifications' => [
+            'time_in_minutes_between_group_updates' => 15,
+        ],
         'exception_log' => [
             'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
         ],
@@ -50,6 +53,12 @@ return [
             ],
             \Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent::class => [
                 \Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener::class,
+            ],
+            \Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent::class => [
+                \Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener::class,
+            ],
+            \Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent::class => [
+                \Taecontrol\Larastats\Listeners\ExceptionLogGroupUpdatedListener::class,
             ],
         ],
     ],
