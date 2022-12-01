@@ -23,9 +23,7 @@ return [
     ],
     'exceptions' => [
         'enabled' => true,
-        'notifications' => [
-            'time_in_minutes_between_group_updates' => 15,
-        ],
+        'notify_time_between_group_updates_in_minutes' => 15,
         'exception_log' => [
             'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
         ],

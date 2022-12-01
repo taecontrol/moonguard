@@ -63,7 +63,7 @@ class ExceptionLogsController extends Controller
 
     protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, ExceptionLogGroup $group)
     {
-        $timeInMinutesBetweenUpdates = config('larastats.exceptions.notifications.time_in_minutes_between_group_updates');
+        $timeInMinutesBetweenUpdates = config('larastats.exceptions.notify_time_between_group_updates_in_minutes');
         $timeDiffInMinutesFromLastException = now()->diffInMinutes($group->last_seen);
 
         $group->update([
