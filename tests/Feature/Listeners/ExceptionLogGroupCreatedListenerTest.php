@@ -3,13 +3,13 @@
 namespace Taecontrol\Larastats\Tests\Feature\Controllers;
 
 use Taecontrol\Larastats\Models\User;
-use Taecontrol\Larastats\Notifications\NewExceptionLogGroupNotification;
 use Taecontrol\Larastats\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\Larastats\Models\ExceptionLogGroup;
 use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
 use Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener;
+use Taecontrol\Larastats\Notifications\NewExceptionLogGroupNotification;
 
 class ExceptionLogGroupCreatedListenerTest extends TestCase
 {

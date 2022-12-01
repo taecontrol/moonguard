@@ -65,7 +65,7 @@ class ExceptionLogsController extends Controller
     {
         $timeInMinutesBetweenUpdates = config('larastats.exceptions.notifications.time_in_minutes_between_group_updates');
         $timeDiffInMinutesFromLastException = now()->diffInMinutes($group->last_seen);
-        
+
         $group->update([
             'message' => $request->input('message'),
             'last_seen' => $request->input('thrown_at'),

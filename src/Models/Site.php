@@ -2,7 +2,6 @@
 
 namespace Taecontrol\Larastats\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Taecontrol\Larastats\Casts\RequestDurationCast;
 use Taecontrol\Larastats\Collections\SiteCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
 use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
@@ -74,7 +74,7 @@ class Site extends Model implements LarastatsSite
     public function exceptionLogs(): HasManyThrough
     {
         return $this->hasManyThrough(
-            ExceptionLogRepository::resolveModelClass(), 
+            ExceptionLogRepository::resolveModelClass(),
             ExceptionLogGroupRepository::resolveModelClass()
         );
     }

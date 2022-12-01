@@ -7,9 +7,7 @@ use Taecontrol\Larastats\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\Larastats\Models\ExceptionLogGroup;
-use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
 use Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent;
-use Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener;
 use Taecontrol\Larastats\Listeners\ExceptionLogGroupUpdatedListener;
 use Taecontrol\Larastats\Notifications\NewExceptionLogGroupNotification;
 
