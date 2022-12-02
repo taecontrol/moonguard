@@ -26,15 +26,19 @@ class NewExceptionLogGroupNotification extends Notification implements ShouldQue
     public function toMail(): MailMessage
     {
         return (new MailMessage)
-            ->subject("{$this->exceptionLogGroup->site->name} | {$this->exceptionLogGroup->type} | {$this->exceptionLogGroup->last_seen}")
-            ->greeting('The following exception was catched:')
+            ->subject("[{$this->exceptionLogGroup->last_seen}]: {$this->exceptionLogGroup->type} | {$this->exceptionLogGroup->site->name}")
+            ->greeting($this->exceptionLogGroup->type)
+            ->line("Site: {$this->exceptionLogGroup->site->name}")
+            ->line("Url: {$this->exceptionLogGroup->site->url}")
+            ->line("Message: ")
             ->line($this->exceptionLogGroup->message)
-            ->line("{$this->exceptionLogGroup->site->name} | {$this->exceptionLogGroup->last_seen}");
+            ->line("Seen at: {$this->exceptionLogGroup->last_seen->toDayDateTimeString()}")
+            ->action('Review', $this->getActionUrl());
     }
 
     public function toSlack(): SlackMessage
     {
-        $url = route('filament.resources.larastats/exceptions.show', $this->exceptionLogGroup->id);
+        $url = $this->getActionUrl();
         $footer = "{$this->exceptionLogGroup->site->name} | {$this->exceptionLogGroup->site->url}";
 
         return (new SlackMessage)
@@ -46,5 +50,10 @@ class NewExceptionLogGroupNotification extends Notification implements ShouldQue
                     ->footer($footer)
                     ->timestamp($this->exceptionLogGroup->last_seen)
             );
+    }
+
+    protected function getActionUrl(): string
+    {
+        return route('filament.resources.larastats/exceptions.show', $this->exceptionLogGroup->id);
     }
 }
