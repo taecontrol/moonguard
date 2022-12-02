@@ -30,7 +30,7 @@ class NewExceptionLogGroupNotification extends Notification implements ShouldQue
             ->greeting($this->exceptionLogGroup->type)
             ->line("Site: {$this->exceptionLogGroup->site->name}")
             ->line("Url: {$this->exceptionLogGroup->site->url}")
-            ->line("Message: ")
+            ->line('Message: ')
             ->line($this->exceptionLogGroup->message)
             ->line("Seen at: {$this->exceptionLogGroup->last_seen->toDayDateTimeString()}")
             ->action('Review', $this->getActionUrl());
