@@ -34,12 +34,14 @@ class NewExceptionLogGroupNotification extends Notification implements ShouldQue
 
     public function toSlack(): SlackMessage
     {
+        $url = route('filament.resources.larastats/exceptions.show', $this->exceptionLogGroup->id);
+
         return (new SlackMessage)
-            ->warning()
+            ->error()
             ->attachment(
                 fn (SlackAttachment $attachment) => $attachment
-                    ->title($this->exceptionLogGroup->type)
-                    ->fallback($this->exceptionLogGroup->message)
+                    ->title($this->exceptionLogGroup->type, $url)
+                    ->content($this->exceptionLogGroup->message)
                     ->footer($this->exceptionLogGroup->site->name)
                     ->timestamp($this->exceptionLogGroup->last_seen)
             );

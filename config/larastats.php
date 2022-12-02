@@ -33,7 +33,7 @@ return [
     ],
     'routes' => [
         'prefix' => 'api',
-        'middleware' => 'api',
+        'middleware' => 'throttle:api',
     ],
     'events' => [
         'listen' => [
@@ -62,5 +62,8 @@ return [
     ],
     'notifications' => [
         'channels' => ['mail', 'slack'],
+        'slack' => [
+            'webhook_url' => env('SLACK_WEBHOOK_URL'),
+        ],
     ],
 ];

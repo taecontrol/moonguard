@@ -35,4 +35,9 @@ class User extends Model implements LarastatsUser
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function routeNotificationForSlack(): string
+    {
+        return config('larastats.notifications.slack.webhook_url');
+    }
 }
