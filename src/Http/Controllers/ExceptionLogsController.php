@@ -3,7 +3,7 @@
 namespace Taecontrol\Larastats\Http\Controllers;
 
 use Taecontrol\Larastats\Models\Site;
-use Taecontrol\Larastats\Models\ExceptionLogGroup;
+use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Repositories\SiteRepository;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
@@ -44,7 +44,7 @@ class ExceptionLogsController extends Controller
         ]);
     }
 
-    protected function createExceptionLogGroup(StoreExceptionLogRequest $request, Site $site)
+    protected function createExceptionLogGroup(StoreExceptionLogRequest $request, LarastatsSite $site)
     {
         $group = ExceptionLogGroupRepository::create([
             'message' => $request->input('message'),
@@ -61,7 +61,7 @@ class ExceptionLogsController extends Controller
         return $group;
     }
 
-    protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, ExceptionLogGroup $group)
+    protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, LarastatsExceptionLogGroup $group)
     {
         $timeInMinutesBetweenUpdates = config('larastats.exceptions.notify_time_between_group_updates_in_minutes');
         $timeDiffInMinutesFromLastException = now()->diffInMinutes($group->last_seen);
