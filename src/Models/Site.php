@@ -74,7 +74,7 @@ class Site extends Model implements LarastatsSite
     public function exceptionLogs(): HasManyThrough
     {
         return $this->hasManyThrough(
-            ExceptionLogRepository::resolveModelClass(), 
+            ExceptionLogRepository::resolveModelClass(),
             ExceptionLogGroupRepository::resolveModelClass()
         );
     }
