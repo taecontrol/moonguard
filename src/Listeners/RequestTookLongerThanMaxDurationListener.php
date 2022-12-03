@@ -3,9 +3,9 @@
 namespace Taecontrol\Larastats\Listeners;
 
 use Illuminate\Support\Facades\Notification;
+use Taecontrol\Larastats\Repositories\UserRepository;
 use Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent;
 use Taecontrol\Larastats\Notifications\RequestTookLongerThanMaxDurationNotification;
-use Taecontrol\Larastats\Repositories\UserRepository;
 
 class RequestTookLongerThanMaxDurationListener
 {

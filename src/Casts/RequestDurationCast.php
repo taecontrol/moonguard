@@ -2,9 +2,9 @@
 
 namespace Taecontrol\Larastats\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use InvalidArgumentException;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class RequestDurationCast implements CastsAttributes
 {

@@ -2,12 +2,13 @@
 
 namespace Taecontrol\Larastats\Contracts;
 
+use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\Url\Url;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * @property string|int $id
@@ -30,9 +31,9 @@ interface LarastatsSite
 
     public function sslCertificateCheck(): HasOne;
 
-    public function exceptionLogs(): HasMany;
+    public function exceptionLogs(): HasManyThrough;
 
-    public function exceptionLogsGroup(): HasMany;
+    public function exceptionLogGroups(): HasMany;
 
     public function url(): Attribute;
 }

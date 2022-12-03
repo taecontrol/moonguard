@@ -14,7 +14,7 @@ class CheckUptimeCommand extends Command
 
     public function handle()
     {
-        if(! UptimeCheckRepository::isEnabled()) {
+        if (! UptimeCheckRepository::isEnabled()) {
             $this->info('[Uptime] This check is disabled. If you want to enable it, check the larastats config file.');
 
             return;

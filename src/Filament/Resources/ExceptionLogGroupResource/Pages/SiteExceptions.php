@@ -7,10 +7,10 @@ use Livewire\WithPagination;
 use Filament\Resources\Pages\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Enums\ExceptionLogStatus;
 use Taecontrol\Larastats\Filament\Resources\SiteResource;
+use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 
 class SiteExceptions extends Page

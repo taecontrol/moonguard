@@ -3,8 +3,8 @@
 namespace Taecontrol\Larastats\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Models\ExceptionLogGroup;
+use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 
 class ExceptionLogGroupRepository
 {

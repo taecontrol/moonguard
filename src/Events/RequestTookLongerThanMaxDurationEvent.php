@@ -2,15 +2,17 @@
 
 namespace Taecontrol\Larastats\Events;
 
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Illuminate\Foundation\Events\Dispatchable;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 
 class RequestTookLongerThanMaxDurationEvent
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(public LarastatsUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
-    {}
+    {
+    }
 }

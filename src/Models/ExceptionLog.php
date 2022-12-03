@@ -3,17 +3,19 @@
 namespace Taecontrol\Larastats\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
 use Taecontrol\Larastats\Enums\ExceptionLogStatus;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Taecontrol\Larastats\Contracts\LarastatsExceptionLog;
+use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 
 class ExceptionLog extends Model implements LarastatsExceptionLog
 {
+    use HasFactory;
+
     protected $fillable = [
-        'site_id',
-        'exception_log_group_id',
         'message',
         'type',
         'file',
@@ -22,6 +24,7 @@ class ExceptionLog extends Model implements LarastatsExceptionLog
         'request',
         'line',
         'thrown_at',
+        'exception_log_group_id',
     ];
 
     protected $casts = [
@@ -31,9 +34,12 @@ class ExceptionLog extends Model implements LarastatsExceptionLog
         'thrown_at' => 'immutable_datetime',
     ];
 
-    public function site(): BelongsTo
+    public function site(): HasOneThrough
     {
-        return $this->belongsTo(SiteRepository::resolveModelClass());
+        return $this->hasOneThrough(
+            SiteRepository::resolveModelClass(),
+            ExceptionLogGroupRepository::resolveModelClass()
+        );
     }
 
     public function exceptionLogGroup(): BelongsTo

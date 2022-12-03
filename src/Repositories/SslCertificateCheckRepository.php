@@ -2,8 +2,8 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 use Taecontrol\Larastats\Models\SslCertificateCheck;
+use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
 
 class SslCertificateCheckRepository
 {

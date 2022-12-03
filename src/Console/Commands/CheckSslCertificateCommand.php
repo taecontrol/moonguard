@@ -14,7 +14,7 @@ class CheckSslCertificateCommand extends Command
 
     public function handle()
     {
-        if(! SslCertificateCheckRepository::isEnabled()) {
+        if (! SslCertificateCheckRepository::isEnabled()) {
             $this->info('[SSL] This check is disabled. If you want to enable it, check the larastats config file.');
 
             return;

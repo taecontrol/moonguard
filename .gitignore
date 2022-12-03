@@ -3,3 +3,6 @@
 /node_modules
 build
 .DS_Store
+.phpunit.result.cache
+.php-cs-fixer.cache
+.vscode

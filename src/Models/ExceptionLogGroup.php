@@ -3,14 +3,17 @@
 namespace Taecontrol\Larastats\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
-use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\Larastats\Repositories\SiteRepository;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
+use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 
 class ExceptionLogGroup extends Model implements LarastatsExceptionLogGroup
 {
+    use HasFactory;
+
     protected $fillable = [
         'site_id',
         'message',

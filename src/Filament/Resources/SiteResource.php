@@ -2,9 +2,9 @@
 
 namespace Taecontrol\Larastats\Filament\Resources;
 
-use Exception;
 use Str;
 use Closure;
+use Exception;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -16,12 +16,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Actions\Action;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\CreateSite;
+use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
 use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\EditSite;
 use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\ListSites;
-use Taecontrol\Larastats\Repositories\SiteRepository;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
-use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\CreateSite;
 
 class SiteResource extends Resource
 {
