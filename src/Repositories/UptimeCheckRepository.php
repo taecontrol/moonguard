@@ -2,11 +2,14 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
-use Taecontrol\Larastats\Models\UptimeCheck;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 
-class UptimeCheckRepository
+class UptimeCheckRepository extends ModelRepository
 {
+    protected static string $contract = LarastatsUptimeCheck::class;
+
+    protected static string $modelClassConfigKey = 'larastats.uptime_check.model';
+
     public static function isEnabled(): bool
     {
         return config('larastats.uptime_check.enabled');
@@ -17,10 +20,5 @@ class UptimeCheckRepository
         $modelClass = static::resolveModelClass();
 
         return new $modelClass();
-    }
-
-    public static function resolveModelClass(): string
-    {
-        return config('larastats.uptime_check.model') ?? UptimeCheck::class;
     }
 }
