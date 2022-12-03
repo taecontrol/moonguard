@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\Larastats\ValueObjects\RequestDuration;
 use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
 use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Database\Factories\UptimeCheckFactory;
 
 class UptimeCheck extends Model implements LarastatsUptimeCheck
 {

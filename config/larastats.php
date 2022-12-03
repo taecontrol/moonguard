@@ -23,6 +23,7 @@ return [
     ],
     'exceptions' => [
         'enabled' => true,
+        'notify_time_between_group_updates_in_minutes' => 15,
         'exception_log' => [
             'model' => \Taecontrol\Larastats\Models\ExceptionLog::class,
         ],
@@ -32,7 +33,7 @@ return [
     ],
     'routes' => [
         'prefix' => 'api',
-        'middleware' => 'api',
+        'middleware' => 'throttle:api',
     ],
     'events' => [
         'listen' => [
@@ -51,9 +52,18 @@ return [
             \Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent::class => [
                 \Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener::class,
             ],
+            \Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent::class => [
+                \Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener::class,
+            ],
+            \Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent::class => [
+                \Taecontrol\Larastats\Listeners\ExceptionLogGroupUpdatedListener::class,
+            ],
         ],
     ],
     'notifications' => [
         'channels' => ['mail', 'slack'],
+        'slack' => [
+            'webhook_url' => env('SLACK_WEBHOOK_URL'),
+        ],
     ],
 ];

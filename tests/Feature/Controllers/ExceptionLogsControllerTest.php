@@ -4,11 +4,16 @@ namespace Taecontrol\Larastats\Tests\Feature\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Event;
 use Taecontrol\Larastats\Models\Site;
 use Taecontrol\Larastats\Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Taecontrol\Larastats\Models\ExceptionLogGroup;
+use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent;
+use Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener;
+use Taecontrol\Larastats\Listeners\ExceptionLogGroupUpdatedListener;
 
 class ExceptionLogsControllerTest extends TestCase
 {
@@ -152,5 +157,79 @@ class ExceptionLogsControllerTest extends TestCase
 
         $this->postJson(route('larastats.api.exceptions'), $data)
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function exception_log_group_created_event_is_fired()
+    {
+        Event::fake();
+
+        $site = Site::factory()->create();
+
+        $data = [
+            'api_token' => $site->api_token,
+            'message' => $this->faker->word(),
+            'type' => $this->faker->word(),
+            'file' => $this->faker->word(),
+            'line' => $this->faker->randomNumber(2),
+            'trace' => ['test1', 'test2'],
+            'thrown_at' => Carbon::now(),
+        ];
+
+        $this->postJson(route('larastats.api.exceptions'), $data)
+            ->assertJson(
+                fn (AssertableJson $json) => $json
+                    ->has('success')
+                    ->where('success', true)
+            );
+
+        Event::assertDispatched(ExceptionLogGroupCreatedEvent::class);
+
+        Event::assertListening(
+            ExceptionLogGroupCreatedEvent::class,
+            ExceptionLogGroupCreatedListener::class
+        );
+    }
+
+    /** @test */
+    public function exception_log_group_updated_event_is_fired()
+    {
+        Event::fake();
+
+        $site = Site::factory()->create();
+
+        $data = [
+            'api_token' => $site->api_token,
+            'message' => $this->faker->word(),
+            'type' => $this->faker->word(),
+            'file' => $this->faker->word(),
+            'line' => $this->faker->randomNumber(2),
+            'trace' => ['test1', 'test2'],
+            'thrown_at' => now(),
+        ];
+
+        ExceptionLogGroup::factory()->create([
+            'site_id' => $site->id,
+            'message' => 'Hi',
+            'file' => $data['file'],
+            'type' => $data['type'],
+            'line' => $data['line'],
+            'first_seen' => now()->subDays(2),
+            'last_seen' => now()->subDays(2),
+        ])->first();
+
+        $this->postJson(route('larastats.api.exceptions'), $data)
+            ->assertJson(
+                fn (AssertableJson $json) => $json
+                    ->has('success')
+                    ->where('success', true)
+            );
+
+        Event::assertDispatched(ExceptionLogGroupUpdatedEvent::class);
+
+        Event::assertListening(
+            ExceptionLogGroupUpdatedEvent::class,
+            ExceptionLogGroupUpdatedListener::class
+        );
     }
 }
