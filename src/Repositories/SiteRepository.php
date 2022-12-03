@@ -2,20 +2,17 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
-use Taecontrol\Larastats\Models\Site;
-use Illuminate\Database\Eloquent\Builder;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 
-class SiteRepository
+class SiteRepository extends ModelRepository
 {
+    protected static string $contract = LarastatsSite::class;
+
+    protected static string $modelClassConfigKey = 'larastats.site.model';
+
     public static function findOrFail(string|int $id): LarastatsSite
     {
         return static::resolveModelClass()::findOrFail($id);
-    }
-
-    public static function query(): Builder
-    {
-        return static::resolveModelClass()::query();
     }
 
     public static function resolveModel(): LarastatsSite
@@ -23,10 +20,5 @@ class SiteRepository
         $modelClass = static::resolveModelClass();
 
         return new $modelClass();
-    }
-
-    public static function resolveModelClass(): string
-    {
-        return config('larastats.site.model') ?? Site::class;
     }
 }

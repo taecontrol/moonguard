@@ -2,12 +2,14 @@
 
 namespace Taecontrol\Larastats\Repositories;
 
-use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\Larastats\Models\ExceptionLogGroup;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 
-class ExceptionLogGroupRepository
+class ExceptionLogGroupRepository extends ModelRepository
 {
+    protected static string $contract = LarastatsExceptionLogGroup::class;
+
+    protected static string $modelClassConfigKey = 'larastats.exceptions.exception_log_group.model';
+
     public static function isEnabled(): bool
     {
         return config('larastats.exceptions.enabled');
@@ -16,11 +18,6 @@ class ExceptionLogGroupRepository
     public static function findOrFail(string|int $id): LarastatsExceptionLogGroup
     {
         return static::resolveModelClass()::findOrFail($id);
-    }
-
-    public static function query(): Builder
-    {
-        return static::resolveModelClass()::query();
     }
 
     public static function create(array $attributes = []): LarastatsExceptionLogGroup
@@ -33,10 +30,5 @@ class ExceptionLogGroupRepository
         $modelClass = static::resolveModelClass();
 
         return new $modelClass();
-    }
-
-    public static function resolveModelClass(): string
-    {
-        return config('larastats.exceptions.exception_log_group.model') ?? ExceptionLogGroup::class;
     }
 }
