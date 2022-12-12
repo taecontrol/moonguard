@@ -31,9 +31,18 @@
 
                     <div class="relative overflow-hidden max-h-0 transition-all !duration-700" style="" x-ref="container{{ $loop->index }}" x-bind:style="selected == {{ $loop->index }} ? 'max-height: ' + $refs.container{{ $loop->index }}.scrollHeight + 'px' : ''">
                         <div class="mt-10 px-4 py-5 sm:px-6">
+
+                            <div>
+                                <h3 class="text-lg font-bold leading-6 text-gray-900">Message</h3>
+                                <p class="mt-1 text-sm text-gray-900">{{ $exception->message }}</p>
+                            </div>
+                            
+                            <br />
+
                             <h3 class="text-lg font-bold leading-6 text-gray-900">Request</h3>
 
                             <dl class="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+
                                 <div class="sm:col-span-2">
                                     <dt class="text-sm font-medium text-gray-500">URL</dt>
                                     <dd class="mt-1 text-sm text-gray-900">{{ $exception->request['url'] }}</dd>
