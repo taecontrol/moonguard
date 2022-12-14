@@ -14,12 +14,12 @@ class LarastatsCommandScheduler
         $sslCheckIsEnabled = config('larastats.ssl_certificate_check.enabled');
 
         if ($uptimeCheckIsEnabled) {
-            $schedule->command('check:uptime')
+            $schedule->command(CheckUptimeCommand::class)
                 ->cron($uptimeCheckCron);
         }
 
         if ($sslCheckIsEnabled) {
-            $schedule->command('check:ssl-certificate')
+            $schedule->command(CheckSslCertificate::class)
                 ->cron($sslCertificateCheckCron);
         }
     }
