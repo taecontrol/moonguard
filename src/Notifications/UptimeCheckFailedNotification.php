@@ -36,7 +36,7 @@ class UptimeCheckFailedNotification extends Notification implements ShouldQueue
     public function toSlack(): SlackMessage
     {
         return (new SlackMessage)
-            ->success()
+            ->error()
             ->attachment(
                 fn (SlackAttachment $attachment) => $attachment
                     ->title($this->getMessageText())

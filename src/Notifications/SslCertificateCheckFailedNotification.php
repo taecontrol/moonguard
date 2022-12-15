@@ -35,7 +35,7 @@ class SslCertificateCheckFailedNotification extends Notification implements Shou
     public function toSlack(): SlackMessage
     {
         return (new SlackMessage)
-            ->success()
+            ->error()
             ->attachment(
                 fn (SlackAttachment $attachment) => $attachment
                     ->title($this->getMessageText())
