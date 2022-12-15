@@ -36,7 +36,7 @@ class RequestTookLongerThanMaxDurationNotification extends Notification implemen
     public function toSlack(): SlackMessage
     {
         return (new SlackMessage)
-            ->success()
+            ->warning()
             ->attachment(
                 fn (SlackAttachment $attachment) => $attachment
                     ->title($this->getMessageText())

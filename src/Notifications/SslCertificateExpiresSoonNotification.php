@@ -35,7 +35,7 @@ class SslCertificateExpiresSoonNotification extends Notification implements Shou
     public function toSlack(): SlackMessage
     {
         return (new SlackMessage)
-            ->success()
+            ->warning()
             ->attachment(
                 fn (SlackAttachment $attachment) => $attachment
                     ->title($this->getMessageText())
