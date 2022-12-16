@@ -84,8 +84,6 @@ class SiteExceptionLogs extends Page
 
         $this->exceptionLogsCollection = $exceptions->getCollection();
 
-        ray($exceptions->count());
-
         return [
             'exceptions' => $exceptions,
         ];
