@@ -1,29 +1,36 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages;
+namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages;
 
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Filament\Resources\Pages\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\Moonguard\Contracts\MoonguardSite;
-use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource;
-use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
-use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Larastats\Enums\ExceptionLogStatus;
+use Taecontrol\Larastats\Filament\Resources\SiteResource;
+use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
+use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
+use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 
 class SiteExceptionLogs extends Page
 {
     use WithPagination;
 
-    public MoonguardSite $site;
+    public LarastatsSite $site;
 
-    public MoonguardExceptionLogGroup $exceptionLogGroup;
+    public LarastatsExceptionLogGroup $exceptionLogGroup;
+
+    public Collection $exceptionLogsCollection;
+
+    public string $updateExceptionLogsStatusAs = '';
 
     public string $exceptionLogStatusFilter = '';
 
-    protected static string $view = 'moonguard::resources.exception-log-resource.pages.site-exception-logs';
+    protected static string $view = 'larastats::resources.exception-log-resource.pages.site-exception-logs';
 
     protected static string $resource = SiteResource::class;
 
@@ -40,7 +47,16 @@ class SiteExceptionLogs extends Page
 
     public function paginationView(): string
     {
-        return 'moonguard::partials.pagination';
+        return 'larastats::partials.pagination';
+    }
+
+    public function updateExceptionLogsStatus()
+    {
+        if ($this->updateExceptionLogsStatusAs !== '') {
+            ExceptionLogRepository::query()
+                ->whereIn('id', $this->exceptionLogsCollection->pluck('id'))
+                ->update(['status' => $this->updateExceptionLogsStatusAs]);
+        }
     }
 
     public function getExceptionLogStatusFilterOptionsProperty(): array
@@ -55,6 +71,7 @@ class SiteExceptionLogs extends Page
 
     protected function getViewData(): array
     {
+        /** @var LengthAwarePaginator $exceptions */
         $exceptions = $this
             ->exceptionLogGroup
             ->exceptionLogs()
@@ -65,6 +82,10 @@ class SiteExceptionLogs extends Page
             )
             ->paginate(5);
 
+        $this->exceptionLogsCollection = $exceptions->getCollection();
+
+        ray($exceptions->count());
+
         return [
             'exceptions' => $exceptions,
         ];
@@ -72,7 +93,7 @@ class SiteExceptionLogs extends Page
 
     protected function getHeader(): ?View
     {
-        return view('moonguard::resources.exception-log-resource.partials.site-exception-logs-header')
+        return view('larastats::resources.exception-log-resource.partials.site-exception-logs-header')
             ->with([
                 'site' => $this->site,
             ]);

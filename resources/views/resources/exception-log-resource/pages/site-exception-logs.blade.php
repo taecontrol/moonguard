@@ -1,6 +1,25 @@
 <x-filament::page>
-    <div>
-        <x-moonguard::select placeholder="Filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+    <div class="grid xl:grid-cols-3 grid-cols-1 gap-4">
+        <div>
+            <label class="text-gray-600 text-sm">Status</label>
+            <x-larastats::select placeholder="Status filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+        </div>
+        <div></div>
+        <div>
+            @if ($exceptions->count() > 0)
+                <label class="text-gray-600 text-sm">Update exceptions status as</label>
+                <div class="w-full flex justify-between">
+                    <div class="w-full">
+                        <x-larastats::select placeholder="Status" :options="$this->exceptionLogStatusFilterOptions" wire:model="updateExceptionLogsStatusAs" />
+                    </div>
+                    <div class="ml-2" wire:click="updateExceptionLogsStatus">
+                        <x-filament::button class="w-full">
+                            Update
+                        </x-filament::button>
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 
     <div x-data="{selected: null}">
