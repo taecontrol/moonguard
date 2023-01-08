@@ -51,6 +51,24 @@
                     <div class="relative overflow-hidden max-h-0 transition-all !duration-700" style="" x-ref="container{{ $loop->index }}" x-bind:style="selected == {{ $loop->index }} ? 'max-height: ' + $refs.container{{ $loop->index }}.scrollHeight + 'px' : ''">
                         <div class="mt-10 px-4 py-5 sm:px-6">
 
+                            <div class="mb-6 w-full" x-data="{ selection: '{{ $exception->status->value }}' }">
+                                <h3 class="text-lg font-bold leading-6 text-gray-900">Status</h3>
+                                <div class="flex">
+                                    <div>
+                                        <select name="status" x-model="selection" id="exception-status-select" class="relative w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                                            @foreach ($this->exceptionLogStatusFilterOptions as $optionValue => $optionLabel)
+                                                <option value="{{ $optionValue }}" {{ ($exception->status->value == $optionValue) ? "selected" : "" }} >{{ $optionLabel }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="ml-2">
+                                        <x-filament::button class="w-full" x-on:click="$wire.updateExceptionLogStatus( {{ $exception->id }}, selection )">
+                                            Update
+                                        </x-filament::button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div>
                                 <h3 class="text-lg font-bold leading-6 text-gray-900">Message</h3>
                                 <p class="mt-1 text-sm text-gray-900">{{ $exception->message }}</p>

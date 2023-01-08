@@ -50,12 +50,22 @@ class SiteExceptionLogs extends Page
         return 'larastats::partials.pagination';
     }
 
+    public function updateExceptionLogStatus(int $exceptionId, string $status)
+    {
+        $status = ExceptionLogStatus::from($status)->value;
+        ExceptionLogRepository::query()
+            ->find($exceptionId)
+            ->update(['status' => $status]);
+    }
+
     public function updateExceptionLogsStatus()
     {
+        $status = ExceptionLogStatus::from($this->updateExceptionLogsStatusAs)->value;
+
         if ($this->updateExceptionLogsStatusAs !== '') {
             ExceptionLogRepository::query()
                 ->whereIn('id', $this->exceptionLogsCollection->pluck('id'))
-                ->update(['status' => $this->updateExceptionLogsStatusAs]);
+                ->update(['status' => $status]);
         }
     }
 
