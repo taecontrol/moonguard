@@ -141,7 +141,7 @@ class UptimeCheckService
             return true;
         }
 
-        if (is_null($this->uptimeCheck->check_failed_event_fired_on_date)) {
+        if (! $this->uptimeCheck->was_failing) {
             return false;
         }
 
