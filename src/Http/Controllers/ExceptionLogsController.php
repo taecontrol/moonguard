@@ -2,6 +2,7 @@
 
 namespace Taecontrol\Larastats\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Taecontrol\Larastats\Models\Site;
 use Taecontrol\Larastats\Contracts\LarastatsSite;
 use Taecontrol\Larastats\Repositories\SiteRepository;
@@ -13,7 +14,7 @@ use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 
 class ExceptionLogsController extends Controller
 {
-    public function __invoke(StoreExceptionLogRequest $request)
+    public function __invoke(StoreExceptionLogRequest $request): JsonResponse
     {
         /** @var Site */
         $site = SiteRepository::query()
