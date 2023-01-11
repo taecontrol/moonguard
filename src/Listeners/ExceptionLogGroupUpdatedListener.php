@@ -5,7 +5,7 @@ namespace Taecontrol\Larastats\Listeners;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\Larastats\Repositories\UserRepository;
 use Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent;
-use Taecontrol\Larastats\Notifications\NewExceptionLogGroupNotification;
+use Taecontrol\Larastats\Notifications\ExceptionLogGroupNotification;
 
 class ExceptionLogGroupUpdatedListener
 {
@@ -13,7 +13,7 @@ class ExceptionLogGroupUpdatedListener
     {
         Notification::send(
             UserRepository::all(),
-            new NewExceptionLogGroupNotification($event->exceptionLogGroup)
+            new ExceptionLogGroupNotification($event->exceptionLogGroup)
         );
     }
 }

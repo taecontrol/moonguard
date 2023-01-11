@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 
-class NewExceptionLogGroupNotification extends Notification implements ShouldQueue
+class ExceptionLogGroupNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

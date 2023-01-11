@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Notification;
 use Taecontrol\Larastats\Models\ExceptionLogGroup;
 use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
 use Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener;
-use Taecontrol\Larastats\Notifications\NewExceptionLogGroupNotification;
+use Taecontrol\Larastats\Notifications\ExceptionLogGroupNotification;
 
 class ExceptionLogGroupCreatedListenerTest extends TestCase
 {
@@ -33,6 +33,6 @@ class ExceptionLogGroupCreatedListenerTest extends TestCase
         $event = new ExceptionLogGroupCreatedEvent($exceptionLogGroup);
         $instance->handle($event);
 
-        Notification::assertSentTo($this->users, NewExceptionLogGroupNotification::class);
+        Notification::assertSentTo($this->users, ExceptionLogGroupNotification::class);
     }
 }
