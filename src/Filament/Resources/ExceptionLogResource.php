@@ -8,16 +8,16 @@ use Filament\Resources\Resource;
 use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Taecontrol\Larastats\Filament\Tables\Columns\ExceptionColumn;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Larastats\Filament\Tables\Columns\ExceptionLogGroupColumn;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages\SiteExceptions;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages\ListExceptionLogGroups;
+use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
+use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages\ListExceptionLogGroups;
 
-class ExceptionLogGroupResource extends Resource
+class ExceptionLogResource extends Resource
 {
     protected static ?string $slug = 'larastats/exceptions';
 
-    protected static ?string $modelLabel = 'All Exceptions';
+    protected static ?string $modelLabel = 'Latest Exceptions';
 
     protected static ?string $navigationLabel = 'Exceptions';
 
@@ -30,7 +30,7 @@ class ExceptionLogGroupResource extends Resource
     {
         return $table
             ->columns([
-                ExceptionLogGroupColumn::make('exceptions'),
+                ExceptionColumn::make('exceptions'),
                 TextColumn::make('exception_logs_count')->counts('exceptionLogs')->label('Events'),
                 TextColumn::make('first_seen')->dateTime()->sortable(),
                 TextColumn::make('last_seen')->dateTime()->sortable(),
@@ -57,7 +57,7 @@ class ExceptionLogGroupResource extends Resource
     {
         return [
             'index' => ListExceptionLogGroups::route('/'),
-            'show' => SiteExceptions::route('/show/{record}'),
+            'show' => SiteExceptionLogs::route('/show/{record}'),
         ];
     }
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages;
+namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\ListRecords;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource;
+use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource;
 
 class ListExceptionLogGroups extends ListRecords
 {
-    protected static string $resource = ExceptionLogGroupResource::class;
+    protected static string $resource = ExceptionLogResource::class;
 
     protected function getTableFiltersFormColumns(): int
     {

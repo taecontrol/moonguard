@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource\Pages;
+namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages;
 
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -13,7 +13,7 @@ use Taecontrol\Larastats\Filament\Resources\SiteResource;
 use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
 use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
 
-class SiteExceptions extends Page
+class SiteExceptionLogs extends Page
 {
     use WithPagination;
 
@@ -23,13 +23,13 @@ class SiteExceptions extends Page
 
     public string $exceptionLogStatusFilter = '';
 
-    protected $queryString = [
-        'exceptionLogStatusFilter' => ['as' => 'status', 'except' => ''],
-    ];
+    protected static string $view = 'larastats::resources.exception-log-group-resource.pages.site-exceptions';
 
     protected static string $resource = SiteResource::class;
 
-    protected static string $view = 'larastats::resources.exception-log-group-resource.pages.site-exceptions';
+    protected $queryString = [
+        'exceptionLogStatusFilter' => ['as' => 'status', 'except' => ''],
+    ];
 
     public function mount(int $record)
     {

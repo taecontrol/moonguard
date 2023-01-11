@@ -6,13 +6,13 @@ use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Taecontrol\Larastats\Filament\Resources\SiteResource;
 use Taecontrol\Larastats\Filament\Widgets\SiteStatsWidget;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogGroupResource;
+use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource;
 
 class LarastatsFilamentServiceProvider extends PluginServiceProvider
 {
     protected array $resources = [
         SiteResource::class,
-        ExceptionLogGroupResource::class,
+        ExceptionLogResource::class,
     ];
 
     protected array $widgets = [
