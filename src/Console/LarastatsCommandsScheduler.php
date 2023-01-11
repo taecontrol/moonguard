@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Taecontrol\Larastats\Console\Commands\CheckUptimeCommand;
 use Taecontrol\Larastats\Console\Commands\CheckSslCertificateCommand;
 
-class LarastatsCommandScheduler
+class LarastatsCommandsScheduler
 {
     public static function scheduleLarastatsCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron)
     {
