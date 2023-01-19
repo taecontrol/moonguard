@@ -23,7 +23,7 @@ class SiteExceptionLogs extends Page
 
     public string $exceptionLogStatusFilter = '';
 
-    protected static string $view = 'larastats::resources.exception-log-group-resource.pages.site-exceptions';
+    protected static string $view = 'larastats::resources.exception-log-resource.pages.site-exception-logs';
 
     protected static string $resource = SiteResource::class;
 
@@ -72,7 +72,7 @@ class SiteExceptionLogs extends Page
 
     protected function getHeader(): ?View
     {
-        return view('larastats::resources.exception-log-group-resource.partials.site-exceptions-header')
+        return view('larastats::resources.exception-log-resource.partials.site-exception-logs-header')
             ->with([
                 'site' => $this->site,
             ]);
