@@ -16,7 +16,7 @@ class SslCertificateCheckService
 
     public function check(LarastatsSite $site): void
     {
-        if (! $site->sslCertificateCheck) {
+        if ($site->sslCertificateCheck()->doesntExist()) {
             $this->sslCertificateCheck = SslCertificateCheckRepository::resolveModel();
             $this->sslCertificateCheck->site_id = $site->id;
         } else {
