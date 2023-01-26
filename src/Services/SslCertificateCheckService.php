@@ -35,9 +35,11 @@ class SslCertificateCheckService
 
     protected function notifyAfterSavingCertificate(SslCertificate $certificate): void
     {
+        $maxDaysToExpireFromConfig = config('larastats.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days');
+
         if (
             $this->sslCertificateCheck->certificateIsValid()
-            && $this->sslCertificateCheck->certificateIsAboutToExpire(config('larastats.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days'))
+            && $this->sslCertificateCheck->certificateIsAboutToExpire($maxDaysToExpireFromConfig)
         ) {
             event(new SslCertificateExpiresSoonEvent($this->sslCertificateCheck));
         }
