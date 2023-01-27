@@ -37,14 +37,16 @@ class SslCertificateCheckService
     {
         $maxDaysToExpireFromConfig = config('larastats.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days');
 
-        if (
-            $this->sslCertificateCheck->certificateIsValid()
-            && $this->sslCertificateCheck->certificateIsAboutToExpire($maxDaysToExpireFromConfig)
-        ) {
+        $isCertificateValidAndAboutToExpire = $this->sslCertificateCheck->certificateIsValid()
+            && $this->sslCertificateCheck->certificateIsAboutToExpire($maxDaysToExpireFromConfig);
+
+        $isCertificateInvalid = $this->sslCertificateCheck->certificateIsInvalid();
+
+        if ($isCertificateValidAndAboutToExpire) {
             event(new SslCertificateExpiresSoonEvent($this->sslCertificateCheck));
         }
 
-        if ($this->sslCertificateCheck->certificateIsInvalid()) {
+        if ($isCertificateInvalid) {
             $reason = 'Unknown';
 
             if (! $certificate->appliesToUrl($this->sslCertificateCheck->url)) {
