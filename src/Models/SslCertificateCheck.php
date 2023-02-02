@@ -1,20 +1,20 @@
 <?php
 
-namespace Taecontrol\Larastats\Models;
+namespace Taecontrol\Moonguard\Models;
 
 use Exception;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Taecontrol\Larastats\Enums\SslCertificateStatus;
+use Taecontrol\Moonguard\Enums\SslCertificateStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
+use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
 
-class SslCertificateCheck extends Model implements LarastatsSslCertificateCheck
+class SslCertificateCheck extends Model implements MoonguardSslCertificateCheck
 {
     use HasFactory;
 

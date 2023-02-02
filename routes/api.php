@@ -1,8 +1,8 @@
 <?php
 
-use Taecontrol\Larastats\Http\Controllers\ExceptionLogsController;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Moonguard\Http\Controllers\ExceptionLogsController;
+use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
 
 if (ExceptionLogGroupRepository::isEnabled()) {
-    Route::post('/exceptions', ExceptionLogsController::class)->name('larastats.api.exceptions');
+    Route::post('/exceptions', ExceptionLogsController::class)->name('moonguard.api.exceptions');
 }

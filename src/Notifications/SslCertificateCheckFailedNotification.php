@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Notifications;
+namespace Taecontrol\Moonguard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -8,19 +8,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
+use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
 
 class SslCertificateCheckFailedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public LarastatsSslCertificateCheck $sslCertificateCheck)
+    public function __construct(public MoonguardSslCertificateCheck $sslCertificateCheck)
     {
     }
 
     public function via(): array
     {
-        return config('larastats.notifications.channels');
+        return config('moonguard.notifications.channels');
     }
 
     public function toMail(): MailMessage

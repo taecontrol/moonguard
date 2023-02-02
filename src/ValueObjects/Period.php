@@ -1,9 +1,9 @@
 <?php
 
-namespace Taecontrol\Larastats\ValueObjects;
+namespace Taecontrol\Moonguard\ValueObjects;
 
 use Carbon\CarbonInterface;
-use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
+use Taecontrol\Moonguard\Exceptions\InvalidPeriodException;
 
 class Period
 {

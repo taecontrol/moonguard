@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources;
+namespace Taecontrol\Moonguard\Filament\Resources;
 
 use Exception;
 use Filament\Resources\Table;
@@ -8,14 +8,14 @@ use Filament\Resources\Resource;
 use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Taecontrol\Larastats\Filament\Tables\Columns\ExceptionColumn;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages\ListExceptionLogGroups;
+use Taecontrol\Moonguard\Filament\Tables\Columns\ExceptionColumn;
+use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
+use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages\ListExceptionLogGroups;
 
 class ExceptionLogResource extends Resource
 {
-    protected static ?string $slug = 'larastats/exceptions';
+    protected static ?string $slug = 'moonguard/exceptions';
 
     protected static ?string $modelLabel = 'Latest Exceptions';
 

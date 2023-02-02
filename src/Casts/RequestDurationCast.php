@@ -1,9 +1,9 @@
 <?php
 
-namespace Taecontrol\Larastats\Casts;
+namespace Taecontrol\Moonguard\Casts;
 
 use InvalidArgumentException;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class RequestDurationCast implements CastsAttributes

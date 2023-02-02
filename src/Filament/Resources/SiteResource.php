@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources;
+namespace Taecontrol\Moonguard\Filament\Resources;
 
 use Str;
 use Closure;
@@ -15,17 +15,17 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Actions\Action;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Repositories\SiteRepository;
-use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
-use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\EditSite;
-use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\ListSites;
-use Taecontrol\Larastats\Filament\Resources\SiteResource\Pages\CreateSite;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
+use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages\EditSite;
+use Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages\ListSites;
+use Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages\CreateSite;
 
 class SiteResource extends Resource
 {
-    protected static ?string $slug = 'larastats/sites';
+    protected static ?string $slug = 'moonguard/sites';
 
     protected static ?string $modelLabel = 'Site';
 
@@ -41,7 +41,7 @@ class SiteResource extends Resource
         return $form
             ->schema([
                 TextInput::make('url')
-                    ->unique(ignorable: fn (?LarastatsSite $record): ?LarastatsSite => $record)
+                    ->unique(ignorable: fn (?MoonguardSite $record): ?MoonguardSite => $record)
                     ->required(),
                 TextInput::make('name')
                     ->required(),

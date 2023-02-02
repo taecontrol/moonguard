@@ -1,16 +1,16 @@
 <?php
 
-namespace Taecontrol\Larastats\Http\Controllers;
+namespace Taecontrol\Moonguard\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Taecontrol\Larastats\Models\Site;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Repositories\SiteRepository;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
-use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
-use Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent;
-use Taecontrol\Larastats\Http\Requests\StoreExceptionLogRequest;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Moonguard\Models\Site;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
+use Taecontrol\Moonguard\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\Moonguard\Events\ExceptionLogGroupUpdatedEvent;
+use Taecontrol\Moonguard\Http\Requests\StoreExceptionLogRequest;
+use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
 
 class ExceptionLogsController extends Controller
 {
@@ -23,7 +23,7 @@ class ExceptionLogsController extends Controller
 
         abort_if(! $site, 403);
 
-        /** @var LarastatsExceptionLogGroup|null $group */
+        /** @var MoonguardExceptionLogGroup|null $group */
         $group = ExceptionLogGroupRepository::query()
             ->where('file', $request->input('file'))
             ->where('type', $request->input('type'))
@@ -45,7 +45,7 @@ class ExceptionLogsController extends Controller
         ]);
     }
 
-    protected function createExceptionLogGroup(StoreExceptionLogRequest $request, LarastatsSite $site)
+    protected function createExceptionLogGroup(StoreExceptionLogRequest $request, MoonguardSite $site)
     {
         $group = ExceptionLogGroupRepository::create([
             'message' => $request->input('message'),
@@ -62,9 +62,9 @@ class ExceptionLogsController extends Controller
         return $group;
     }
 
-    protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, LarastatsExceptionLogGroup $group)
+    protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, MoonguardExceptionLogGroup $group)
     {
-        $timeInMinutesBetweenUpdates = config('larastats.exceptions.notify_time_between_group_updates_in_minutes');
+        $timeInMinutesBetweenUpdates = config('moonguard.exceptions.notify_time_between_group_updates_in_minutes');
         $timeDiffInMinutesFromLastException = now()->diffInMinutes($group->last_seen);
 
         $group->update([

@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Larastats\Repositories;
+namespace Taecontrol\Moonguard\Repositories;
 
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
 
 class UptimeCheckRepository extends ModelRepository
 {
-    protected static string $contract = LarastatsUptimeCheck::class;
+    protected static string $contract = MoonguardUptimeCheck::class;
 
-    protected static string $modelClassConfigKey = 'larastats.uptime_check.model';
+    protected static string $modelClassConfigKey = 'moonguard.uptime_check.model';
 
     public static function isEnabled(): bool
     {
-        return config('larastats.uptime_check.enabled');
+        return config('moonguard.uptime_check.enabled');
     }
 
-    public static function resolveModel(): LarastatsUptimeCheck
+    public static function resolveModel(): MoonguardUptimeCheck
     {
         $modelClass = static::resolveModelClass();
 

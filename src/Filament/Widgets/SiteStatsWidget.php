@@ -1,14 +1,14 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Widgets;
+namespace Taecontrol\Moonguard\Filament\Widgets;
 
-use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
 
 class SiteStatsWidget extends PollableWidget
 {
     protected static ?string $pollingInterval = '10s';
 
-    protected static string $view = 'larastats::widgets.site-stats-widget';
+    protected static string $view = 'moonguard::widgets.site-stats-widget';
 
     protected int | string | array $columnSpan = 'full';
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Taecontrol\Larastats\Collections;
+namespace Taecontrol\Moonguard\Collections;
 
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Collection;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Services\UptimeCheckService;
-use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
-use Taecontrol\Larastats\Services\SslCertificateCheckService;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
+use Taecontrol\Moonguard\Services\UptimeCheckService;
+use Taecontrol\Moonguard\Exceptions\InvalidPeriodException;
+use Taecontrol\Moonguard\Services\SslCertificateCheckService;
 
 class SiteCollection extends Collection
 {
@@ -17,7 +17,7 @@ class SiteCollection extends Collection
     {
         /** @var array<string, Response> $responses */
         $responses = Http::pool(fn (Pool $pool) => $this->map(
-            fn (LarastatsSite $site) => $pool->as($site->url)->get($site->url)
+            fn (MoonguardSite $site) => $pool->as($site->url)->get($site->url)
         ));
 
         /** @var UptimeCheckService $uptimeCheckService */
@@ -25,7 +25,7 @@ class SiteCollection extends Collection
 
         $this->each(/**
          * @throws InvalidPeriodException
-         */ fn (LarastatsSite $site) => $uptimeCheckService->check($site, $responses[$site->url->__toString()])
+         */ fn (MoonguardSite $site) => $uptimeCheckService->check($site, $responses[$site->url->__toString()])
         );
     }
 
@@ -34,6 +34,6 @@ class SiteCollection extends Collection
         /** @var SslCertificateCheckService $sslCertificateCheckService */
         $sslCertificateCheckService = app(SslCertificateCheckService::class);
 
-        $this->each(fn (LarastatsSite $site) => $sslCertificateCheckService->check($site));
+        $this->each(fn (MoonguardSite $site) => $sslCertificateCheckService->check($site));
     }
 }

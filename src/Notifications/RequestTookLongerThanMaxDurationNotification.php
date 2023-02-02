@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Notifications;
+namespace Taecontrol\Moonguard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -8,20 +8,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
 
 class RequestTookLongerThanMaxDurationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public LarastatsUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
+    public function __construct(public MoonguardUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
     {
     }
 
     public function via(): array
     {
-        return config('larastats.notifications.channels');
+        return config('moonguard.notifications.channels');
     }
 
     public function toMail(): MailMessage

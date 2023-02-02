@@ -1,10 +1,10 @@
 <?php
 
-namespace Taecontrol\Larastats\Console\Commands;
+namespace Taecontrol\Moonguard\Console\Commands;
 
 use Illuminate\Console\Command;
-use Taecontrol\Larastats\Repositories\SiteRepository;
-use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
 
 class CheckUptimeCommand extends Command
 {
@@ -15,7 +15,7 @@ class CheckUptimeCommand extends Command
     public function handle()
     {
         if (! UptimeCheckRepository::isEnabled()) {
-            $this->info('[Uptime] This check is disabled. If you want to enable it, check the larastats config file.');
+            $this->info('[Uptime] This check is disabled. If you want to enable it, check the moonguard config file.');
 
             return;
         }

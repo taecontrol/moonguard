@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Larastats\Tests;
+namespace Taecontrol\Moonguard\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Taecontrol\Larastats\Providers\LarastatsServiceProvider;
+use Taecontrol\Moonguard\Providers\MoonguardServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -17,14 +17,14 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Taecontrol\\Larastats\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'Taecontrol\\Moonguard\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            LarastatsServiceProvider::class,
+            MoonguardServiceProvider::class,
         ];
     }
 
@@ -51,7 +51,7 @@ class TestCase extends Orchestra
             $table->timestamps();
         });
 
-        include_once __DIR__ . '/../database/migrations/create_larastats_tables.php.stub';
-        (new \CreateLarastatsTables)->up();
+        include_once __DIR__ . '/../database/migrations/create_moonguard_tables.php.stub';
+        (new \CreateMoonguardTables)->up();
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Taecontrol\Larastats\Events;
+namespace Taecontrol\Moonguard\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
+use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
 
 class SslCertificateExpiresSoonEvent
 {
     use Dispatchable;
     use SerializesModels;
 
-    public function __construct(public LarastatsSslCertificateCheck $sslCertificateCheck)
+    public function __construct(public MoonguardSslCertificateCheck $sslCertificateCheck)
     {
     }
 }

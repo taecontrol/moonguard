@@ -1,20 +1,20 @@
 <?php
 
-namespace Taecontrol\Larastats\Services;
+namespace Taecontrol\Moonguard\Services;
 
 use Exception;
 use Spatie\SslCertificate\SslCertificate;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent;
-use Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent;
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
+use Taecontrol\Moonguard\Events\SslCertificateCheckFailedEvent;
+use Taecontrol\Moonguard\Events\SslCertificateExpiresSoonEvent;
+use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
+use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
 
 class SslCertificateCheckService
 {
-    protected LarastatsSslCertificateCheck $sslCertificateCheck;
+    protected MoonguardSslCertificateCheck $sslCertificateCheck;
 
-    public function check(LarastatsSite $site): void
+    public function check(MoonguardSite $site): void
     {
         if ($site->sslCertificateCheck()->doesntExist()) {
             $this->sslCertificateCheck = SslCertificateCheckRepository::resolveModel();
@@ -35,7 +35,7 @@ class SslCertificateCheckService
 
     protected function notifyAfterSavingCertificate(SslCertificate $certificate): void
     {
-        $maxDaysToExpireFromConfig = config('larastats.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days');
+        $maxDaysToExpireFromConfig = config('moonguard.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days');
 
         $isCertificateValidAndAboutToExpire = $this->sslCertificateCheck->certificateIsValid()
             && $this->sslCertificateCheck->certificateIsAboutToExpire($maxDaysToExpireFromConfig);

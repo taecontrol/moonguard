@@ -1,27 +1,27 @@
 <?php
 
-namespace Taecontrol\Larastats\Services;
+namespace Taecontrol\Moonguard\Services;
 
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Client\Response;
-use Taecontrol\Larastats\ValueObjects\Period;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Events\UptimeCheckFailedEvent;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
-use Taecontrol\Larastats\Events\UptimeCheckRecoveredEvent;
-use Taecontrol\Larastats\Exceptions\InvalidPeriodException;
-use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Events\RequestTookLongerThanMaxDurationEvent;
+use Taecontrol\Moonguard\ValueObjects\Period;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
+use Taecontrol\Moonguard\Events\UptimeCheckFailedEvent;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
+use Taecontrol\Moonguard\Events\UptimeCheckRecoveredEvent;
+use Taecontrol\Moonguard\Exceptions\InvalidPeriodException;
+use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
+use Taecontrol\Moonguard\Events\RequestTookLongerThanMaxDurationEvent;
 
 class UptimeCheckService
 {
-    protected LarastatsUptimeCheck $uptimeCheck;
+    protected MoonguardUptimeCheck $uptimeCheck;
 
     /**
      * @throws InvalidPeriodException
      */
-    public function check(LarastatsSite $site, Response|Exception $response): void
+    public function check(MoonguardSite $site, Response|Exception $response): void
     {
         if (! $site->uptimeCheck) {
             $this->uptimeCheck = UptimeCheckRepository::resolveModel();
@@ -137,7 +137,7 @@ class UptimeCheckService
 
     protected function shouldNotifyAboutUptimeFailing(): bool
     {
-        if ($this->uptimeCheck->check_times_failed_in_a_row === config('larastats.uptime_check.notify_failed_check_after_consecutive_failures')) {
+        if ($this->uptimeCheck->check_times_failed_in_a_row === config('moonguard.uptime_check.notify_failed_check_after_consecutive_failures')) {
             return true;
         }
 
@@ -145,7 +145,7 @@ class UptimeCheckService
             return false;
         }
 
-        if ($this->uptimeCheck->check_failed_event_fired_on_date->diffInMinutes() >= config('larastats.uptime_check.resend_uptime_check_failed_notification_every_minutes')) {
+        if ($this->uptimeCheck->check_failed_event_fired_on_date->diffInMinutes() >= config('moonguard.uptime_check.resend_uptime_check_failed_notification_every_minutes')) {
             return true;
         }
 

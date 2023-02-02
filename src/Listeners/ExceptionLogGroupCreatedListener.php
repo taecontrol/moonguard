@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Larastats\Listeners;
+namespace Taecontrol\Moonguard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Larastats\Repositories\UserRepository;
-use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
-use Taecontrol\Larastats\Notifications\ExceptionLogGroupNotification;
+use Taecontrol\Moonguard\Repositories\UserRepository;
+use Taecontrol\Moonguard\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\Moonguard\Notifications\ExceptionLogGroupNotification;
 
 class ExceptionLogGroupCreatedListener
 {

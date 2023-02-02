@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Exceptions;
+namespace Taecontrol\Moonguard\Exceptions;
 
 use Exception;
 

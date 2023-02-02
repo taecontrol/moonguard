@@ -1,10 +1,10 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources\SiteResource\Pages;
+namespace Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
-use Taecontrol\Larastats\Filament\Resources\SiteResource;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\Filament\Resources\SiteResource;
 
 class CreateSite extends CreateRecord
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Larastats\Contracts;
+namespace Taecontrol\Moonguard\Contracts;
 
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Client\Response;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
 
 /**
  * @property string|int $id
@@ -19,9 +19,9 @@ use Taecontrol\Larastats\ValueObjects\RequestDuration;
  * @property int $check_times_failed_in_a_row
  * @property bool $was_failing
  * @property bool $is_enabled
- * @property LarastatsSite $site
+ * @property MoonguardSite $site
  */
-interface LarastatsUptimeCheck
+interface MoonguardUptimeCheck
 {
     public function site(): BelongsTo;
 

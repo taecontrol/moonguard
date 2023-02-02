@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Widgets;
+namespace Taecontrol\Moonguard\Filament\Widgets;
 
 use Filament\Widgets\Widget;
 use Filament\Widgets\Concerns\CanPoll;

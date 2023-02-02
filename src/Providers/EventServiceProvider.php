@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Providers;
+namespace Taecontrol\Moonguard\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -8,6 +8,6 @@ class EventServiceProvider extends ServiceProvider
 {
     public function listens()
     {
-        return config('larastats.events.listen');
+        return config('moonguard.events.listen');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Http\Requests;
+namespace Taecontrol\Moonguard\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

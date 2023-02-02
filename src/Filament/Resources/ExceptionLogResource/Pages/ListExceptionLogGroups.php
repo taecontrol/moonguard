@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages;
+namespace Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\ListRecords;
-use Taecontrol\Larastats\Filament\Resources\ExceptionLogResource;
+use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource;
 
 class ListExceptionLogGroups extends ListRecords
 {
@@ -24,7 +24,7 @@ class ListExceptionLogGroups extends ListRecords
     protected function getTableRecordUrlUsing(): Closure
     {
         return fn (Model $record): string => route(
-            'filament.resources.larastats/exceptions.show',
+            'filament.resources.moonguard/exceptions.show',
             ['record' => $record]
         );
     }

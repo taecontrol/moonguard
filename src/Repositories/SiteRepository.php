@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Larastats\Repositories;
+namespace Taecontrol\Moonguard\Repositories;
 
-use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
 
 class SiteRepository extends ModelRepository
 {
-    protected static string $contract = LarastatsSite::class;
+    protected static string $contract = MoonguardSite::class;
 
-    protected static string $modelClassConfigKey = 'larastats.site.model';
+    protected static string $modelClassConfigKey = 'moonguard.site.model';
 
-    public static function findOrFail(string|int $id): LarastatsSite
+    public static function findOrFail(string|int $id): MoonguardSite
     {
         return static::resolveModelClass()::findOrFail($id);
     }
 
-    public static function resolveModel(): LarastatsSite
+    public static function resolveModel(): MoonguardSite
     {
         $modelClass = static::resolveModelClass();
 

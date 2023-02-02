@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Notifications;
+namespace Taecontrol\Moonguard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -8,19 +8,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
+use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
 
 class ExceptionLogGroupNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public LarastatsExceptionLogGroup $exceptionLogGroup)
+    public function __construct(public MoonguardExceptionLogGroup $exceptionLogGroup)
     {
     }
 
     public function via(): array
     {
-        return config('larastats.notifications.channels');
+        return config('moonguard.notifications.channels');
     }
 
     public function toMail(): MailMessage
@@ -54,6 +54,6 @@ class ExceptionLogGroupNotification extends Notification implements ShouldQueue
 
     protected function getActionUrl(): string
     {
-        return route('filament.resources.larastats/exceptions.show', $this->exceptionLogGroup->id);
+        return route('filament.resources.moonguard/exceptions.show', $this->exceptionLogGroup->id);
     }
 }

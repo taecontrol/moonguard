@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Larastats\Repositories;
+namespace Taecontrol\Moonguard\Repositories;
 
-use Taecontrol\Larastats\Contracts\LarastatsSslCertificateCheck;
+use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
 
 class SslCertificateCheckRepository extends ModelRepository
 {
-    protected static string $contract = LarastatsSslCertificateCheck::class;
+    protected static string $contract = MoonguardSslCertificateCheck::class;
 
-    protected static string $modelClassConfigKey = 'larastats.ssl_certificate_check.model';
+    protected static string $modelClassConfigKey = 'moonguard.ssl_certificate_check.model';
 
     public static function isEnabled(): bool
     {
-        return config('larastats.ssl_certificate_check.enabled');
+        return config('moonguard.ssl_certificate_check.enabled');
     }
 
-    public static function resolveModel(): LarastatsSslCertificateCheck
+    public static function resolveModel(): MoonguardSslCertificateCheck
     {
         $modelClass = static::resolveModelClass();
 

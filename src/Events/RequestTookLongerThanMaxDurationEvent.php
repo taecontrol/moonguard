@@ -1,18 +1,18 @@
 <?php
 
-namespace Taecontrol\Larastats\Events;
+namespace Taecontrol\Moonguard\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
 
 class RequestTookLongerThanMaxDurationEvent
 {
     use Dispatchable;
     use SerializesModels;
 
-    public function __construct(public LarastatsUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
+    public function __construct(public MoonguardUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
     {
     }
 }

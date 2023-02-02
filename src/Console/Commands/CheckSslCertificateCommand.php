@@ -1,10 +1,10 @@
 <?php
 
-namespace Taecontrol\Larastats\Console\Commands;
+namespace Taecontrol\Moonguard\Console\Commands;
 
 use Illuminate\Console\Command;
-use Taecontrol\Larastats\Repositories\SiteRepository;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
 
 class CheckSslCertificateCommand extends Command
 {
@@ -15,7 +15,7 @@ class CheckSslCertificateCommand extends Command
     public function handle()
     {
         if (! SslCertificateCheckRepository::isEnabled()) {
-            $this->info('[SSL] This check is disabled. If you want to enable it, check the larastats config file.');
+            $this->info('[SSL] This check is disabled. If you want to enable it, check the moonguard config file.');
 
             return;
         }

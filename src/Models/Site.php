@@ -1,24 +1,24 @@
 <?php
 
-namespace Taecontrol\Larastats\Models;
+namespace Taecontrol\Moonguard\Models;
 
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Taecontrol\Larastats\Casts\RequestDurationCast;
-use Taecontrol\Larastats\Collections\SiteCollection;
+use Taecontrol\Moonguard\Casts\RequestDurationCast;
+use Taecontrol\Moonguard\Collections\SiteCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
-use Taecontrol\Larastats\Repositories\ExceptionLogRepository;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Larastats\Repositories\SslCertificateCheckRepository;
+use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
+use Taecontrol\Moonguard\Repositories\ExceptionLogRepository;
+use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
 
-class Site extends Model implements LarastatsSite
+class Site extends Model implements MoonguardSite
 {
     use HasFactory;
 

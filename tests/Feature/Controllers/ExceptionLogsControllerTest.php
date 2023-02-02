@@ -1,19 +1,19 @@
 <?php
 
-namespace Taecontrol\Larastats\Tests\Feature\Controllers;
+namespace Taecontrol\Moonguard\Tests\Feature\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Event;
-use Taecontrol\Larastats\Models\Site;
-use Taecontrol\Larastats\Tests\TestCase;
+use Taecontrol\Moonguard\Models\Site;
+use Taecontrol\Moonguard\Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Taecontrol\Larastats\Models\ExceptionLogGroup;
-use Taecontrol\Larastats\Events\ExceptionLogGroupCreatedEvent;
-use Taecontrol\Larastats\Events\ExceptionLogGroupUpdatedEvent;
-use Taecontrol\Larastats\Listeners\ExceptionLogGroupCreatedListener;
-use Taecontrol\Larastats\Listeners\ExceptionLogGroupUpdatedListener;
+use Taecontrol\Moonguard\Models\ExceptionLogGroup;
+use Taecontrol\Moonguard\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\Moonguard\Events\ExceptionLogGroupUpdatedEvent;
+use Taecontrol\Moonguard\Listeners\ExceptionLogGroupCreatedListener;
+use Taecontrol\Moonguard\Listeners\ExceptionLogGroupUpdatedListener;
 
 class ExceptionLogsControllerTest extends TestCase
 {
@@ -34,7 +34,7 @@ class ExceptionLogsControllerTest extends TestCase
             'thrown_at' => Carbon::now(),
         ];
 
-        $this->postJson(route('larastats.api.exceptions'), $data)
+        $this->postJson(route('moonguard.api.exceptions'), $data)
             ->assertJson(
                 fn (AssertableJson $json) => $json
                     ->has('success')
@@ -64,7 +64,7 @@ class ExceptionLogsControllerTest extends TestCase
             'thrown_at' => Carbon::now(),
         ];
 
-        $this->postJson(route('larastats.api.exceptions'), $data)
+        $this->postJson(route('moonguard.api.exceptions'), $data)
             ->assertJson(
                 fn (AssertableJson $json) => $json
                     ->has('success')
@@ -107,7 +107,7 @@ class ExceptionLogsControllerTest extends TestCase
             'last_seen' => now()->subDays(2),
         ])->first();
 
-        $this->postJson(route('larastats.api.exceptions'), $data)
+        $this->postJson(route('moonguard.api.exceptions'), $data)
             ->assertJson(
                 fn (AssertableJson $json) => $json
                     ->has('success')
@@ -131,7 +131,7 @@ class ExceptionLogsControllerTest extends TestCase
     /** @test */
     public function all_fields_are_required()
     {
-        $this->postJson(route('larastats.api.exceptions'), [])
+        $this->postJson(route('moonguard.api.exceptions'), [])
             ->assertInvalid([
                 'api_token' => trans('validation.required', ['attribute' => 'api token']),
                 'message' => trans('validation.required', ['attribute' => 'message']),
@@ -155,7 +155,7 @@ class ExceptionLogsControllerTest extends TestCase
             'thrown_at' => Carbon::now(),
         ];
 
-        $this->postJson(route('larastats.api.exceptions'), $data)
+        $this->postJson(route('moonguard.api.exceptions'), $data)
             ->assertForbidden();
     }
 
@@ -176,7 +176,7 @@ class ExceptionLogsControllerTest extends TestCase
             'thrown_at' => Carbon::now(),
         ];
 
-        $this->postJson(route('larastats.api.exceptions'), $data)
+        $this->postJson(route('moonguard.api.exceptions'), $data)
             ->assertJson(
                 fn (AssertableJson $json) => $json
                     ->has('success')
@@ -218,7 +218,7 @@ class ExceptionLogsControllerTest extends TestCase
             'last_seen' => now()->subDays(2),
         ])->first();
 
-        $this->postJson(route('larastats.api.exceptions'), $data)
+        $this->postJson(route('moonguard.api.exceptions'), $data)
             ->assertJson(
                 fn (AssertableJson $json) => $json
                     ->has('success')

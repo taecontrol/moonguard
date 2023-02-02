@@ -1,9 +1,9 @@
 <?php
 
-namespace Taecontrol\Larastats\Database\Factories;
+namespace Taecontrol\Moonguard\Database\Factories;
 
-use Taecontrol\Larastats\Models\Site;
-use Taecontrol\Larastats\Models\ExceptionLogGroup;
+use Taecontrol\Moonguard\Models\Site;
+use Taecontrol\Moonguard\Models\ExceptionLogGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExceptionLogGroupFactory extends Factory

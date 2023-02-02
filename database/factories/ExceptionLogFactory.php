@@ -1,10 +1,10 @@
 <?php
 
-namespace Taecontrol\Larastats\Database\Factories;
+namespace Taecontrol\Moonguard\Database\Factories;
 
 use Illuminate\Support\Carbon;
-use Taecontrol\Larastats\Models\ExceptionLog;
-use Taecontrol\Larastats\Models\ExceptionLogGroup;
+use Taecontrol\Moonguard\Models\ExceptionLog;
+use Taecontrol\Moonguard\Models\ExceptionLogGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExceptionLogFactory extends Factory

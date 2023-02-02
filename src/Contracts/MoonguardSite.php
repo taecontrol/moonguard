@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Larastats\Contracts;
+namespace Taecontrol\Moonguard\Contracts;
 
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
@@ -15,11 +15,11 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $name
  * @property RequestDuration $max_request_duration_ms
  * @property Url $url
- * @property LarastatsUptimeCheck $uptimeCheck
- * @property LarastatsSslCertificateCheck $sslCertificateCheck
- * @property LarastatsExceptionLog $exceptionLogs
+ * @property MoonguardUptimeCheck $uptimeCheck
+ * @property MoonguardSslCertificateCheck $sslCertificateCheck
+ * @property MoonguardExceptionLog $exceptionLogs
  */
-interface LarastatsSite
+interface MoonguardSite
 {
     public function scopeWhereUptimeCheckEnabled(Builder $query): Builder;
 

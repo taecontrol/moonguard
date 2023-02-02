@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Contracts;
+namespace Taecontrol\Moonguard\Contracts;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $line
  * @property Carbon $first_seen
  * @property Carbon $last_seen
- * @property LarastatsSite $site
+ * @property MoonguardSite $site
  */
-interface LarastatsExceptionLogGroup
+interface MoonguardExceptionLogGroup
 {
     public function exceptionLogs(): HasMany;
 

@@ -2,217 +2,217 @@
 @tailwind utilities;
 
 :root {
-    --larastats-bg-primary-50: #f9fafb;
-    --larastats-bg-primary-100: #f1f5f9;
-    --larastats-bg-primary-200: #e2e8f0;
-    --larastats-bg-primary-300: #cbd5e1;
-    --larastats-bg-primary-400: #94a3b8;
-    --larastats-bg-primary-500: #64748b;
-    --larastats-bg-primary-600: #475569;
-    --larastats-bg-primary-700: #334155;
-    --larastats-bg-primary-800: #1e293b;
-    --larastats-bg-primary-900: #0f172a;
+    --moonguard-bg-primary-50: #f9fafb;
+    --moonguard-bg-primary-100: #f1f5f9;
+    --moonguard-bg-primary-200: #e2e8f0;
+    --moonguard-bg-primary-300: #cbd5e1;
+    --moonguard-bg-primary-400: #94a3b8;
+    --moonguard-bg-primary-500: #64748b;
+    --moonguard-bg-primary-600: #475569;
+    --moonguard-bg-primary-700: #334155;
+    --moonguard-bg-primary-800: #1e293b;
+    --moonguard-bg-primary-900: #0f172a;
 }
 
 .bg-primary-50 {
-    background-color: var(--larastats-bg-primary-50);
+    background-color: var(--moonguard-bg-primary-50);
 }
 
 .bg-primary-100 {
-    background-color: var(--larastats-bg-primary-100);
+    background-color: var(--moonguard-bg-primary-100);
 }
 
 .bg-primary-200 {
-    background-color: var(--larastats-bg-primary-200);
+    background-color: var(--moonguard-bg-primary-200);
 }
 
 .bg-primary-300 {
-    background-color: var(--larastats-bg-primary-300);
+    background-color: var(--moonguard-bg-primary-300);
 }
 
 .bg-primary-400 {
-    background-color: var(--larastats-bg-primary-400);
+    background-color: var(--moonguard-bg-primary-400);
 }
 
 .bg-primary-500 {
-    background-color: var(--larastats-bg-primary-500);
+    background-color: var(--moonguard-bg-primary-500);
 }
 
 .bg-primary-600 {
-    background-color: var(--larastats-bg-primary-600);
+    background-color: var(--moonguard-bg-primary-600);
 }
 
 .bg-primary-700 {
-    background-color: var(--larastats-bg-primary-700);
+    background-color: var(--moonguard-bg-primary-700);
 }
 
 .bg-primary-800 {
-    background-color: var(--larastats-bg-primary-800);
+    background-color: var(--moonguard-bg-primary-800);
 }
 
 .bg-primary-900 {
-    background-color: var(--larastats-bg-primary-900);
+    background-color: var(--moonguard-bg-primary-900);
 }
 
 .hover\:bg-primary-50:hover {
-    background-color: var(--larastats-bg-primary-50);
+    background-color: var(--moonguard-bg-primary-50);
 }
 
 .hover\:bg-primary-100:hover {
-    background-color: var(--larastats-bg-primary-100);
+    background-color: var(--moonguard-bg-primary-100);
 }
 
 .hover\:bg-primary-200:hover {
-    background-color: var(--larastats-bg-primary-200);
+    background-color: var(--moonguard-bg-primary-200);
 }
 
 .hover\:bg-primary-300:hover {
-    background-color: var(--larastats-bg-primary-300);
+    background-color: var(--moonguard-bg-primary-300);
 }
 
 .hover\:bg-primary-400:hover {
-    background-color: var(--larastats-bg-primary-400);
+    background-color: var(--moonguard-bg-primary-400);
 }
 
 .hover\:bg-primary-500:hover {
-    background-color: var(--larastats-bg-primary-500);
+    background-color: var(--moonguard-bg-primary-500);
 }
 
 .hover\:bg-primary-600:hover {
-    background-color: var(--larastats-bg-primary-600);
+    background-color: var(--moonguard-bg-primary-600);
 }
 
 .hover\:bg-primary-700:hover {
-    background-color: var(--larastats-bg-primary-700);
+    background-color: var(--moonguard-bg-primary-700);
 }
 
 .hover\:bg-primary-800:hover {
-    background-color: var(--larastats-bg-primary-800);
+    background-color: var(--moonguard-bg-primary-800);
 }
 
 .hover\:bg-primary-900:hover {
-    background-color: var(--larastats-bg-primary-900);
+    background-color: var(--moonguard-bg-primary-900);
 }
 
 .\!bg-primary-50 {
-    background-color: var(--larastats-bg-primary-50) !important;
+    background-color: var(--moonguard-bg-primary-50) !important;
 }
 .bg-primary-50 {
-    background-color: var(--larastats-bg-primary-50);
+    background-color: var(--moonguard-bg-primary-50);
 }
 
 .bg-primary-100 {
-    background-color: var(--larastats-bg-primary-100);
+    background-color: var(--moonguard-bg-primary-100);
 }
 
 .bg-primary-200 {
-    background-color: var(--larastats-bg-primary-200);
+    background-color: var(--moonguard-bg-primary-200);
 }
 
 .bg-primary-300 {
-    background-color: var(--larastats-bg-primary-300);
+    background-color: var(--moonguard-bg-primary-300);
 }
 
 .bg-primary-400 {
-    background-color: var(--larastats-bg-primary-400);
+    background-color: var(--moonguard-bg-primary-400);
 }
 
 .bg-primary-500 {
-    background-color: var(--larastats-bg-primary-500);
+    background-color: var(--moonguard-bg-primary-500);
 }
 
 .bg-primary-600 {
-    background-color: var(--larastats-bg-primary-600);
+    background-color: var(--moonguard-bg-primary-600);
 }
 
 .bg-primary-700 {
-    background-color: var(--larastats-bg-primary-700);
+    background-color: var(--moonguard-bg-primary-700);
 }
 
 .bg-primary-800 {
-    background-color: var(--larastats-bg-primary-800);
+    background-color: var(--moonguard-bg-primary-800);
 }
 
 .bg-primary-900 {
-    background-color: var(--larastats-bg-primary-900);
+    background-color: var(--moonguard-bg-primary-900);
 }
 
 .\!bg-primary-50 {
-    background-color: var(--larastats-bg-primary-50) !important;
+    background-color: var(--moonguard-bg-primary-50) !important;
 }
 
 .\!bg-primary-100 {
-    background-color: var(--larastats-bg-primary-100) !important;
+    background-color: var(--moonguard-bg-primary-100) !important;
 }
 
 .\!bg-primary-200 {
-    background-color: var(--larastats-bg-primary-200) !important;
+    background-color: var(--moonguard-bg-primary-200) !important;
 }
 
 .\!bg-primary-300 {
-    background-color: var(--larastats-bg-primary-300) !important;
+    background-color: var(--moonguard-bg-primary-300) !important;
 }
 
 .\!bg-primary-400 {
-    background-color: var(--larastats-bg-primary-400) !important;
+    background-color: var(--moonguard-bg-primary-400) !important;
 }
 
 .\!bg-primary-500 {
-    background-color: var(--larastats-bg-primary-500) !important;
+    background-color: var(--moonguard-bg-primary-500) !important;
 }
 
 .\!bg-primary-600 {
-    background-color: var(--larastats-bg-primary-600) !important;
+    background-color: var(--moonguard-bg-primary-600) !important;
 }
 
 .\!bg-primary-700 {
-    background-color: var(--larastats-bg-primary-700) !important;
+    background-color: var(--moonguard-bg-primary-700) !important;
 }
 
 .\!bg-primary-800 {
-    background-color: var(--larastats-bg-primary-800) !important;
+    background-color: var(--moonguard-bg-primary-800) !important;
 }
 
 .\!bg-primary-900 {
-    background-color: var(--larastats-bg-primary-900) !important;
+    background-color: var(--moonguard-bg-primary-900) !important;
 }
 
 .\!hover\:bg-primary-50:hover {
-    background-color: var(--larastats-bg-primary-50) !important;
+    background-color: var(--moonguard-bg-primary-50) !important;
 }
 
 .\!hover\:bg-primary-100:hover {
-    background-color: var(--larastats-bg-primary-100) !important;
+    background-color: var(--moonguard-bg-primary-100) !important;
 }
 
 .\!hover\:bg-primary-200:hover {
-    background-color: var(--larastats-bg-primary-200) !important;
+    background-color: var(--moonguard-bg-primary-200) !important;
 }
 
 .\!hover\:bg-primary-300:hover {
-    background-color: var(--larastats-bg-primary-300) !important;
+    background-color: var(--moonguard-bg-primary-300) !important;
 }
 
 .\!hover\:bg-primary-400:hover {
-    background-color: var(--larastats-bg-primary-400) !important;
+    background-color: var(--moonguard-bg-primary-400) !important;
 }
 
 .\!hover\:bg-primary-500:hover {
-    background-color: var(--larastats-bg-primary-500) !important;
+    background-color: var(--moonguard-bg-primary-500) !important;
 }
 
 .\!hover\:bg-primary-600:hover {
-    background-color: var(--larastats-bg-primary-600) !important;
+    background-color: var(--moonguard-bg-primary-600) !important;
 }
 
 .\!hover\:bg-primary-700:hover {
-    background-color: var(--larastats-bg-primary-700) !important;
+    background-color: var(--moonguard-bg-primary-700) !important;
 }
 
 .\!hover\:bg-primary-800:hover {
-    background-color: var(--larastats-bg-primary-800) !important;
+    background-color: var(--moonguard-bg-primary-800) !important;
 }
 
 .\!hover\:bg-primary-900:hover {
-    background-color: var(--larastats-bg-primary-900) !important;
+    background-color: var(--moonguard-bg-primary-900) !important;
 }

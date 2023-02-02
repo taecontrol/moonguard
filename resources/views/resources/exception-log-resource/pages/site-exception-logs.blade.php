@@ -1,6 +1,6 @@
 <x-filament::page>
     <div>
-        <x-larastats::select placeholder="Filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+        <x-moonguard::select placeholder="Filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
     </div>
 
     <div x-data="{selected: null}">

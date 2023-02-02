@@ -1,22 +1,22 @@
 <?php
 
-namespace Taecontrol\Larastats\Repositories;
+namespace Taecontrol\Moonguard\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
-use Taecontrol\Larastats\Contracts\LarastatsUser;
+use Taecontrol\Moonguard\Contracts\MoonguardUser;
 
 class UserRepository extends ModelRepository
 {
-    protected static string $contract = LarastatsUser::class;
+    protected static string $contract = MoonguardUser::class;
 
-    protected static string $modelClassConfigKey = 'larastats.user.model';
+    protected static string $modelClassConfigKey = 'moonguard.user.model';
 
     public static function all(): Collection
     {
         return self::resolveModelClass()::all();
     }
 
-    public static function resolveModel(): LarastatsUser
+    public static function resolveModel(): MoonguardUser
     {
         $modelClass = static::resolveModelClass();
 

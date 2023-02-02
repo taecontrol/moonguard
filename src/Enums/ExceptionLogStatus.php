@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Larastats\Enums;
+namespace Taecontrol\Moonguard\Enums;
 
 enum ExceptionLogStatus: string
 {

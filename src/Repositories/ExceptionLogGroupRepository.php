@@ -1,31 +1,31 @@
 <?php
 
-namespace Taecontrol\Larastats\Repositories;
+namespace Taecontrol\Moonguard\Repositories;
 
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
+use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
 
 class ExceptionLogGroupRepository extends ModelRepository
 {
-    protected static string $contract = LarastatsExceptionLogGroup::class;
+    protected static string $contract = MoonguardExceptionLogGroup::class;
 
-    protected static string $modelClassConfigKey = 'larastats.exceptions.exception_log_group.model';
+    protected static string $modelClassConfigKey = 'moonguard.exceptions.exception_log_group.model';
 
     public static function isEnabled(): bool
     {
-        return config('larastats.exceptions.enabled');
+        return config('moonguard.exceptions.enabled');
     }
 
-    public static function findOrFail(string|int $id): LarastatsExceptionLogGroup
+    public static function findOrFail(string|int $id): MoonguardExceptionLogGroup
     {
         return static::resolveModelClass()::findOrFail($id);
     }
 
-    public static function create(array $attributes = []): LarastatsExceptionLogGroup
+    public static function create(array $attributes = []): MoonguardExceptionLogGroup
     {
         return static::resolveModelClass()::create($attributes);
     }
 
-    public static function resolveModel(): LarastatsExceptionLogGroup
+    public static function resolveModel(): MoonguardExceptionLogGroup
     {
         $modelClass = static::resolveModelClass();
 

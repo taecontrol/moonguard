@@ -1,27 +1,27 @@
 <?php
 
-namespace Taecontrol\Larastats\Notifications;
+namespace Taecontrol\Moonguard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Taecontrol\Larastats\ValueObjects\Period;
+use Taecontrol\Moonguard\ValueObjects\Period;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
 
 class UptimeCheckFailedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public LarastatsUptimeCheck $uptime, Period $downtimePeriod)
+    public function __construct(public MoonguardUptimeCheck $uptime, Period $downtimePeriod)
     {
     }
 
     public function via(): array
     {
-        return config('larastats.notifications.channels');
+        return config('moonguard.notifications.channels');
     }
 
     public function toMail(): MailMessage

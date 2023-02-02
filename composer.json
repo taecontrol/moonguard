@@ -1,17 +1,17 @@
 {
-    "name": "taecontrol/larastats",
+    "name": "taecontrol/moonguard",
     "description": "Website monitoring platform",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Taecontrol\\Larastats\\": "src/",
-            "Taecontrol\\Larastats\\Database\\Factories\\": "database/factories"
+            "Taecontrol\\Moonguard\\": "src/",
+            "Taecontrol\\Moonguard\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Taecontrol\\Larastats\\Tests\\": "tests"
+            "Taecontrol\\Moonguard\\Tests\\": "tests"
         }
     },
     "require": {
@@ -35,8 +35,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Taecontrol\\Larastats\\Providers\\LarastatsServiceProvider",
-                "Taecontrol\\Larastats\\Providers\\LarastatsFilamentServiceProvider"
+                "Taecontrol\\Moonguard\\Providers\\MoonguardServiceProvider",
+                "Taecontrol\\Moonguard\\Providers\\MoonguardFilamentServiceProvider"
             ]
         }
     },

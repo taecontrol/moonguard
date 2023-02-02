@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources\SiteResource\Pages;
+namespace Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages;
 
 use Exception;
 use Spatie\Url\Url;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
-use Taecontrol\Larastats\Filament\Resources\SiteResource;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\Filament\Resources\SiteResource;
 
 class EditSite extends EditRecord
 {

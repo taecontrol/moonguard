@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Larastats\Database\Factories;
+namespace Taecontrol\Moonguard\Database\Factories;
 
-use Taecontrol\Larastats\Models\Site;
+use Taecontrol\Moonguard\Models\Site;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Taecontrol\Larastats\Enums\SslCertificateStatus;
-use Taecontrol\Larastats\Models\SslCertificateCheck;
+use Taecontrol\Moonguard\Enums\SslCertificateStatus;
+use Taecontrol\Moonguard\Models\SslCertificateCheck;
 
 class SslCertificateCheckFactory extends Factory
 {

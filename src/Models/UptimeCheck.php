@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Larastats\Models;
+namespace Taecontrol\Moonguard\Models;
 
 use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Database\Eloquent\Model;
-use Taecontrol\Larastats\Enums\UptimeStatus;
+use Taecontrol\Moonguard\Enums\UptimeStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Taecontrol\Larastats\Casts\RequestDurationCast;
+use Taecontrol\Moonguard\Casts\RequestDurationCast;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Taecontrol\Larastats\Repositories\SiteRepository;
+use Taecontrol\Moonguard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
-use Taecontrol\Larastats\Repositories\UptimeCheckRepository;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
+use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
 
-class UptimeCheck extends Model implements LarastatsUptimeCheck
+class UptimeCheck extends Model implements MoonguardUptimeCheck
 {
     use HasFactory;
 

@@ -1,29 +1,29 @@
 <?php
 
-namespace Taecontrol\Larastats\Filament\Resources\ExceptionLogResource\Pages;
+namespace Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages;
 
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Filament\Resources\Pages\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\Larastats\Contracts\LarastatsSite;
-use Taecontrol\Larastats\Enums\ExceptionLogStatus;
-use Taecontrol\Larastats\Filament\Resources\SiteResource;
-use Taecontrol\Larastats\Contracts\LarastatsExceptionLogGroup;
-use Taecontrol\Larastats\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\Moonguard\Contracts\MoonguardSite;
+use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
+use Taecontrol\Moonguard\Filament\Resources\SiteResource;
+use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
+use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
 
 class SiteExceptionLogs extends Page
 {
     use WithPagination;
 
-    public LarastatsSite $site;
+    public MoonguardSite $site;
 
-    public LarastatsExceptionLogGroup $exceptionLogGroup;
+    public MoonguardExceptionLogGroup $exceptionLogGroup;
 
     public string $exceptionLogStatusFilter = '';
 
-    protected static string $view = 'larastats::resources.exception-log-resource.pages.site-exception-logs';
+    protected static string $view = 'moonguard::resources.exception-log-resource.pages.site-exception-logs';
 
     protected static string $resource = SiteResource::class;
 
@@ -40,7 +40,7 @@ class SiteExceptionLogs extends Page
 
     public function paginationView(): string
     {
-        return 'larastats::partials.pagination';
+        return 'moonguard::partials.pagination';
     }
 
     public function getExceptionLogStatusFilterOptionsProperty(): array
@@ -72,7 +72,7 @@ class SiteExceptionLogs extends Page
 
     protected function getHeader(): ?View
     {
-        return view('larastats::resources.exception-log-resource.partials.site-exception-logs-header')
+        return view('moonguard::resources.exception-log-resource.partials.site-exception-logs-header')
             ->with([
                 'site' => $this->site,
             ]);

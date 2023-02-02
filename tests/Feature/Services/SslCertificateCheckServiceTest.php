@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Larastats\Tests\Feature\Services;
+namespace Taecontrol\Moonguard\Tests\Feature\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Event;
-use Taecontrol\Larastats\Models\Site;
-use Taecontrol\Larastats\Models\User;
-use Taecontrol\Larastats\Tests\TestCase;
+use Taecontrol\Moonguard\Models\Site;
+use Taecontrol\Moonguard\Models\User;
+use Taecontrol\Moonguard\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Larastats\Enums\SslCertificateStatus;
-use Taecontrol\Larastats\Models\SslCertificateCheck;
-use Taecontrol\Larastats\Services\SslCertificateCheckService;
-use Taecontrol\Larastats\Events\SslCertificateCheckFailedEvent;
-use Taecontrol\Larastats\Events\SslCertificateExpiresSoonEvent;
-use Taecontrol\Larastats\Listeners\SslCertificateCheckFailedListener;
-use Taecontrol\Larastats\Listeners\SslCertificateExpiresSoonListener;
+use Taecontrol\Moonguard\Enums\SslCertificateStatus;
+use Taecontrol\Moonguard\Models\SslCertificateCheck;
+use Taecontrol\Moonguard\Services\SslCertificateCheckService;
+use Taecontrol\Moonguard\Events\SslCertificateCheckFailedEvent;
+use Taecontrol\Moonguard\Events\SslCertificateExpiresSoonEvent;
+use Taecontrol\Moonguard\Listeners\SslCertificateCheckFailedListener;
+use Taecontrol\Moonguard\Listeners\SslCertificateExpiresSoonListener;
 
 class SslCertificateCheckServiceTest extends TestCase
 {
@@ -62,7 +62,7 @@ class SslCertificateCheckServiceTest extends TestCase
         Http::fake();
         Event::fake();
 
-        config()->set('larastats.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days', 100000);
+        config()->set('moonguard.ssl_certificate_check.notify_expiring_soon_if_certificate_expires_within_days', 100000);
 
         $site = Site::factory()->create([
             'url' => 'https://google.com',

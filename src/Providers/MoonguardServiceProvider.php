@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Larastats\Providers;
+namespace Taecontrol\Moonguard\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Taecontrol\Larastats\Console\Commands\CheckUptimeCommand;
-use Taecontrol\Larastats\Console\Commands\CheckSslCertificateCommand;
+use Taecontrol\Moonguard\Console\Commands\CheckUptimeCommand;
+use Taecontrol\Moonguard\Console\Commands\CheckSslCertificateCommand;
 
-class LarastatsServiceProvider extends ServiceProvider
+class MoonguardServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -20,7 +20,7 @@ class LarastatsServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/larastats.php', 'larastats');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/moonguard.php', 'moonguard');
 
         $this->app->register(EventServiceProvider::class);
     }
@@ -28,16 +28,16 @@ class LarastatsServiceProvider extends ServiceProvider
     protected function publishConfigFiles(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/larastats.php' => config_path('larastats.php'),
-        ], ['larastats-config']);
+            __DIR__ . '/../../config/moonguard.php' => config_path('moonguard.php'),
+        ], ['moonguard-config']);
     }
 
     protected function publishMigrations(): void
     {
-        if (! class_exists('CreateLarastatsTables')) {
+        if (! class_exists('CreateMoonguardTables')) {
             $this->publishes([
-                __DIR__ . '/../../database/migrations/create_larastats_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_larastats_tables.php'),
-            ], ['larastats-migrations']);
+                __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_moonguard_tables.php'),
+            ], ['moonguard-migrations']);
         }
     }
 
@@ -54,8 +54,8 @@ class LarastatsServiceProvider extends ServiceProvider
     protected function publishRoutes(): void
     {
         $routesConfiguration = [
-            'prefix' => config('larastats.routes.prefix'),
-            'middleware' => config('larastats.routes.middleware'),
+            'prefix' => config('moonguard.routes.prefix'),
+            'middleware' => config('moonguard.routes.middleware'),
         ];
 
         Route::group($routesConfiguration, function () {
@@ -65,10 +65,10 @@ class LarastatsServiceProvider extends ServiceProvider
 
     protected function publishViews()
     {
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'larastats');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'moonguard');
 
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/larastats'),
-        ], 'larastats-views');
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/moonguard'),
+        ], 'moonguard-views');
     }
 }

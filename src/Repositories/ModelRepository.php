@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Larastats\Repositories;
+namespace Taecontrol\Moonguard\Repositories;
 
 use Throwable;
 use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\Larastats\Exceptions\ModelClassNotSetException;
-use Taecontrol\Larastats\Exceptions\ModelContractNotSetException;
-use Taecontrol\Larastats\Exceptions\ModelClassConfigKeyNotSetException;
+use Taecontrol\Moonguard\Exceptions\ModelClassNotSetException;
+use Taecontrol\Moonguard\Exceptions\ModelContractNotSetException;
+use Taecontrol\Moonguard\Exceptions\ModelClassConfigKeyNotSetException;
 
 abstract class ModelRepository
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Larastats\Database\Factories;
+namespace Taecontrol\Moonguard\Database\Factories;
 
-use Taecontrol\Larastats\Models\Site;
-use Taecontrol\Larastats\Enums\UptimeStatus;
-use Taecontrol\Larastats\Models\UptimeCheck;
+use Taecontrol\Moonguard\Models\Site;
+use Taecontrol\Moonguard\Enums\UptimeStatus;
+use Taecontrol\Moonguard\Models\UptimeCheck;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Taecontrol\Larastats\ValueObjects\RequestDuration;
+use Taecontrol\Moonguard\ValueObjects\RequestDuration;
 
 class UptimeCheckFactory extends Factory
 {

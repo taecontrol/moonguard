@@ -1,18 +1,18 @@
 <?php
 
-namespace Taecontrol\Larastats\Events;
+namespace Taecontrol\Moonguard\Events;
 
 use Illuminate\Queue\SerializesModels;
-use Taecontrol\Larastats\ValueObjects\Period;
+use Taecontrol\Moonguard\ValueObjects\Period;
 use Illuminate\Foundation\Events\Dispatchable;
-use Taecontrol\Larastats\Contracts\LarastatsUptimeCheck;
+use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
 
 class UptimeCheckFailedEvent
 {
     use Dispatchable;
     use SerializesModels;
 
-    public function __construct(public LarastatsUptimeCheck $uptimeCheck, public Period $downtimePeriod)
+    public function __construct(public MoonguardUptimeCheck $uptimeCheck, public Period $downtimePeriod)
     {
     }
 }

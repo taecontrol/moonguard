@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Larastats\Models;
+namespace Taecontrol\Moonguard\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Taecontrol\Larastats\Contracts\LarastatsUser;
+use Taecontrol\Moonguard\Contracts\MoonguardUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model implements LarastatsUser
+class User extends Model implements MoonguardUser
 {
     use Notifiable;
     use HasFactory;
@@ -38,6 +38,6 @@ class User extends Model implements LarastatsUser
 
     public function routeNotificationForSlack(): string
     {
-        return config('larastats.notifications.slack.webhook_url');
+        return config('moonguard.notifications.slack.webhook_url');
     }
 }

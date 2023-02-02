@@ -5,7 +5,7 @@
                 <p class="text-xl text-gray-500 text-center">
                     There are no sites at the moment
                 </p>
-                <a href="{{route('filament.resources.larastats/sites.create')}}" class="mt-4">
+                <a href="{{route('filament.resources.moonguard/sites.create')}}" class="mt-4">
                     <x-filament::button>
                         Create a new one
                     </x-filament::button>
@@ -18,16 +18,16 @@
         @foreach($sites as $site)
             <x-filament::card>
                 <div class="divide-y divide-gray-200">
-                    <a class="pb-2" href="{{ route('filament.resources.larastats/sites.edit', ['record' => $site->id]) }}">
+                    <a class="pb-2" href="{{ route('filament.resources.moonguard/sites.edit', ['record' => $site->id]) }}">
                         <h3 class="font-bold text-xl">{{ $site->name }}</h3>
                         <span class="text-sm text-gray-400">{{$site->url}}</span>
                     </a>
 
                     <div class="pt-2 space-y-2">
-                        <x-larastats::site-stats-widget.uptime-list-item  :site="$site"/>
-                        <x-larastats::site-stats-widget.performace-list-item :site="$site" />
-                        <x-larastats::site-stats-widget.certificate-list-item :site="$site" />
-                        <x-larastats::site-stats-widget.exceptions-list-item :site="$site" />
+                        <x-moonguard::site-stats-widget.uptime-list-item  :site="$site"/>
+                        <x-moonguard::site-stats-widget.performace-list-item :site="$site" />
+                        <x-moonguard::site-stats-widget.certificate-list-item :site="$site" />
+                        <x-moonguard::site-stats-widget.exceptions-list-item :site="$site" />
                     </div>
                 </div>
             </x-filament::card>
