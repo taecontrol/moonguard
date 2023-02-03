@@ -52,7 +52,6 @@ class SiteExceptionLogs extends Page
 
     public function updateExceptionLogStatus(int $exceptionId, string $status)
     {
-        ray($exceptionId, $status);
         $status = ExceptionLogStatus::from($status)->value;
         ExceptionLogRepository::query()
             ->find($exceptionId)
