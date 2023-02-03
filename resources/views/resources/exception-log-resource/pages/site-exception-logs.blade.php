@@ -2,7 +2,7 @@
     <div class="grid xl:grid-cols-3 grid-cols-1 gap-4">
         <div>
             <label class="text-gray-600 text-sm">Status</label>
-            <x-larastats::select placeholder="Status filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+            <x-moonguard::dropdown placeholder="Status filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
         </div>
         <div></div>
         <div>
@@ -10,9 +10,9 @@
                 <label class="text-gray-600 text-sm">Update exceptions status as</label>
                 <div class="w-full flex justify-between">
                     <div class="w-full">
-                        <x-larastats::select placeholder="Status" :options="$this->exceptionLogStatusFilterOptions" wire:model="updateExceptionLogsStatusAs" />
+                        <x-moonguard::dropdown placeholder="Status" :options="$this->exceptionLogStatusFilterOptions" wire:model="allExceptionStatusAs" />
                     </div>
-                    <div class="ml-2" wire:click="updateExceptionLogsStatus">
+                    <div class="ml-2" wire:click="updateAllExceptionLogStatus">
                         <x-filament::button class="w-full">
                             Update
                         </x-filament::button>
@@ -55,11 +55,11 @@
                                 <h3 class="text-lg font-bold leading-6 text-gray-900">Status</h3>
                                 <div class="flex">
                                     <div>
-                                        <select name="status" x-model="selection" id="exception-status-select" class="relative w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                                            @foreach ($this->exceptionLogStatusFilterOptions as $optionValue => $optionLabel)
-                                                <option value="{{ $optionValue }}" {{ ($exception->status->value == $optionValue) ? "selected" : "" }} >{{ $optionLabel }}</option>
-                                            @endforeach
-                                        </select>
+                                        <x-moonguard::select 
+                                            model="selection"
+                                            :options="$this->exceptionLogStatusFilterOptions" 
+                                            :value="$exception->status->value" 
+                                        />
                                     </div>
                                     <div class="ml-2">
                                         <x-filament::button class="w-full" x-on:click="$wire.updateExceptionLogStatus( {{ $exception->id }}, selection )">
