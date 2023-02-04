@@ -1,14 +1,14 @@
 <?php
 
-namespace Taecontrol\Moonguard\Providers;
+namespace Taecontrol\MoonGuard\Providers;
 
 use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource;
-use Taecontrol\Moonguard\Filament\Widgets\SiteStatsWidget;
-use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
+use Taecontrol\MoonGuard\Filament\Widgets\SiteStatsWidget;
+use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
 
-class MoonguardFilamentServiceProvider extends PluginServiceProvider
+class MoonGuardFilamentServiceProvider extends PluginServiceProvider
 {
     protected array $resources = [
         SiteResource::class,

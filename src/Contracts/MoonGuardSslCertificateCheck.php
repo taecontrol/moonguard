@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Contracts;
+namespace Taecontrol\MoonGuard\Contracts;
 
 use Exception;
 use Spatie\Url\Url;
@@ -12,11 +12,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|int $site_id
  * @property Url $url
  * @property string $certificate_check_failure_reason;
- * @property MoonguardSite $site
+ * @property MoonGuardSite $site
  * @property bool $is_enabled
  *
  */
-interface MoonguardSslCertificateCheck
+interface MoonGuardSslCertificateCheck
 {
     public function site(): BelongsTo;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Listeners;
+namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Repositories\UserRepository;
-use Taecontrol\Moonguard\Events\SslCertificateCheckFailedEvent;
-use Taecontrol\Moonguard\Notifications\SslCertificateCheckFailedNotification;
+use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Events\SslCertificateCheckFailedEvent;
+use Taecontrol\MoonGuard\Notifications\SslCertificateCheckFailedNotification;
 
 class SslCertificateCheckFailedListener
 {

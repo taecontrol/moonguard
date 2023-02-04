@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Moonguard\Repositories;
+namespace Taecontrol\MoonGuard\Repositories;
 
-use Taecontrol\Moonguard\Contracts\MoonguardExceptionLog;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
 
 class ExceptionLogRepository extends ModelRepository
 {
-    protected static string $contract = MoonguardExceptionLog::class;
+    protected static string $contract = MoonGuardExceptionLog::class;
 
     protected static string $modelClassConfigKey = 'moonguard.exceptions.exception_log.model';
 
@@ -15,12 +15,12 @@ class ExceptionLogRepository extends ModelRepository
         return config('moonguard.exceptions.enabled');
     }
 
-    public static function create(array $attributes = []): MoonguardExceptionLog
+    public static function create(array $attributes = []): MoonGuardExceptionLog
     {
         return static::resolveModelClass()::create($attributes);
     }
 
-    public static function resolveModel(): MoonguardExceptionLog
+    public static function resolveModel(): MoonGuardExceptionLog
     {
         $modelClass = static::resolveModelClass();
 

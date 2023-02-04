@@ -1,9 +1,9 @@
 <?php
 
-namespace Taecontrol\Moonguard\ValueObjects;
+namespace Taecontrol\MoonGuard\ValueObjects;
 
 use Carbon\CarbonInterface;
-use Taecontrol\Moonguard\Exceptions\InvalidPeriodException;
+use Taecontrol\MoonGuard\Exceptions\InvalidPeriodException;
 
 class Period
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Moonguard\Providers;
+namespace Taecontrol\MoonGuard\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Taecontrol\Moonguard\Console\Commands\CheckUptimeCommand;
-use Taecontrol\Moonguard\Console\Commands\CheckSslCertificateCommand;
+use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
+use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
-class MoonguardServiceProvider extends ServiceProvider
+class MoonGuardServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -34,7 +34,7 @@ class MoonguardServiceProvider extends ServiceProvider
 
     protected function publishMigrations(): void
     {
-        if (! class_exists('CreateMoonguardTables')) {
+        if (! class_exists('CreateMoonGuardTables')) {
             $this->publishes([
                 __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_moonguard_tables.php'),
             ], ['moonguard-migrations']);

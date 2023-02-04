@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Resources;
+namespace Taecontrol\MoonGuard\Filament\Resources;
 
 use Str;
 use Closure;
@@ -15,13 +15,13 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Actions\Action;
-use Taecontrol\Moonguard\Contracts\MoonguardSite;
-use Taecontrol\Moonguard\Repositories\SiteRepository;
-use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
-use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages\EditSite;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages\ListSites;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages\CreateSite;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\UptimeCheckRepository;
+use Taecontrol\MoonGuard\Repositories\SslCertificateCheckRepository;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages\EditSite;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages\ListSites;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages\CreateSite;
 
 class SiteResource extends Resource
 {
@@ -41,7 +41,7 @@ class SiteResource extends Resource
         return $form
             ->schema([
                 TextInput::make('url')
-                    ->unique(ignorable: fn (?MoonguardSite $record): ?MoonguardSite => $record)
+                    ->unique(ignorable: fn (?MoonGuardSite $record): ?MoonGuardSite => $record)
                     ->required(),
                 TextInput::make('name')
                     ->required(),

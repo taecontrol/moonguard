@@ -1,16 +1,16 @@
 <?php
 
-namespace Taecontrol\Moonguard\Http\Controllers;
+namespace Taecontrol\MoonGuard\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Taecontrol\Moonguard\Models\Site;
-use Taecontrol\Moonguard\Contracts\MoonguardSite;
-use Taecontrol\Moonguard\Repositories\SiteRepository;
-use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
-use Taecontrol\Moonguard\Events\ExceptionLogGroupCreatedEvent;
-use Taecontrol\Moonguard\Events\ExceptionLogGroupUpdatedEvent;
-use Taecontrol\Moonguard\Http\Requests\StoreExceptionLogRequest;
-use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\MoonGuard\Models\Site;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent;
+use Taecontrol\MoonGuard\Http\Requests\StoreExceptionLogRequest;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
 class ExceptionLogsController extends Controller
 {
@@ -23,7 +23,7 @@ class ExceptionLogsController extends Controller
 
         abort_if(! $site, 403);
 
-        /** @var MoonguardExceptionLogGroup|null $group */
+        /** @var MoonGuardExceptionLogGroup|null $group */
         $group = ExceptionLogGroupRepository::query()
             ->where('file', $request->input('file'))
             ->where('type', $request->input('type'))
@@ -45,7 +45,7 @@ class ExceptionLogsController extends Controller
         ]);
     }
 
-    protected function createExceptionLogGroup(StoreExceptionLogRequest $request, MoonguardSite $site)
+    protected function createExceptionLogGroup(StoreExceptionLogRequest $request, MoonGuardSite $site)
     {
         $group = ExceptionLogGroupRepository::create([
             'message' => $request->input('message'),
@@ -62,7 +62,7 @@ class ExceptionLogsController extends Controller
         return $group;
     }
 
-    protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, MoonguardExceptionLogGroup $group)
+    protected function updateExceptionLogGroup(StoreExceptionLogRequest $request, MoonGuardExceptionLogGroup $group)
     {
         $timeInMinutesBetweenUpdates = config('moonguard.exceptions.notify_time_between_group_updates_in_minutes');
         $timeDiffInMinutesFromLastException = now()->diffInMinutes($group->last_seen);

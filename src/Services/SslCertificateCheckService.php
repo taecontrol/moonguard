@@ -1,20 +1,20 @@
 <?php
 
-namespace Taecontrol\Moonguard\Services;
+namespace Taecontrol\MoonGuard\Services;
 
 use Exception;
 use Spatie\SslCertificate\SslCertificate;
-use Taecontrol\Moonguard\Contracts\MoonguardSite;
-use Taecontrol\Moonguard\Events\SslCertificateCheckFailedEvent;
-use Taecontrol\Moonguard\Events\SslCertificateExpiresSoonEvent;
-use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
-use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
+use Taecontrol\MoonGuard\Events\SslCertificateCheckFailedEvent;
+use Taecontrol\MoonGuard\Events\SslCertificateExpiresSoonEvent;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
+use Taecontrol\MoonGuard\Repositories\SslCertificateCheckRepository;
 
 class SslCertificateCheckService
 {
-    protected MoonguardSslCertificateCheck $sslCertificateCheck;
+    protected MoonGuardSslCertificateCheck $sslCertificateCheck;
 
-    public function check(MoonguardSite $site): void
+    public function check(MoonGuardSite $site): void
     {
         if ($site->sslCertificateCheck()->doesntExist()) {
             $this->sslCertificateCheck = SslCertificateCheckRepository::resolveModel();

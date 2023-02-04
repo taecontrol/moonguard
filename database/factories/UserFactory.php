@@ -1,9 +1,9 @@
 <?php
 
-namespace Taecontrol\Moonguard\Database\Factories;
+namespace Taecontrol\MoonGuard\Database\Factories;
 
 use Illuminate\Support\Str;
-use Taecontrol\Moonguard\Models\User;
+use Taecontrol\MoonGuard\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory

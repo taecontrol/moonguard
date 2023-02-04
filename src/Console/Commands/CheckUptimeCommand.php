@@ -1,10 +1,10 @@
 <?php
 
-namespace Taecontrol\Moonguard\Console\Commands;
+namespace Taecontrol\MoonGuard\Console\Commands;
 
 use Illuminate\Console\Command;
-use Taecontrol\Moonguard\Repositories\SiteRepository;
-use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\UptimeCheckRepository;
 
 class CheckUptimeCommand extends Command
 {

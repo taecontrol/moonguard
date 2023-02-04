@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages;
+namespace Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\ListRecords;
-use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource;
+use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
 
 class ListExceptionLogGroups extends ListRecords
 {

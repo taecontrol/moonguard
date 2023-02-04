@@ -1,14 +1,14 @@
 <?php
 
-namespace Taecontrol\Moonguard\Console;
+namespace Taecontrol\MoonGuard\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Taecontrol\Moonguard\Console\Commands\CheckUptimeCommand;
-use Taecontrol\Moonguard\Console\Commands\CheckSslCertificateCommand;
+use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
+use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
-class MoonguardCommandsScheduler
+class MoonGuardCommandsScheduler
 {
-    public static function scheduleMoonguardCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron)
+    public static function scheduleMoonGuardCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron)
     {
         /** @var bool $uptimeCheckIsEnabled */
         $uptimeCheckIsEnabled = config('moonguard.uptime_check.enabled');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\ValueObjects;
+namespace Taecontrol\MoonGuard\ValueObjects;
 
 use InvalidArgumentException;
 

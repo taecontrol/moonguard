@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Moonguard\Repositories;
+namespace Taecontrol\MoonGuard\Repositories;
 
-use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
 
 class UptimeCheckRepository extends ModelRepository
 {
-    protected static string $contract = MoonguardUptimeCheck::class;
+    protected static string $contract = MoonGuardUptimeCheck::class;
 
     protected static string $modelClassConfigKey = 'moonguard.uptime_check.model';
 
@@ -15,7 +15,7 @@ class UptimeCheckRepository extends ModelRepository
         return config('moonguard.uptime_check.enabled');
     }
 
-    public static function resolveModel(): MoonguardUptimeCheck
+    public static function resolveModel(): MoonGuardUptimeCheck
     {
         $modelClass = static::resolveModelClass();
 

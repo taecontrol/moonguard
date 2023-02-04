@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Tables\Columns;
+namespace Taecontrol\MoonGuard\Filament\Tables\Columns;
 
 use Filament\Tables\Columns\Column;
 

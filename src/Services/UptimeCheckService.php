@@ -1,27 +1,27 @@
 <?php
 
-namespace Taecontrol\Moonguard\Services;
+namespace Taecontrol\MoonGuard\Services;
 
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Client\Response;
-use Taecontrol\Moonguard\ValueObjects\Period;
-use Taecontrol\Moonguard\Contracts\MoonguardSite;
-use Taecontrol\Moonguard\Events\UptimeCheckFailedEvent;
-use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
-use Taecontrol\Moonguard\Events\UptimeCheckRecoveredEvent;
-use Taecontrol\Moonguard\Exceptions\InvalidPeriodException;
-use Taecontrol\Moonguard\Repositories\UptimeCheckRepository;
-use Taecontrol\Moonguard\Events\RequestTookLongerThanMaxDurationEvent;
+use Taecontrol\MoonGuard\ValueObjects\Period;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
+use Taecontrol\MoonGuard\Events\UptimeCheckFailedEvent;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
+use Taecontrol\MoonGuard\Events\UptimeCheckRecoveredEvent;
+use Taecontrol\MoonGuard\Exceptions\InvalidPeriodException;
+use Taecontrol\MoonGuard\Repositories\UptimeCheckRepository;
+use Taecontrol\MoonGuard\Events\RequestTookLongerThanMaxDurationEvent;
 
 class UptimeCheckService
 {
-    protected MoonguardUptimeCheck $uptimeCheck;
+    protected MoonGuardUptimeCheck $uptimeCheck;
 
     /**
      * @throws InvalidPeriodException
      */
-    public function check(MoonguardSite $site, Response|Exception $response): void
+    public function check(MoonGuardSite $site, Response|Exception $response): void
     {
         if (! $site->uptimeCheck) {
             $this->uptimeCheck = UptimeCheckRepository::resolveModel();

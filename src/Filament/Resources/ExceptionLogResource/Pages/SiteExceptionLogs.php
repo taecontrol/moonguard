@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages;
+namespace Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages;
 
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -9,20 +9,20 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Taecontrol\Moonguard\Contracts\MoonguardSite;
-use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource;
-use Taecontrol\Moonguard\Repositories\ExceptionLogRepository;
-use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
-use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogRepository;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
 class SiteExceptionLogs extends Page
 {
     use WithPagination;
 
-    public MoonguardSite $site;
+    public MoonGuardSite $site;
 
-    public MoonguardExceptionLogGroup $exceptionLogGroup;
+    public MoonGuardExceptionLogGroup $exceptionLogGroup;
 
     public Collection $exceptionLogsCollection;
 

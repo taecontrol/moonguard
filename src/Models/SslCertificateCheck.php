@@ -1,20 +1,20 @@
 <?php
 
-namespace Taecontrol\Moonguard\Models;
+namespace Taecontrol\MoonGuard\Models;
 
 use Exception;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Taecontrol\Moonguard\Enums\SslCertificateStatus;
+use Taecontrol\MoonGuard\Enums\SslCertificateStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
-use Taecontrol\Moonguard\Repositories\SslCertificateCheckRepository;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
+use Taecontrol\MoonGuard\Repositories\SslCertificateCheckRepository;
 
-class SslCertificateCheck extends Model implements MoonguardSslCertificateCheck
+class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
 {
     use HasFactory;
 

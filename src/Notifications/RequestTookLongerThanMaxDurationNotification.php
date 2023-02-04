@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Notifications;
+namespace Taecontrol\MoonGuard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -8,14 +8,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Moonguard\ValueObjects\RequestDuration;
-use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
+use Taecontrol\MoonGuard\ValueObjects\RequestDuration;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
 
 class RequestTookLongerThanMaxDurationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public MoonguardUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
+    public function __construct(public MoonGuardUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
     {
     }
 

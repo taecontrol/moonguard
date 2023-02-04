@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Moonguard\Tests\Feature\Services;
+namespace Taecontrol\MoonGuard\Tests\Feature\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Event;
-use Taecontrol\Moonguard\Models\Site;
-use Taecontrol\Moonguard\Models\User;
-use Taecontrol\Moonguard\Tests\TestCase;
+use Taecontrol\MoonGuard\Models\Site;
+use Taecontrol\MoonGuard\Models\User;
+use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Enums\SslCertificateStatus;
-use Taecontrol\Moonguard\Models\SslCertificateCheck;
-use Taecontrol\Moonguard\Services\SslCertificateCheckService;
-use Taecontrol\Moonguard\Events\SslCertificateCheckFailedEvent;
-use Taecontrol\Moonguard\Events\SslCertificateExpiresSoonEvent;
-use Taecontrol\Moonguard\Listeners\SslCertificateCheckFailedListener;
-use Taecontrol\Moonguard\Listeners\SslCertificateExpiresSoonListener;
+use Taecontrol\MoonGuard\Enums\SslCertificateStatus;
+use Taecontrol\MoonGuard\Models\SslCertificateCheck;
+use Taecontrol\MoonGuard\Services\SslCertificateCheckService;
+use Taecontrol\MoonGuard\Events\SslCertificateCheckFailedEvent;
+use Taecontrol\MoonGuard\Events\SslCertificateExpiresSoonEvent;
+use Taecontrol\MoonGuard\Listeners\SslCertificateCheckFailedListener;
+use Taecontrol\MoonGuard\Listeners\SslCertificateExpiresSoonListener;
 
 class SslCertificateCheckServiceTest extends TestCase
 {

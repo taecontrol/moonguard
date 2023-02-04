@@ -1,21 +1,21 @@
 <?php
 
-namespace Taecontrol\Moonguard\Notifications;
+namespace Taecontrol\MoonGuard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Taecontrol\Moonguard\ValueObjects\Period;
+use Taecontrol\MoonGuard\ValueObjects\Period;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Moonguard\Contracts\MoonguardUptimeCheck;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
 
 class UptimeCheckRecoveredNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public MoonguardUptimeCheck $uptime, public Period $downtimePeriod)
+    public function __construct(public MoonGuardUptimeCheck $uptime, public Period $downtimePeriod)
     {
     }
 

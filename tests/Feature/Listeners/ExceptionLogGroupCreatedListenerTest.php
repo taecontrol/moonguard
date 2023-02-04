@@ -1,15 +1,15 @@
 <?php
 
-namespace Taecontrol\Moonguard\Tests\Feature\Controllers;
+namespace Taecontrol\MoonGuard\Tests\Feature\Listeners;
 
-use Taecontrol\Moonguard\Models\User;
-use Taecontrol\Moonguard\Tests\TestCase;
+use Taecontrol\MoonGuard\Models\User;
+use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Models\ExceptionLogGroup;
-use Taecontrol\Moonguard\Events\ExceptionLogGroupCreatedEvent;
-use Taecontrol\Moonguard\Listeners\ExceptionLogGroupCreatedListener;
-use Taecontrol\Moonguard\Notifications\ExceptionLogGroupNotification;
+use Taecontrol\MoonGuard\Models\ExceptionLogGroup;
+use Taecontrol\MoonGuard\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\MoonGuard\Listeners\ExceptionLogGroupCreatedListener;
+use Taecontrol\MoonGuard\Notifications\ExceptionLogGroupNotification;
 
 class ExceptionLogGroupCreatedListenerTest extends TestCase
 {

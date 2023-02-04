@@ -1,17 +1,17 @@
 <?php
 
-namespace Taecontrol\Moonguard\Models;
+namespace Taecontrol\MoonGuard\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Taecontrol\Moonguard\Contracts\MoonguardExceptionLog;
-use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
-class ExceptionLog extends Model implements MoonguardExceptionLog
+class ExceptionLog extends Model implements MoonGuardExceptionLog
 {
     use HasFactory;
 

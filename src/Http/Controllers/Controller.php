@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Http\Controllers;
+namespace Taecontrol\MoonGuard\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

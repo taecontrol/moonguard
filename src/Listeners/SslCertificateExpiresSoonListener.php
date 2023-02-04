@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Listeners;
+namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Repositories\UserRepository;
-use Taecontrol\Moonguard\Events\SslCertificateExpiresSoonEvent;
-use Taecontrol\Moonguard\Notifications\SslCertificateExpiresSoonNotification;
+use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Events\SslCertificateExpiresSoonEvent;
+use Taecontrol\MoonGuard\Notifications\SslCertificateExpiresSoonNotification;
 
 class SslCertificateExpiresSoonListener
 {

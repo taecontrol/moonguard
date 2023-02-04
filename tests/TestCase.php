@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Moonguard\Tests;
+namespace Taecontrol\MoonGuard\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Taecontrol\Moonguard\Providers\MoonguardServiceProvider;
+use Taecontrol\MoonGuard\Providers\MoonGuardServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -17,14 +17,14 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Taecontrol\\Moonguard\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'Taecontrol\\MoonGuard\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            MoonguardServiceProvider::class,
+            MoonGuardServiceProvider::class,
         ];
     }
 
@@ -52,6 +52,6 @@ class TestCase extends Orchestra
         });
 
         include_once __DIR__ . '/../database/migrations/create_moonguard_tables.php.stub';
-        (new \CreateMoonguardTables)->up();
+        (new \CreateMoonGuardTables)->up();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Exceptions;
+namespace Taecontrol\MoonGuard\Exceptions;
 
 use Exception;
 use Carbon\CarbonInterface;

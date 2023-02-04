@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Providers;
+namespace Taecontrol\MoonGuard\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Taecontrol\Moonguard\Contracts;
+namespace Taecontrol\MoonGuard\Contracts;
 
 use Illuminate\Support\Carbon;
-use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
  * @property array $trace
  * @property array $request
  * @property Carbon $thrown_at
- * @property MoonguardSite $site
- * @property MoonguardExceptionLogGroup $exceptionLogGroup
+ * @property MoonGuardSite $site
+ * @property MoonGuardExceptionLogGroup $exceptionLogGroup
  */
-interface MoonguardExceptionLog
+interface MoonGuardExceptionLog
 {
     public function site(): HasOneThrough;
 

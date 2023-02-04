@@ -5,13 +5,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Taecontrol\\Moonguard\\": "src/",
-            "Taecontrol\\Moonguard\\Database\\Factories\\": "database/factories"
+            "Taecontrol\\MoonGuard\\": "src/",
+            "Taecontrol\\MoonGuard\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Taecontrol\\Moonguard\\Tests\\": "tests"
+            "Taecontrol\\MoonGuard\\Tests\\": "tests"
         }
     },
     "require": {
@@ -35,12 +35,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Taecontrol\\Moonguard\\Providers\\MoonguardServiceProvider",
-                "Taecontrol\\Moonguard\\Providers\\MoonguardFilamentServiceProvider"
+                "Taecontrol\\MoonGuard\\Providers\\MoonGuardServiceProvider",
+                "Taecontrol\\MoonGuard\\Providers\\MoonGuardFilamentServiceProvider"
             ]
         }
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
-    }    
+    }
 }

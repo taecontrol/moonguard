@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Listeners;
+namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Repositories\UserRepository;
-use Taecontrol\Moonguard\Events\UptimeCheckRecoveredEvent;
-use Taecontrol\Moonguard\Notifications\UptimeCheckRecoveredNotification;
+use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Events\UptimeCheckRecoveredEvent;
+use Taecontrol\MoonGuard\Notifications\UptimeCheckRecoveredNotification;
 
 class UptimeCheckRecoveredListener
 {

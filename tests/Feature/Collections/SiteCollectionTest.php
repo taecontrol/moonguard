@@ -1,14 +1,14 @@
 <?php
 
-namespace Taecontrol\Moonguard\Tests\Feature\Collections;
+namespace Taecontrol\MoonGuard\Tests\Feature\Collections;
 
 use Mockery\MockInterface;
-use Taecontrol\Moonguard\Models\Site;
-use Taecontrol\Moonguard\Tests\TestCase;
-use Taecontrol\Moonguard\Models\UptimeCheck;
-use Taecontrol\Moonguard\Models\SslCertificateCheck;
-use Taecontrol\Moonguard\Services\UptimeCheckService;
-use Taecontrol\Moonguard\Services\SslCertificateCheckService;
+use Taecontrol\MoonGuard\Models\Site;
+use Taecontrol\MoonGuard\Tests\TestCase;
+use Taecontrol\MoonGuard\Models\UptimeCheck;
+use Taecontrol\MoonGuard\Models\SslCertificateCheck;
+use Taecontrol\MoonGuard\Services\UptimeCheckService;
+use Taecontrol\MoonGuard\Services\SslCertificateCheckService;
 
 class SiteCollectionTest extends TestCase
 {

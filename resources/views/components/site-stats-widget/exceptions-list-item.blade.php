@@ -1,4 +1,4 @@
-@if(! \Taecontrol\Moonguard\Repositories\ExceptionLogRepository::isEnabled())
+@if(! \Taecontrol\MoonGuard\Repositories\ExceptionLogRepository::isEnabled())
     <div class="flex items-center justify-between text-gray-500">
         <span>Exceptions</span>
         <span class="text-gray-400">Disabled</span>

@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Resources\SiteResource\Pages;
+namespace Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages;
 
 use Exception;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Taecontrol\Moonguard\Filament\Resources\SiteResource;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
 
 class ListSites extends ListRecords
 {

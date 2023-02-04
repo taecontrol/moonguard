@@ -1,8 +1,8 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Widgets;
+namespace Taecontrol\MoonGuard\Filament\Widgets;
 
-use Taecontrol\Moonguard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
 
 class SiteStatsWidget extends PollableWidget
 {

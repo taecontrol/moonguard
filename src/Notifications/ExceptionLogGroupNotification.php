@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Notifications;
+namespace Taecontrol\MoonGuard\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -8,13 +8,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
 
 class ExceptionLogGroupNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public MoonguardExceptionLogGroup $exceptionLogGroup)
+    public function __construct(public MoonGuardExceptionLogGroup $exceptionLogGroup)
     {
     }
 

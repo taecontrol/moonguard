@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\Moonguard\Repositories;
+namespace Taecontrol\MoonGuard\Repositories;
 
-use Taecontrol\Moonguard\Contracts\MoonguardSslCertificateCheck;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
 
 class SslCertificateCheckRepository extends ModelRepository
 {
-    protected static string $contract = MoonguardSslCertificateCheck::class;
+    protected static string $contract = MoonGuardSslCertificateCheck::class;
 
     protected static string $modelClassConfigKey = 'moonguard.ssl_certificate_check.model';
 
@@ -15,7 +15,7 @@ class SslCertificateCheckRepository extends ModelRepository
         return config('moonguard.ssl_certificate_check.enabled');
     }
 
-    public static function resolveModel(): MoonguardSslCertificateCheck
+    public static function resolveModel(): MoonGuardSslCertificateCheck
     {
         $modelClass = static::resolveModelClass();
 

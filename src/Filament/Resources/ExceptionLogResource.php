@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\Moonguard\Filament\Resources;
+namespace Taecontrol\MoonGuard\Filament\Resources;
 
 use Exception;
 use Filament\Resources\Table;
@@ -8,10 +8,10 @@ use Filament\Resources\Resource;
 use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Taecontrol\Moonguard\Filament\Tables\Columns\ExceptionColumn;
-use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
-use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
-use Taecontrol\Moonguard\Filament\Resources\ExceptionLogResource\Pages\ListExceptionLogGroups;
+use Taecontrol\MoonGuard\Filament\Tables\Columns\ExceptionColumn;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
+use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\ListExceptionLogGroups;
 
 class ExceptionLogResource extends Resource
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Taecontrol\Moonguard\Models;
+namespace Taecontrol\MoonGuard\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Taecontrol\Moonguard\Contracts\MoonguardUser;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model implements MoonguardUser
+class User extends Model implements MoonGuardUser
 {
     use Notifiable;
     use HasFactory;

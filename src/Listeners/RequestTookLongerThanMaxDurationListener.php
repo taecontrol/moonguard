@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Listeners;
+namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Repositories\UserRepository;
-use Taecontrol\Moonguard\Events\RequestTookLongerThanMaxDurationEvent;
-use Taecontrol\Moonguard\Notifications\RequestTookLongerThanMaxDurationNotification;
+use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Events\RequestTookLongerThanMaxDurationEvent;
+use Taecontrol\MoonGuard\Notifications\RequestTookLongerThanMaxDurationNotification;
 
 class RequestTookLongerThanMaxDurationListener
 {

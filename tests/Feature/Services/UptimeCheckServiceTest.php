@@ -1,17 +1,17 @@
 <?php
 
-namespace Taecontrol\Moonguard\Tests\Feature\Services;
+namespace Taecontrol\MoonGuard\Tests\Feature\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
-use Taecontrol\Moonguard\Models\Site;
-use Taecontrol\Moonguard\Models\User;
-use Taecontrol\Moonguard\Tests\TestCase;
+use Taecontrol\MoonGuard\Models\Site;
+use Taecontrol\MoonGuard\Models\User;
+use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\Moonguard\Enums\UptimeStatus;
-use Taecontrol\Moonguard\Models\UptimeCheck;
-use Taecontrol\Moonguard\Services\UptimeCheckService;
-use Taecontrol\Moonguard\Notifications\UptimeCheckFailedNotification;
+use Taecontrol\MoonGuard\Enums\UptimeStatus;
+use Taecontrol\MoonGuard\Models\UptimeCheck;
+use Taecontrol\MoonGuard\Services\UptimeCheckService;
+use Taecontrol\MoonGuard\Notifications\UptimeCheckFailedNotification;
 
 class UptimeCheckServiceTest extends TestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Taecontrol\Moonguard\Database\Factories;
+namespace Taecontrol\MoonGuard\Database\Factories;
 
 use Illuminate\Support\Str;
-use Taecontrol\Moonguard\Models\Site;
+use Taecontrol\MoonGuard\Models\Site;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Taecontrol\Moonguard\ValueObjects\RequestDuration;
+use Taecontrol\MoonGuard\ValueObjects\RequestDuration;
 
 class SiteFactory extends Factory
 {

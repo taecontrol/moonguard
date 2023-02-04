@@ -1,15 +1,15 @@
 <?php
 
-use Taecontrol\Moonguard\Enums\UptimeStatus;
-use Taecontrol\Moonguard\Enums\SslCertificateStatus;
-use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
-use Taecontrol\Moonguard\Repositories\SiteRepository;
-use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
+use Taecontrol\MoonGuard\Enums\UptimeStatus;
+use Taecontrol\MoonGuard\Enums\SslCertificateStatus;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMoonguardTables extends Migration {
+class CreateMoonGuardTables extends Migration {
     public function up()
     {
         Schema::create('sites', function (Blueprint $table) {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Taecontrol\Moonguard\Tests\Feature\Controllers;
+namespace Taecontrol\MoonGuard\Tests\Feature\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Event;
-use Taecontrol\Moonguard\Models\Site;
-use Taecontrol\Moonguard\Tests\TestCase;
+use Taecontrol\MoonGuard\Models\Site;
+use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Taecontrol\Moonguard\Models\ExceptionLogGroup;
-use Taecontrol\Moonguard\Events\ExceptionLogGroupCreatedEvent;
-use Taecontrol\Moonguard\Events\ExceptionLogGroupUpdatedEvent;
-use Taecontrol\Moonguard\Listeners\ExceptionLogGroupCreatedListener;
-use Taecontrol\Moonguard\Listeners\ExceptionLogGroupUpdatedListener;
+use Taecontrol\MoonGuard\Models\ExceptionLogGroup;
+use Taecontrol\MoonGuard\Events\ExceptionLogGroupCreatedEvent;
+use Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent;
+use Taecontrol\MoonGuard\Listeners\ExceptionLogGroupCreatedListener;
+use Taecontrol\MoonGuard\Listeners\ExceptionLogGroupUpdatedListener;
 
 class ExceptionLogsControllerTest extends TestCase
 {
