@@ -1,6 +1,25 @@
 <x-filament::page>
-    <div>
-        <x-moonguard::select placeholder="Filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+    <div class="grid xl:grid-cols-3 grid-cols-1 gap-4">
+        <div>
+            <label class="text-gray-600 text-sm">Status</label>
+            <x-moonguard::dropdown placeholder="Status filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+        </div>
+        <div></div>
+        <div>
+            @if ($exceptions->count() > 0)
+                <label class="text-gray-600 text-sm">Update exceptions status as</label>
+                <div class="w-full flex justify-between">
+                    <div class="w-full">
+                        <x-moonguard::dropdown placeholder="Status" :options="$this->exceptionLogStatusFilterOptions" wire:model="allExceptionStatusAs" />
+                    </div>
+                    <div class="ml-2" wire:click="updateAllExceptionLogStatus">
+                        <x-filament::button class="w-full">
+                            Update
+                        </x-filament::button>
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 
     <div x-data="{selected: null}">
@@ -31,6 +50,24 @@
 
                     <div class="relative overflow-hidden max-h-0 transition-all !duration-700" style="" x-ref="container{{ $loop->index }}" x-bind:style="selected == {{ $loop->index }} ? 'max-height: ' + $refs.container{{ $loop->index }}.scrollHeight + 'px' : ''">
                         <div class="mt-10 px-4 py-5 sm:px-6">
+
+                            <div class="mb-6 w-full" x-data="{ selection: '{{ $exception->status->value }}' }">
+                                <h3 class="text-lg font-bold leading-6 text-gray-900">Status</h3>
+                                <div class="flex">
+                                    <div>
+                                        <x-moonguard::select 
+                                            model="selection"
+                                            :options="$this->exceptionLogStatusFilterOptions" 
+                                            :value="$exception->status->value" 
+                                        />
+                                    </div>
+                                    <div class="ml-2">
+                                        <x-filament::button class="w-full" x-on:click="$wire.updateExceptionLogStatus( {{ $exception->id }}, selection )">
+                                            Update
+                                        </x-filament::button>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div>
                                 <h3 class="text-lg font-bold leading-6 text-gray-900">Message</h3>

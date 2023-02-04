@@ -7,9 +7,12 @@ use Livewire\WithPagination;
 use Filament\Resources\Pages\Page;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Taecontrol\Moonguard\Contracts\MoonguardSite;
 use Taecontrol\Moonguard\Enums\ExceptionLogStatus;
 use Taecontrol\Moonguard\Filament\Resources\SiteResource;
+use Taecontrol\Moonguard\Repositories\ExceptionLogRepository;
 use Taecontrol\Moonguard\Contracts\MoonguardExceptionLogGroup;
 use Taecontrol\Moonguard\Repositories\ExceptionLogGroupRepository;
 
@@ -20,6 +23,10 @@ class SiteExceptionLogs extends Page
     public MoonguardSite $site;
 
     public MoonguardExceptionLogGroup $exceptionLogGroup;
+
+    public Collection $exceptionLogsCollection;
+
+    public string $allExceptionStatusAs = '';
 
     public string $exceptionLogStatusFilter = '';
 
@@ -43,6 +50,25 @@ class SiteExceptionLogs extends Page
         return 'moonguard::partials.pagination';
     }
 
+    public function updateExceptionLogStatus(int $exceptionId, string $status)
+    {
+        $status = ExceptionLogStatus::from($status)->value;
+        ExceptionLogRepository::query()
+            ->find($exceptionId)
+            ->update(['status' => $status]);
+    }
+
+    public function updateAllExceptionLogStatus()
+    {
+        $status = ExceptionLogStatus::from($this->allExceptionStatusAs)->value;
+
+        if ($this->allExceptionStatusAs !== '') {
+            ExceptionLogRepository::query()
+                ->whereIn('id', $this->exceptionLogsCollection->pluck('id'))
+                ->update(['status' => $status]);
+        }
+    }
+
     public function getExceptionLogStatusFilterOptionsProperty(): array
     {
         return [
@@ -55,6 +81,7 @@ class SiteExceptionLogs extends Page
 
     protected function getViewData(): array
     {
+        /** @var LengthAwarePaginator $exceptions */
         $exceptions = $this
             ->exceptionLogGroup
             ->exceptionLogs()
@@ -64,6 +91,8 @@ class SiteExceptionLogs extends Page
                 fn (Builder $query) => $query->where('status', $this->exceptionLogStatusFilter)
             )
             ->paginate(5);
+
+        $this->exceptionLogsCollection = $exceptions->getCollection();
 
         return [
             'exceptions' => $exceptions,
