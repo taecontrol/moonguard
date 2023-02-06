@@ -58,7 +58,7 @@
                                         <x-moonguard::select 
                                             model="selection"
                                             :options="$this->exceptionLogStatusFilterOptions" 
-                                            :value="$exception->status->value" 
+                                            :default="$exception->status->value" 
                                         />
                                     </div>
                                     <div class="ml-2">
