@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 /**
  * @property string|int $id
  * @property string $name
+ * @property string $api_token
  * @property RequestDuration $max_request_duration_ms
  * @property Url $url
  * @property MoonGuardUptimeCheck $uptimeCheck
