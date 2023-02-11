@@ -16,7 +16,7 @@ class SslCertificateCheckService
 
     public function check(MoonGuardSite $site): void
     {
-        if ($site->sslCertificateCheck()->doesntExist()) {
+        if (! $site->sslCertificateCheck) {
             $this->sslCertificateCheck = SslCertificateCheckRepository::resolveModel();
             $this->sslCertificateCheck->site_id = $site->id;
         } else {
