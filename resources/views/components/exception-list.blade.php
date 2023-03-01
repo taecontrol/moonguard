@@ -77,7 +77,7 @@
                                             <div
                                                 class="{{ $loop->even ? 'bg-gray-100 dark:bg-gray-900' : 'bg-white dark:bg-gray-800' }} px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4">
                                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $key }}</dt>
-                                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0">
+                                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0 break-words">
                                                     {{ is_array($value) ? Str::replace(',', ', ', $value[0]) : $value }}
                                                 </dd>
                                             </div>
@@ -94,7 +94,7 @@
                                             <div
                                                 class="{{ $loop->even ? 'bg-gray-100 dark:bg-gray-900' : 'bg-white dark:bg-gray-800' }} px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4">
                                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $key }}</dt>
-                                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0">
+                                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0 break-words">
                                                     {{ is_array($value) ? Str::replace(',', ', ', $value[0]) : $value }}
                                                 </dd>
                                             </div>
