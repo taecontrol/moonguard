@@ -43,7 +43,7 @@
         :aria-expanded="open"
         :aria-controls="$id('dropdown-button')"
         type="button"
-        class="relative w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+        class="relative w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800"
         aria-haspopup="listbox"
         aria-labelledby="listbox-label"
     >
@@ -65,7 +65,7 @@
         x-on:click.outside="close($refs.button)"
         :id="$id('dropdown-button')"
         style="display: none;"
-        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-gray-800"
         tabindex="-1"
         role="listbox"
         aria-labelledby="listbox-label"
@@ -76,7 +76,7 @@
 
               Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
             -->
-            <li @click="selectValue('{{ $optionValue }}')" class="text-gray-900 cursor-pointer relative cursor py-2 pl-3 pr-9 hover:bg-primary-500 hover:text-white" id="listbox-option-0" role="option">
+            <li @click="selectValue('{{ $optionValue }}')" class="text-gray-900 cursor-pointer relative cursor py-2 pl-3 pr-9 hover:bg-primary-500 hover:text-white dark:hover:text-gray-50 dark:text-gray-100" id="listbox-option-0" role="option">
                 <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
                 <span class="font-normal block truncate">{{ $optionLabel }}</span>
             </li>
