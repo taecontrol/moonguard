@@ -3,31 +3,31 @@
 
 ## About MoonGuard
 
-MoonGuard is Filament Package for monitoring websites or web platforms, mainly focused
-on Laravel applications.
+MoonGuard is a PHP package and a Filament plugin for monitoring websites or
+web platforms, mainly focused on Laravel applications.
 
-You can check the MoonGuard [Documentation](https://docs.moonguard.dev) for details.
+## Documentation
 
-## Installation
-
-You can Install the package using composer.
-
-```bash
-composer install taecontrol/moonguard
-```
+You can find the full documentation on the [documentation site](https://docs.moonguard.dev)
 
 ## MoonGuard: The Software Creator's Journey
 
-The moonguard team has written the MoonGuard book, which details the
-development process, tools, and space facts related to the creation of Moonguard.
-It is available for download at the [Moonguard website](https://moonguard.dev)
+The MoonGuard development team has written a book, "MoonGuard: The Software
+Creator's Journey." In this book, we document and explain the entire process
+of creating, developing, publishing, and the magical secrets of MoonGuard. To
+obtain your own digital copy, please [follow this link](https://moonguard.dev)
 
+## Testing
+
+```bash
+composer test
+```
+
+## Contributing
+
+Thanks for consider contributing to MoongGuard, The contribution guide can be
+found in the [MoonGuard documentation](https://docs.moonguard.dev/contributions)
 
 ## License
 
 The Moonguard package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)
-
-
-
-
-
