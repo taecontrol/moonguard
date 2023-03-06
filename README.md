@@ -1,5 +1,5 @@
 
-<p align="center"><a href="https://moonguard.dev" target="_blank"><img src="https://github.com/taecontrol/moonguard/blob/main/art/moonguard-logo.png" width="600" alt="MoonGuard Logo"></a></p>
+<p align="center"><a href="https://moonguard.dev" target="_blank"><img src="https://github.com/taecontrol/moonguard/blob/main/art/moonguard-logo.png?raw=true" width="600" alt="MoonGuard Logo"></a></p>
 
 ## About MoonGuard
 
