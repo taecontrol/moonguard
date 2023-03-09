@@ -3,6 +3,14 @@
     "description": "Website monitoring platform",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "moonguard",
+        "monitoring",
+        "exceptions",
+        "report", 
+        "web"
+    ],
+    "homepage": "https://github.com/taecontrol/moonguard",
     "autoload": {
         "psr-4": {
             "Taecontrol\\MoonGuard\\": "src/",
@@ -42,5 +50,23 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
-    }
+    },
+    "authors": [
+        {
+            "name": "Luis Güette",
+            "role": "Developer"
+        },
+        {
+            "name": "Ronald Pereira",
+            "role": "Developer"
+        },
+        {
+            "name": "Alexis Fraudita",
+            "role": "Developer"
+        },
+        {
+            "name": "Wilson Velasco",
+            "role": "Developer"
+        }
+    ]
 }
