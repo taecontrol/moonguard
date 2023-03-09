@@ -1,6 +1,6 @@
 {
     "name": "taecontrol/moonguard",
-    "description": "Website monitoring platform",
+    "description": "Monitor package to keep your sites in orbit",
     "type": "library",
     "license": "MIT",
     "keywords": [
