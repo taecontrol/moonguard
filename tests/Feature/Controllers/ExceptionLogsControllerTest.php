@@ -22,6 +22,7 @@ class ExceptionLogsControllerTest extends TestCase
     /** @test */
     public function it_stores_exception_logs()
     {
+        /** @var Site */
         $site = Site::factory()->create();
 
         $data = [
@@ -52,6 +53,7 @@ class ExceptionLogsControllerTest extends TestCase
     /** @test */
     public function it_creates_an_exception_log_group_if_criteria_is_not_met()
     {
+        /** @var Site */
         $site = Site::factory()->create();
 
         $data = [
@@ -85,6 +87,7 @@ class ExceptionLogsControllerTest extends TestCase
     /** @test */
     public function it_updates_an_exception_log_group_when_criteria_is_met()
     {
+        /** @var Site */
         $site = Site::factory()->create();
 
         $data = [
@@ -164,6 +167,7 @@ class ExceptionLogsControllerTest extends TestCase
     {
         Event::fake();
 
+        /** @var Site */
         $site = Site::factory()->create();
 
         $data = [
@@ -196,6 +200,7 @@ class ExceptionLogsControllerTest extends TestCase
     {
         Event::fake();
 
+        /** @var Site */
         $site = Site::factory()->create();
 
         $data = [
