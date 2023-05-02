@@ -15,7 +15,7 @@ You can find the full documentation on the [documentation site](https://docs.moo
 The MoonGuard development team has written a book, "MoonGuard: The Software
 Creator's Journey." In this book, we document and explain the entire process
 of creating, developing, publishing, and the magical secrets of MoonGuard. To
-obtain your own digital copy, please [follow this link](https://moonguard.dev)
+obtain your own digital copy, please [follow this link](https://moonguard.dev/book)
 
 ## Testing
 
