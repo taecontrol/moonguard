@@ -50,6 +50,9 @@ class MoonGuardPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Slate,
             ])
+            ->renderHook('styles.end', function () {
+                return view('moonguard::styles');
+            })
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

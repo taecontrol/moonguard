@@ -16,6 +16,7 @@ class MoonGuardServiceProvider extends ServiceProvider
         $this->publishCommands();
         $this->publishRoutes();
         $this->publishViews();
+        $this->publishAssets();
     }
 
     public function register(): void
@@ -70,5 +71,12 @@ class MoonGuardServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/views' => resource_path('views/vendor/moonguard'),
         ], 'moonguard-views');
+    }
+
+    protected function publishAssets()
+    {
+        $this->publishes([
+            __DIR__ . '/../../dist/css' => public_path('css/vendor/moonguard'),
+        ], 'moonguard-assets');
     }
 }
