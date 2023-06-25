@@ -24,6 +24,7 @@ class EditSite extends EditRecord
         $data['url'] = $url->__toString();
         $data['max_request_duration_ms'] = $maxDuration->toRawMilliseconds();
         $data['api_token_enabled'] = (bool) $data['api_token'];
+        $data['api_token_input'] = $data['api_token'];
         $data['down_for_maintenance'] = (bool) $data['down_for_maintenance_at'];
 
         return $data;

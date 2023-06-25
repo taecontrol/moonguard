@@ -2,7 +2,6 @@
 
 namespace Taecontrol\MoonGuard\Filament\Resources;
 
-use Closure;
 use Exception;
 use Filament\Tables;
 use Filament\Forms\Form;
@@ -15,6 +14,9 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Set;
+use Livewire\Component as Livewire;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Taecontrol\MoonGuard\Repositories\UptimeCheckRepository;
@@ -69,28 +71,33 @@ class SiteResource extends Resource
                             ->reactive()
                             ->columnSpan('full')
                             ->label('Enabled')
-                            ->afterStateUpdated(function (Closure $set, $state) {
+                            ->afterStateUpdated(function (Set $set, $state) {
                                 if ($state) {
-                                    $set('api_token', Str::random(60));
+                                    $token = Str::random(60);
+                                    $set('api_token', $token);
+                                    $set('api_token_input', $token);
                                 } else {
                                     $set('api_token', null);
+                                    $set('api_token_input', null);
                                 }
                             }),
-                        TextInput::make('api_token')
-                            ->reactive()
+                        Hidden::make('api_token'),
+                        TextInput::make('api_token_input')
+                            ->disabled()
                             ->columnSpan('full')
                             ->hiddenLabel()
-                            ->disabled()
                             ->suffixAction(
                                 Action::make('regenerate')
                                     ->disabled(function (CreateSite|EditSite $livewire) {
                                         return ! $livewire->data['api_token_enabled'];
                                     })
-                                    ->icon('heroicon-s-refresh')
+                                    ->icon('heroicon-s-arrow-path')
                                     ->action(
                                         function (CreateSite|EditSite $livewire) {
                                             if ($livewire->data['api_token_enabled']) {
-                                                $livewire->data['api_token'] = Str::random(60);
+                                                $token = Str::random(60);
+                                                $livewire->data['api_token'] = $token;
+                                                $livewire->data['api_token_input'] = $token;
                                             }
                                         }
                                     )
