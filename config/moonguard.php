@@ -32,7 +32,7 @@ return [
         ],
     ],
     'routes' => [
-        'prefix' => 'api',
+        'prefix' => 'moonguard/api',
         'middleware' => 'throttle:api',
     ],
     'events' => [
