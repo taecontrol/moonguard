@@ -18,9 +18,14 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Taecontrol\MoonGuard\Filament\Pages\Dashboard;
 
 class MoonGuardPanelProvider extends PanelProvider
 {
+    protected array $pages =[
+        Dashboard::class,
+    ];
+
     protected array $resources = [
         SiteResource::class,
         ExceptionLogResource::class,
@@ -39,6 +44,7 @@ class MoonGuardPanelProvider extends PanelProvider
             ->login()
             ->passwordReset()
             ->emailVerification()
+            ->pages($this->pages)
             ->resources($this->resources)
             ->widgets($this->widgets)
             ->colors([
