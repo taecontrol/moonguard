@@ -99,7 +99,7 @@ class SiteExceptionLogs extends Page
         ];
     }
 
-    protected function getHeader(): ?View
+    public function getHeader(): ?View
     {
         return view('moonguard::resources.exception-log-resource.partials.site-exception-logs-header')
             ->with([

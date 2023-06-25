@@ -3,7 +3,7 @@
 namespace Taecontrol\MoonGuard\Filament\Resources;
 
 use Exception;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
@@ -15,7 +15,7 @@ use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\ListExcep
 
 class ExceptionLogResource extends Resource
 {
-    protected static ?string $slug = 'moonguard/exceptions';
+    protected static ?string $slug = 'exceptions';
 
     protected static ?string $modelLabel = 'Latest Exceptions';
 
@@ -61,7 +61,7 @@ class ExceptionLogResource extends Resource
         ];
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return ExceptionLogGroupRepository::isEnabled();
     }

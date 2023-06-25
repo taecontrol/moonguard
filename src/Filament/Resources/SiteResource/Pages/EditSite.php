@@ -4,7 +4,7 @@ namespace Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages;
 
 use Exception;
 use Spatie\Url\Url;
-use Filament\Pages\Actions;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Taecontrol\MoonGuard\ValueObjects\RequestDuration;
 use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
@@ -43,7 +43,7 @@ class EditSite extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

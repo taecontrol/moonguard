@@ -2,12 +2,12 @@
 
 namespace Taecontrol\MoonGuard\Filament\Resources;
 
-use Str;
 use Closure;
 use Exception;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Checkbox;
@@ -25,11 +25,11 @@ use Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages\CreateSite;
 
 class SiteResource extends Resource
 {
-    protected static ?string $slug = 'moonguard/sites';
+    protected static ?string $slug = 'sites';
 
     protected static ?string $modelLabel = 'Site';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-queue-list';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -79,7 +79,7 @@ class SiteResource extends Resource
                         TextInput::make('api_token')
                             ->reactive()
                             ->columnSpan('full')
-                            ->disableLabel()
+                            ->hiddenLabel()
                             ->disabled()
                             ->suffixAction(
                                 Action::make('regenerate')
