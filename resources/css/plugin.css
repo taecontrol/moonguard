@@ -216,3 +216,7 @@
 .\!hover\:bg-primary-900:hover {
     background-color: var(--moonguard-bg-primary-900) !important;
 }
+
+.dark\:hover\:bg-primary-800:hover {
+    background-color: var(--moonguard-bg-primary-800) !important;
+}

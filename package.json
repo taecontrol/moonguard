@@ -4,8 +4,7 @@
   "description": "",
   "scripts": {
     "watch": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --watch",
-    "build": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --minify && npm run purge",
-    "purge": "filament-purge -i dist/css/plugin.css -o dist/css/plugin.css"
+    "build": "npx tailwindcss -i resources/css/plugin.css -o dist/css/plugin.css --minify"
   },
   "repository": {
     "type": "git",

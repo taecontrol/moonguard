@@ -50,7 +50,7 @@ class MoonGuardPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Slate,
             ])
-            ->renderHook('styles.end', function () {
+            ->renderHook('styles.start', function () {
                 return view('moonguard::styles');
             })
             ->middleware([
