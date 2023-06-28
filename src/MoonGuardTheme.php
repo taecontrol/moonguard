@@ -8,6 +8,6 @@ class MoonGuardTheme extends Theme
 {
     public function getHref(): string
     {
-       return asset($this->path);
+        return asset($this->path);
     }
 }

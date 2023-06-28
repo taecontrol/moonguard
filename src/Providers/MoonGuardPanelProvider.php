@@ -5,25 +5,25 @@ namespace Taecontrol\MoonGuard\Providers;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Taecontrol\MoonGuard\MoonGuardTheme;
 use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
-use Taecontrol\MoonGuard\Filament\Widgets\SiteStatsWidget;
-use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Taecontrol\MoonGuard\Filament\Pages\Dashboard;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
-use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Taecontrol\MoonGuard\Filament\Pages\Dashboard;
-use Taecontrol\MoonGuard\MoonGuardTheme;
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Taecontrol\MoonGuard\Filament\Widgets\SiteStatsWidget;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
 
 class MoonGuardPanelProvider extends PanelProvider
 {
-    protected array $pages =[
+    protected array $pages = [
         Dashboard::class,
     ];
 
@@ -66,6 +66,5 @@ class MoonGuardPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-
     }
 }
