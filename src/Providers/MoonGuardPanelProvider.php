@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Taecontrol\MoonGuard\Filament\Pages\Dashboard;
+use Taecontrol\MoonGuard\MoonGuardTheme;
 
 class MoonGuardPanelProvider extends PanelProvider
 {
@@ -50,9 +51,7 @@ class MoonGuardPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Slate,
             ])
-            ->renderHook('styles.start', function () {
-                return view('moonguard::styles');
-            })
+            ->theme(new MoonGuardTheme('moonguard', 'css/vendor/moonguard/theme.css'))
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
