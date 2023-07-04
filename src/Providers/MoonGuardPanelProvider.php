@@ -39,13 +39,11 @@ class MoonGuardPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
             ->id('moonguard')
             ->path('moonguard')
             ->brandName('MoonGuard')
             ->login()
             ->passwordReset()
-            ->emailVerification()
             ->pages($this->pages)
             ->resources($this->resources)
             ->widgets($this->widgets)
