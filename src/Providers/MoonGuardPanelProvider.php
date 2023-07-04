@@ -42,7 +42,7 @@ class MoonGuardPanelProvider extends PanelProvider
             ->default()
             ->id('moonguard')
             ->path('moonguard')
-            ->brandName('Moonguard')
+            ->brandName('MoonGuard')
             ->login()
             ->passwordReset()
             ->emailVerification()
