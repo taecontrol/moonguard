@@ -6,16 +6,22 @@ use InvalidArgumentException;
 
 class RequestDuration
 {
-    public function __construct(public ?int $milliseconds)
-    {
-        if ($this->milliseconds < 0) {
-            throw new InvalidArgumentException('The request duration must be positive');
-        }
-    }
+    public ?int $milliseconds;
 
     public static function from(?int $milliseconds): RequestDuration
     {
-        return new self($milliseconds);
+        if ($milliseconds < 0) {
+            throw new InvalidArgumentException('The request duration must be positive');
+        }
+
+        return (new self())->setMilliseconds($milliseconds);
+    }
+
+    public function setMilliseconds(?int $milliseconds): self
+    {
+        $this->milliseconds = $milliseconds;
+
+        return $this;
     }
 
     public function toMilliseconds(): string
