@@ -4,7 +4,13 @@ namespace Taecontrol\MoonGuard\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUser;
+use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
 use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
 use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardServiceProvider extends ServiceProvider
@@ -24,6 +30,13 @@ class MoonGuardServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/moonguard.php', 'moonguard');
 
         $this->app->register(EventServiceProvider::class);
+
+        $this->app->bind(MoonGuardSite::class, config('moonguard.site.model'));
+        $this->app->bind(MoonGuardUser::class, config('moonguard.user.model'));
+        $this->app->bind(MoonGuardUptimeCheck::class, config('moonguard.uptime_check.model'));
+        $this->app->bind(MoonGuardSslCertificateCheck::class, config('moonguard.ssl_certificate_check.model'));
+        $this->app->bind(MoonGuardExceptionLog::class, config('moonguard.exceptions.exception_log.model'));
+        $this->app->bind(MoonGuardExceptionLogGroup::class, config('moonguard.exceptions.exception_log_group.model'));
     }
 
     protected function publishConfigFiles(): void
