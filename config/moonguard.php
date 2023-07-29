@@ -44,7 +44,7 @@ return [
                 \Taecontrol\MoonGuard\Listeners\UptimeCheckFailedListener::class,
             ],
             \Taecontrol\MoonGuard\Events\RequestTookLongerThanMaxDurationEvent::class => [
-                \Taecontrol\MoonGuard\Events\RequestTookLongerThanMaxDurationEvent::class,
+                \Taecontrol\MoonGuard\Listeners\RequestTookLongerThanMaxDurationListener::class,
             ],
             \Taecontrol\MoonGuard\Events\SslCertificateExpiresSoonEvent::class => [
                 \Taecontrol\MoonGuard\Listeners\SslCertificateExpiresSoonListener::class,
