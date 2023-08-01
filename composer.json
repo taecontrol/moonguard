@@ -28,7 +28,7 @@
         "spatie/url": "^2.1",
         "laravel/slack-notification-channel": "^2.4",
         "spatie/ssl-certificate": "^2.4",
-        "filament/filament": "v3.0.0-beta20"
+        "filament/filament": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",

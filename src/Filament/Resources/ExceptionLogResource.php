@@ -5,8 +5,8 @@ namespace Taecontrol\MoonGuard\Filament\Resources;
 use Exception;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Taecontrol\MoonGuard\Filament\Tables\Columns\ExceptionColumn;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
@@ -39,7 +39,7 @@ class ExceptionLogResource extends Resource
             ->filters([
                 SelectFilter::make('sites')
                     ->relationship('site', 'name'),
-            ], layout: Layout::AboveContent);
+            ], layout: FiltersLayout::AboveContent);
     }
 
     public static function getRelations(): array
