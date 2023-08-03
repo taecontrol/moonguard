@@ -17,7 +17,7 @@ class ExceptionLogResource extends Resource
 {
     protected static ?string $slug = 'exceptions';
 
-    protected static ?string $modelLabel = 'Latest Exceptions';
+    protected static ?string $modelLabel = 'Recent Exceptions';
 
     protected static ?string $navigationLabel = 'Exceptions';
 
