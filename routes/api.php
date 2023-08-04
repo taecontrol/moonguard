@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Taecontrol\MoonGuard\Http\Controllers\ExceptionLogsController;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
