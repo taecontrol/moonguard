@@ -79,6 +79,14 @@ class SiteExceptionLogs extends Page
         ];
     }
 
+    public function getHeader(): ?View
+    {
+        return view('moonguard::resources.exception-log-resource.partials.site-exception-logs-header')
+            ->with([
+                'site' => $this->site,
+            ]);
+    }
+
     protected function getViewData(): array
     {
         /** @var LengthAwarePaginator $exceptions */
@@ -97,13 +105,5 @@ class SiteExceptionLogs extends Page
         return [
             'exceptions' => $exceptions,
         ];
-    }
-
-    protected function getHeader(): ?View
-    {
-        return view('moonguard::resources.exception-log-resource.partials.site-exception-logs-header')
-            ->with([
-                'site' => $this->site,
-            ]);
     }
 }

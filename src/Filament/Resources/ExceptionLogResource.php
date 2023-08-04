@@ -3,10 +3,10 @@
 namespace Taecontrol\MoonGuard\Filament\Resources;
 
 use Exception;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Tables\Filters\Layout;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Taecontrol\MoonGuard\Filament\Tables\Columns\ExceptionColumn;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
@@ -15,9 +15,9 @@ use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\ListExcep
 
 class ExceptionLogResource extends Resource
 {
-    protected static ?string $slug = 'moonguard/exceptions';
+    protected static ?string $slug = 'exceptions';
 
-    protected static ?string $modelLabel = 'Latest Exceptions';
+    protected static ?string $modelLabel = 'Recent Exceptions';
 
     protected static ?string $navigationLabel = 'Exceptions';
 
@@ -39,7 +39,7 @@ class ExceptionLogResource extends Resource
             ->filters([
                 SelectFilter::make('sites')
                     ->relationship('site', 'name'),
-            ], layout: Layout::AboveContent);
+            ], layout: FiltersLayout::AboveContent);
     }
 
     public static function getRelations(): array
@@ -61,7 +61,7 @@ class ExceptionLogResource extends Resource
         ];
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return ExceptionLogGroupRepository::isEnabled();
     }

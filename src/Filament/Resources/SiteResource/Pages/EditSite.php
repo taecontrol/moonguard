@@ -4,7 +4,7 @@ namespace Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages;
 
 use Exception;
 use Spatie\Url\Url;
-use Filament\Pages\Actions;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Taecontrol\MoonGuard\ValueObjects\RequestDuration;
 use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
@@ -24,6 +24,7 @@ class EditSite extends EditRecord
         $data['url'] = $url->__toString();
         $data['max_request_duration_ms'] = $maxDuration->toRawMilliseconds();
         $data['api_token_enabled'] = (bool) $data['api_token'];
+        $data['api_token_input'] = $data['api_token'];
         $data['down_for_maintenance'] = (bool) $data['down_for_maintenance_at'];
 
         return $data;
@@ -43,7 +44,7 @@ class EditSite extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

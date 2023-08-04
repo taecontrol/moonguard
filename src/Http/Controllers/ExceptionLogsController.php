@@ -36,10 +36,6 @@ class ExceptionLogsController extends Controller
             $this->updateExceptionLogGroup($request, $group);
         }
 
-        $group->exceptionLogs()->create(
-            $request->safe()->except('api_token'),
-        );
-
         return response()->json([
             'success' => true,
         ]);
@@ -57,6 +53,8 @@ class ExceptionLogsController extends Controller
             'site_id' => $site->id,
         ]);
 
+        $this->createExceptionLog($request, $group);
+
         event(new ExceptionLogGroupCreatedEvent($group));
 
         return $group;
@@ -72,8 +70,17 @@ class ExceptionLogsController extends Controller
             'last_seen' => $request->input('thrown_at'),
         ]);
 
+        $this->createExceptionLog($request, $group);
+
         if ($timeDiffInMinutesFromLastException > $timeInMinutesBetweenUpdates) {
             event(new ExceptionLogGroupUpdatedEvent($group));
         }
+    }
+
+    protected function createExceptionLog(StoreExceptionLogRequest $request, MoonGuardExceptionLogGroup $group)
+    {
+        $group->exceptionLogs()->create(
+            $request->safe()->except('api_token'),
+        );
     }
 }

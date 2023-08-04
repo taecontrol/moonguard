@@ -2,13 +2,14 @@
 
 namespace Taecontrol\MoonGuard\Filament\Resources;
 
-use Str;
-use Closure;
 use Exception;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Fieldset;
@@ -25,11 +26,11 @@ use Taecontrol\MoonGuard\Filament\Resources\SiteResource\Pages\CreateSite;
 
 class SiteResource extends Resource
 {
-    protected static ?string $slug = 'moonguard/sites';
+    protected static ?string $slug = 'sites';
 
     protected static ?string $modelLabel = 'Site';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-queue-list';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -69,28 +70,33 @@ class SiteResource extends Resource
                             ->reactive()
                             ->columnSpan('full')
                             ->label('Enabled')
-                            ->afterStateUpdated(function (Closure $set, $state) {
+                            ->afterStateUpdated(function (Set $set, $state) {
                                 if ($state) {
-                                    $set('api_token', Str::random(60));
+                                    $token = Str::random(60);
+                                    $set('api_token', $token);
+                                    $set('api_token_input', $token);
                                 } else {
                                     $set('api_token', null);
+                                    $set('api_token_input', null);
                                 }
                             }),
-                        TextInput::make('api_token')
-                            ->reactive()
-                            ->columnSpan('full')
-                            ->disableLabel()
+                        Hidden::make('api_token'),
+                        TextInput::make('api_token_input')
                             ->disabled()
+                            ->columnSpan('full')
+                            ->hiddenLabel()
                             ->suffixAction(
                                 Action::make('regenerate')
                                     ->disabled(function (CreateSite|EditSite $livewire) {
                                         return ! $livewire->data['api_token_enabled'];
                                     })
-                                    ->icon('heroicon-s-refresh')
+                                    ->icon('heroicon-s-arrow-path')
                                     ->action(
                                         function (CreateSite|EditSite $livewire) {
                                             if ($livewire->data['api_token_enabled']) {
-                                                $livewire->data['api_token'] = Str::random(60);
+                                                $token = Str::random(60);
+                                                $livewire->data['api_token'] = $token;
+                                                $livewire->data['api_token_input'] = $token;
                                             }
                                         }
                                     )

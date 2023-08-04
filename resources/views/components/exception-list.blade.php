@@ -4,27 +4,27 @@
             <p class="text-2xl italic text-gray-500">There are no Exceptions at the time!</p>
         </div>
     @endif
-                       
-    <ul class="overflow-hidden bg-white divide-gray-200 dark:divide-gray-600 border dark:border-gray-600 shadow sm:rounded-md divide-y dark:bg-gray-900">
+
+    <ul class="overflow-hidden bg-white border divide-y divide-gray-200 shadow dark:divide-gray-600 dark:border-gray-600 sm:rounded-md dark:bg-gray-900">
         @foreach ($exceptions as $exception)
             <li class="relative">
                 <button type="button" class="w-full p-6 text-left focus:outline-none"
-                    :class="selected === {{ $loop->index }} ? '!bg-primary-800 dark:bg-primary-100' : 
-                        'bg-white hover:bg-primary-50 dark:bg-gray-900' "
+                    :class="selected === {{ $loop->index }} ? '!bg-primary-800 dark:bg-primary-100' :
+                        'bg-white hover:bg-primary-50 dark:bg-gray-900 dark:hover:bg-primary-800' "
                     @click="selected !== {{ $loop->index }} ? selected = {{ $loop->index }} : selected = null">
                     <div class="truncate">
                         <div class="flex justify-between text-sm"
                             :class="selected === {{ $loop->index }} ? 'text-gray-400 dark:text-gray-300' : 'text-gray-500 dark:text-gray-400'">
-                            <p class="truncate font-medium">{{ $exception->type }}</p>
+                            <p class="font-medium truncate">{{ $exception->type }}</p>
                             <p>{{ $exception->thrown_at->toCookieString() }}</p>
                         </div>
-                        <div class="mt-2 flex">
+                        <div class="flex mt-2">
                             <p class="text-xl font-bold"
                                 :class="selected === {{ $loop->index }} ? 'text-white' : 'text-gray-900 dark:text-gray-100'">
                                 {{ $exception->message }}
                             </p>
                         </div>
-                        <p class="mt-2 truncate font-medium text-sm"
+                        <p class="mt-2 text-sm font-medium truncate"
                             :class="selected === {{ $loop->index }} ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'">
                             {{ $exception->file }}</p>
                     </div>
@@ -36,9 +36,9 @@
                     x-bind:style="selected == {{ $loop->index }} ? 'max-height: ' + $refs.container{{ $loop->index }}
                         .scrollHeight + 'px' :
                         ''">
-                    <div class="mt-10 px-4 py-5 sm:px-6">
+                    <div class="px-4 py-5 mt-10 sm:px-6">
 
-                        <div class="mb-6 w-full" x-data="{ selection: '{{ $exception->status->value }}' }">
+                        <div class="w-full mb-6" x-data="{ selection: '{{ $exception->status->value }}' }">
                             <h3 class="text-lg font-bold leading-6 text-gray-900 dark:text-gray-200">Status</h3>
                             <div class="flex">
                                 <div>
@@ -62,7 +62,7 @@
 
                         <h3 class="text-lg font-bold leading-6 text-gray-900 dark:text-gray-200">Request</h3>
 
-                        <dl class="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                        <dl class="grid grid-cols-1 mt-4 gap-x-4 gap-y-8 sm:grid-cols-2">
 
                             <div class="sm:col-span-2">
                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">URL</dt>
@@ -77,7 +77,7 @@
                                             <div
                                                 class="{{ $loop->even ? 'bg-gray-100 dark:bg-gray-900' : 'bg-white dark:bg-gray-800' }} px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4">
                                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $key }}</dt>
-                                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0 break-words">
+                                                <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-100 sm:col-span-2 sm:mt-0">
                                                     {{ is_array($value) ? Str::replace(',', ', ', $value[0]) : $value }}
                                                 </dd>
                                             </div>
@@ -94,7 +94,7 @@
                                             <div
                                                 class="{{ $loop->even ? 'bg-gray-100 dark:bg-gray-900' : 'bg-white dark:bg-gray-800' }} px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4">
                                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $key }}</dt>
-                                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0 break-words">
+                                                <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-100 sm:col-span-2 sm:mt-0">
                                                     {{ is_array($value) ? Str::replace(',', ', ', $value[0]) : $value }}
                                                 </dd>
                                             </div>
@@ -106,7 +106,7 @@
                     </div>
 
                     @if (isset($exception->trace) && count($exception->trace) > 0)
-                        <div class="mt-2 px-4 sm:px-6">
+                        <div class="px-4 mt-2 sm:px-6">
                             <h3 class="text-lg font-bold leading-6 text-gray-900 dark:text-gray-200">Trace</h3>
                         </div>
 
