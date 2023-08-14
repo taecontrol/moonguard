@@ -120,5 +120,12 @@ return [
          * The notification channels that are used by default.
          */
         'channels' => ['mail'],
+
+        'slack' => [
+            /*
+             * The Slack webhook url setup.
+             */
+            'webhook_url' => env('SLACK_WEBHOOK_URL'),
+        ],
     ],
 ];
