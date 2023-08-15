@@ -119,7 +119,7 @@ return [
         /*
          * The notification channels that are used by default.
          */
-        'channels' => ['mail', 'slack'],
+        'channels' => ['mail'],
 
         'slack' => [
             /*
