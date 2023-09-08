@@ -7,12 +7,14 @@ use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Taecontrol\MoonGuard\Enums\SslCertificateStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
 use Taecontrol\MoonGuard\Repositories\SslCertificateCheckRepository;
+use Taecontrol\MoonGuard\Database\Factories\SslCertificateCheckFactory;
 
 class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
 {
@@ -71,5 +73,10 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
         return Attribute::make(
             get: fn () => SslCertificateCheckRepository::isEnabled(),
         );
+    }
+    
+    protected static function newFactory(): Factory
+    {
+        return SslCertificateCheckFactory::new();
     }
 }

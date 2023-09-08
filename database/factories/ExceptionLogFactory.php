@@ -20,6 +20,7 @@ class ExceptionLogFactory extends Factory
             'file' => $this->faker->word(),
             'line' => $this->faker->randomNumber(),
             'trace' => ['test1', 'test2'],
+            'request' => $this->faker->word,
             'thrown_at' => Carbon::now(),
         ];
     }

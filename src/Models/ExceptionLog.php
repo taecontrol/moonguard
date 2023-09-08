@@ -4,11 +4,13 @@ namespace Taecontrol\MoonGuard\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
+use Taecontrol\MoonGuard\Database\Factories\ExceptionLogFactory;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
 class ExceptionLog extends Model implements MoonGuardExceptionLog
@@ -45,5 +47,10 @@ class ExceptionLog extends Model implements MoonGuardExceptionLog
     public function exceptionLogGroup(): BelongsTo
     {
         return $this->belongsTo(ExceptionLogGroupRepository::resolveModelClass());
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return ExceptionLogFactory::new();
     }
 }

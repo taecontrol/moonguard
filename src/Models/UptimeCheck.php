@@ -7,6 +7,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Database\Eloquent\Model;
 use Taecontrol\MoonGuard\Enums\UptimeStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Taecontrol\MoonGuard\Casts\RequestDurationCast;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\MoonGuard\ValueObjects\RequestDuration;
 use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
 use Taecontrol\MoonGuard\Repositories\UptimeCheckRepository;
+use Taecontrol\MoonGuard\Database\Factories\UptimeCheckFactory;
 
 class UptimeCheck extends Model implements MoonGuardUptimeCheck
 {
@@ -94,5 +96,10 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
                 $uptime->status_last_change_date = now();
             }
         });
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return UptimeCheckFactory::new();
     }
 }

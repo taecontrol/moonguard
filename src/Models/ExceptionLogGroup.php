@@ -3,12 +3,14 @@
 namespace Taecontrol\MoonGuard\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogRepository;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Database\Factories\ExceptionLogGroupFactory;
 
 class ExceptionLogGroup extends Model implements MoonGuardExceptionLogGroup
 {
@@ -37,5 +39,10 @@ class ExceptionLogGroup extends Model implements MoonGuardExceptionLogGroup
     public function site(): BelongsTo
     {
         return $this->belongsTo(SiteRepository::resolveModelClass());
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return ExceptionLogGroupFactory::new();
     }
 }

@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Taecontrol\MoonGuard\Casts\RequestDurationCast;
 use Taecontrol\MoonGuard\Collections\SiteCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Taecontrol\MoonGuard\Database\Factories\SiteFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Taecontrol\MoonGuard\Repositories\UptimeCheckRepository;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogRepository;
@@ -87,5 +89,10 @@ class Site extends Model implements MoonGuardSite
     public function newCollection(array $models = []): SiteCollection
     {
         return new SiteCollection($models);
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return SiteFactory::new();
     }
 }

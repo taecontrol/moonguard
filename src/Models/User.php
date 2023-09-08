@@ -5,7 +5,9 @@ namespace Taecontrol\MoonGuard\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Taecontrol\MoonGuard\Contracts\MoonGuardUser;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Taecontrol\MoonGuard\Database\Factories\UserFactory;
 
 class User extends Model implements MoonGuardUser
 {
@@ -39,5 +41,10 @@ class User extends Model implements MoonGuardUser
     public function routeNotificationForSlack(): string
     {
         return config('moonguard.notifications.slack.webhook_url');
+    }
+        
+    protected static function newFactory(): Factory
+    {
+        return UserFactory::new();
     }
 }
