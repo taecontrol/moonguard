@@ -42,7 +42,7 @@ class User extends Model implements MoonGuardUser
     {
         return config('moonguard.notifications.slack.webhook_url');
     }
-        
+
     protected static function newFactory(): Factory
     {
         return UserFactory::new();
