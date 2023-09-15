@@ -74,7 +74,7 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
             get: fn () => SslCertificateCheckRepository::isEnabled(),
         );
     }
-    
+
     protected static function newFactory(): Factory
     {
         return SslCertificateCheckFactory::new();
