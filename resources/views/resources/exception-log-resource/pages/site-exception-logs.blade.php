@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
         <div>
             <label class="text-sm text-gray-600 dark:text-gray-400">Status</label>
-            <x-moonguard::dropdown placeholder="Status filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" />
+            <x-moonguard::dropdown placeholder="Status filter" :options="$this->exceptionLogStatusFilterOptions" wire:model="exceptionLogStatusFilter" x-on:change="$dispatch('input', $event.target.value)" x-on:input="$wire.filterByStatus($event.detail)"/>
         </div>
         <div></div>
         <div>
