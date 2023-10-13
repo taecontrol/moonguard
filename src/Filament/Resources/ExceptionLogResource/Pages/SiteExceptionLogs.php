@@ -87,6 +87,12 @@ class SiteExceptionLogs extends Page
             ]);
     }
 
+    public function filterByStatus($status)
+    {
+        $this->exceptionLogStatusFilter = $status;
+        $this->getViewData();
+    }
+
     protected function getViewData(): array
     {
         /** @var LengthAwarePaginator $exceptions */
