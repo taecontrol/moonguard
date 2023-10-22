@@ -114,9 +114,9 @@
                             @foreach ($exception->trace as $traceItem)
                                 <div class="py-4 text-sm">
                                     <p class="text-gray-500 dark:text-gray-400">
-                                        {{ array_key_exists('class', $traceItem) ? $traceItem['class'] : $traceItem['file'] }}:<code>{{ $traceItem['line'] }}</code>
+                                        {{ array_key_exists('class', $traceItem) ? $traceItem['class'] : $traceItem['file'] }}:<code>{{ $traceItem['line'] ?? 'unknown' }}</code>
                                     </p>
-                                    <p class="font-medium">{{ $traceItem['function'] }}</p>
+                                    <p class="font-medium">{{ $traceItem['function'] ?? 'unknown' }}</p>
                                 </div>
                             @endforeach
                         </div>
