@@ -5,16 +5,18 @@
         </div>
     @endif
 
-    <ul class="overflow-hidden bg-white border divide-y divide-gray-200 shadow dark:divide-gray-600 dark:border-gray-600 sm:rounded-md dark:bg-gray-900">
+    <ul
+        class="overflow-hidden bg-white border divide-y divide-gray-200 shadow dark:divide-gray-600 dark:border-gray-600 sm:rounded-md dark:bg-gray-900">
         @foreach ($exceptions as $exception)
             <li class="relative">
                 <button type="button" class="w-full p-6 text-left focus:outline-none"
                     :class="selected === {{ $loop->index }} ? '!bg-primary-800 dark:bg-primary-100' :
-                        'bg-white hover:bg-primary-50 dark:bg-gray-900 dark:hover:bg-primary-800' "
+                        'bg-white hover:bg-primary-50 dark:bg-gray-900 dark:hover:bg-primary-800'"
                     @click="selected !== {{ $loop->index }} ? selected = {{ $loop->index }} : selected = null">
                     <div class="truncate">
                         <div class="flex justify-between text-sm"
-                            :class="selected === {{ $loop->index }} ? 'text-gray-400 dark:text-gray-300' : 'text-gray-500 dark:text-gray-400'">
+                            :class="selected === {{ $loop->index }} ? 'text-gray-400 dark:text-gray-300' :
+                                'text-gray-500 dark:text-gray-400'">
                             <p class="font-medium truncate">{{ $exception->type }}</p>
                             <p>{{ $exception->thrown_at->toCookieString() }}</p>
                         </div>
@@ -31,8 +33,8 @@
                 </button>
 
 
-                <div class="relative overflow-hidden max-h-0 transition-all dark:bg-gray-900 !duration-700" style=""
-                    x-ref="container{{ $loop->index }}"
+                <div class="relative overflow-hidden max-h-0 transition-all dark:bg-gray-900 !duration-700"
+                    style="" x-ref="container{{ $loop->index }}"
                     x-bind:style="selected == {{ $loop->index }} ? 'max-height: ' + $refs.container{{ $loop->index }}
                         .scrollHeight + 'px' :
                         ''">
@@ -66,19 +68,24 @@
 
                             <div class="sm:col-span-2">
                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">URL</dt>
-                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200">{{ $exception->request['url'] }}</dd>
+                                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200">
+                                    {{ $exception->request['url'] }}</dd>
                             </div>
 
                             @if (isset($exception->request['params']) && count($exception->request['params']) > 0)
                                 <div class="sm:col-span-2">
-                                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Parameters</dt>
+                                    <dt
+                                        class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                        Parameters</dt>
                                     <div class="mt-2">
                                         @foreach ($exception->request['params'] as $key => $value)
                                             <div
                                                 class="{{ $loop->even ? 'bg-gray-100 dark:bg-gray-900' : 'bg-white dark:bg-gray-800' }} px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-                                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $key }}</dt>
-                                                <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-100 sm:col-span-2 sm:mt-0">
-                                                    {{ is_array($value) ? Str::replace(',', ', ', $value[0]) : $value }}
+                                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                                    {{ $key }}</dt>
+                                                <dd
+                                                    class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0 overflow-auto">
+                                                    <pre class="break-all">{{ is_array($value) ? json_encode($value, JSON_PRETTY_PRINT) : $value }}</pre>
                                                 </dd>
                                             </div>
                                         @endforeach
@@ -93,8 +100,10 @@
                                         @foreach ($exception->request['headers'] as $key => $value)
                                             <div
                                                 class="{{ $loop->even ? 'bg-gray-100 dark:bg-gray-900' : 'bg-white dark:bg-gray-800' }} px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-                                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $key }}</dt>
-                                                <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-100 sm:col-span-2 sm:mt-0">
+                                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                                    {{ $key }}</dt>
+                                                <dd
+                                                    class="mt-1 text-sm text-gray-900 break-words dark:text-gray-100 sm:col-span-2 sm:mt-0">
                                                     {{ is_array($value) ? Str::replace(',', ', ', $value[0]) : $value }}
                                                 </dd>
                                             </div>
