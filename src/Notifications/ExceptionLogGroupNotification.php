@@ -54,6 +54,6 @@ class ExceptionLogGroupNotification extends Notification implements ShouldQueue
 
     protected function getActionUrl(): string
     {
-        return route('filament.resources.moonguard/exceptions.show', $this->exceptionLogGroup->id);
+        return route('filament.moonguard.resources.exceptions.show', $this->exceptionLogGroup->id);
     }
 }
