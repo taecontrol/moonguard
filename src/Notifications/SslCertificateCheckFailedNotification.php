@@ -14,11 +14,10 @@ class SslCertificateCheckFailedNotification extends Notification implements Shou
 {
     use Queueable;
 
-    public function __construct (
+    public function __construct(
         public MoonGuardSslCertificateCheck $sslCertificateCheck,
         public String $channel
-    )
-    {
+    ) {
     }
 
     public function via(): string

@@ -17,8 +17,7 @@ class ExceptionLogGroupNotification extends Notification implements ShouldQueue
     public function __construct(
         public MoonGuardExceptionLogGroup $exceptionLogGroup,
         public String $channel
-    )
-    {
+    ) {
     }
 
     public function via(): string

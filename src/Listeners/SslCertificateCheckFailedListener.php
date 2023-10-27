@@ -2,9 +2,9 @@
 
 namespace Taecontrol\MoonGuard\Listeners;
 
-use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Taecontrol\MoonGuard\Events\SslCertificateCheckFailedEvent;
 use Taecontrol\MoonGuard\Notifications\SslCertificateCheckFailedNotification;
 

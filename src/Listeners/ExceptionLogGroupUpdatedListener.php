@@ -4,9 +4,9 @@ namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent;
 use Taecontrol\MoonGuard\Notifications\ExceptionLogGroupNotification;
-use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 
 class ExceptionLogGroupUpdatedListener
 {

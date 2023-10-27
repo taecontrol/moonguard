@@ -17,8 +17,7 @@ class SslCertificateExpiresSoonNotification extends Notification implements Shou
     public function __construct(
         public MoonGuardSslCertificateCheck $sslCertificateCheck,
         public String $channel
-    )
-    {
+    ) {
     }
 
     public function via(): string

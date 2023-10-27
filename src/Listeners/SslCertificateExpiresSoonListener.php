@@ -4,8 +4,8 @@ namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
-use Taecontrol\MoonGuard\Events\SslCertificateExpiresSoonEvent;
 use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
+use Taecontrol\MoonGuard\Events\SslCertificateExpiresSoonEvent;
 use Taecontrol\MoonGuard\Notifications\SslCertificateExpiresSoonNotification;
 
 class SslCertificateExpiresSoonListener

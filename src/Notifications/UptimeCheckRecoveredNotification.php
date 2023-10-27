@@ -19,8 +19,7 @@ class UptimeCheckRecoveredNotification extends Notification implements ShouldQue
         public MoonGuardUptimeCheck $uptime,
         public Period $downtimePeriod,
         public String $channel
-    )
-    {
+    ) {
     }
 
     public function via(): string

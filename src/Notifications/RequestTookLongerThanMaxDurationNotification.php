@@ -19,8 +19,7 @@ class RequestTookLongerThanMaxDurationNotification extends Notification implemen
         public MoonGuardUptimeCheck $uptimeCheck,
         public RequestDuration $maxRequestDuration,
         public String $channel
-    )
-    {
+    ) {
     }
 
     public function via(): string

@@ -19,8 +19,7 @@ class UptimeCheckFailedNotification extends Notification implements ShouldQueue
         public MoonGuardUptimeCheck $uptime,
         Period $downtimePeriod,
         public String $channel
-    )
-    {
+    ) {
     }
 
     public function via(): string
