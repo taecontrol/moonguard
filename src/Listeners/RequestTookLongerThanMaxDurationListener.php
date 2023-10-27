@@ -6,14 +6,25 @@ use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
 use Taecontrol\MoonGuard\Events\RequestTookLongerThanMaxDurationEvent;
 use Taecontrol\MoonGuard\Notifications\RequestTookLongerThanMaxDurationNotification;
+use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 
 class RequestTookLongerThanMaxDurationListener
 {
     public function handle(RequestTookLongerThanMaxDurationEvent $event): void
     {
-        Notification::send(
-            UserRepository::all(),
-            new RequestTookLongerThanMaxDurationNotification($event->uptimeCheck, $event->maxRequestDuration)
-        );
+        $channels = config('moonguard.notifications.channels');
+
+        foreach ($channels as $channel) {
+            $users = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
+
+            Notification::send(
+                $users,
+                new RequestTookLongerThanMaxDurationNotification(
+                    $event->uptimeCheck,
+                    $event->maxRequestDuration,
+                    $channel
+                )
+            );
+        }
     }
 }

@@ -15,13 +15,17 @@ class RequestTookLongerThanMaxDurationNotification extends Notification implemen
 {
     use Queueable;
 
-    public function __construct(public MoonGuardUptimeCheck $uptimeCheck, public RequestDuration $maxRequestDuration)
+    public function __construct(
+        public MoonGuardUptimeCheck $uptimeCheck,
+        public RequestDuration $maxRequestDuration,
+        public String $channel
+    )
     {
     }
 
-    public function via(): array
+    public function via(): string
     {
-        return config('moonguard.notifications.channels');
+        return $this->channel;
     }
 
     public function toMail(): MailMessage
