@@ -6,14 +6,21 @@ use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
 use Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent;
 use Taecontrol\MoonGuard\Notifications\ExceptionLogGroupNotification;
+use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 
 class ExceptionLogGroupUpdatedListener
 {
     public function handle(ExceptionLogGroupUpdatedEvent $event): void
     {
-        Notification::send(
-            UserRepository::all(),
-            new ExceptionLogGroupNotification($event->exceptionLogGroup)
-        );
+        $channels = config('moonguard.notifications.channels');
+
+        foreach ($channels as $channel) {
+            $users = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
+
+            Notification::send(
+                $users,
+                new ExceptionLogGroupNotification($event->exceptionLogGroup, $channel)
+            );
+        }
     }
 }
