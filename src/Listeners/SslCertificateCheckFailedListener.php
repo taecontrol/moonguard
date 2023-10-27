@@ -2,6 +2,7 @@
 
 namespace Taecontrol\MoonGuard\Listeners;
 
+use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
 use Taecontrol\MoonGuard\Events\SslCertificateCheckFailedEvent;
@@ -11,9 +12,15 @@ class SslCertificateCheckFailedListener
 {
     public function handle(SslCertificateCheckFailedEvent $event): void
     {
-        Notification::send(
-            UserRepository::all(),
-            new SslCertificateCheckFailedNotification($event->sslCertificateCheck)
-        );
+        $channels = config('moonguard.notifications.channels');
+
+        foreach ($channels as $channel) {
+            $users = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
+
+            Notification::send(
+                $users,
+                new SslCertificateCheckFailedNotification($event->sslCertificateCheck, $channel)
+            );
+        }
     }
 }
