@@ -14,13 +14,16 @@ class SslCertificateExpiresSoonNotification extends Notification implements Shou
 {
     use Queueable;
 
-    public function __construct(public MoonGuardSslCertificateCheck $sslCertificateCheck)
+    public function __construct(
+        public MoonGuardSslCertificateCheck $sslCertificateCheck,
+        public String $channel
+    )
     {
     }
 
-    public function via(): array
+    public function via(): string
     {
-        return config('moonguard.notifications.channels');
+        return $this->channel;
     }
 
     public function toMail(): MailMessage
