@@ -18,7 +18,7 @@ class SslCertificateExpiresSoonListener
             $notifiables = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
 
             Notification::send(
-                $users,
+                $notifiables,
                 new SslCertificateExpiresSoonNotification($event->sslCertificateCheck, $channel)
             );
         }

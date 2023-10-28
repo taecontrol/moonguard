@@ -18,7 +18,7 @@ class SslCertificateCheckFailedListener
             $notifiables = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
 
             Notification::send(
-                $users,
+                $notifiables,
                 new SslCertificateCheckFailedNotification($event->sslCertificateCheck, $channel)
             );
         }

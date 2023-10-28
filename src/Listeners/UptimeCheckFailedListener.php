@@ -18,7 +18,7 @@ class UptimeCheckFailedListener
             $notifiables = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
 
             Notification::send(
-                $users,
+                $notifiables,
                 new UptimeCheckFailedNotification(
                     $event->uptimeCheck,
                     $event->downtimePeriod,

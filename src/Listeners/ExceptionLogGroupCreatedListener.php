@@ -18,7 +18,7 @@ class ExceptionLogGroupCreatedListener
             $notifiables = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
 
             Notification::send(
-                $users,
+                $notifiables,
                 new ExceptionLogGroupNotification($event->exceptionLogGroup, $channel)
             );
         }
