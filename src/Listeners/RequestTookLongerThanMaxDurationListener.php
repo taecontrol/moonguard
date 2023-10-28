@@ -15,7 +15,7 @@ class RequestTookLongerThanMaxDurationListener
         $channels = config('moonguard.notifications.channels');
 
         foreach ($channels as $channel) {
-            $users = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
+            $notifiables = ($channel === 'slack') ? new SlackNotifiable() : UserRepository::all();
 
             Notification::send(
                 $users,
