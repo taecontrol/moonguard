@@ -38,11 +38,6 @@ class User extends Model implements MoonGuardUser
         'email_verified_at' => 'datetime',
     ];
 
-    public function routeNotificationForSlack(): string
-    {
-        return config('moonguard.notifications.slack.webhook_url');
-    }
-
     protected static function newFactory(): Factory
     {
         return UserFactory::new();
