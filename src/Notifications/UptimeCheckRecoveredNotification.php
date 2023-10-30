@@ -15,13 +15,16 @@ class UptimeCheckRecoveredNotification extends Notification implements ShouldQue
 {
     use Queueable;
 
-    public function __construct(public MoonGuardUptimeCheck $uptime, public Period $downtimePeriod)
-    {
+    public function __construct(
+        public MoonGuardUptimeCheck $uptime,
+        public Period $downtimePeriod,
+        public String $channel
+    ) {
     }
 
-    public function via(): array
+    public function via(): string
     {
-        return config('moonguard.notifications.channels');
+        return $this->channel;
     }
 
     public function toMail(): MailMessage
