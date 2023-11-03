@@ -8,6 +8,8 @@ use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Taecontrol\MoonGuard\Filament\Tables\Columns\ExceptionColumn;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
@@ -31,7 +33,11 @@ class ExceptionLogResource extends Resource
         return $table
             ->columns([
                 ExceptionColumn::make('exceptions'),
-                TextColumn::make('exception_logs_count')->counts('exceptionLogs')->label('Events'),
+                TextColumn::make('unresolved')->getStateUsing(function (Model $record) {
+                    return $record->exceptionLogs()
+                        ->where('status', 'unresolved')
+                        ->count();
+                }),
                 TextColumn::make('first_seen')->dateTime()->sortable(),
                 TextColumn::make('last_seen')->dateTime()->sortable(),
             ])
@@ -39,6 +45,21 @@ class ExceptionLogResource extends Resource
             ->filters([
                 SelectFilter::make('sites')
                     ->relationship('site', 'name'),
+                    SelectFilter::make('status')
+                    ->options([
+                        'unresolved' => 'Unresolved',
+                        'reviewed' => 'Reviewed',
+                        'ignored' => 'Ignored',
+                        'resolved' => 'Resolved',
+                    ])
+                        ->query(function (Builder $query, array $data): Builder {
+                            return $query
+                                ->when(
+                                    $data['value'] ?? null,
+                                    fn (Builder $query, $value): Builder => $query->whereRelation('exceptionLogs', 'status', $value)
+                                );
+                        }),
+      
             ], layout: FiltersLayout::AboveContent);
     }
 
