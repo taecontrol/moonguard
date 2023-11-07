@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
 use Taecontrol\MoonGuard\Filament\Tables\Columns\ExceptionColumn;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
@@ -23,7 +24,7 @@ class ExceptionLogResource extends Resource
 
     protected static ?string $navigationLabel = 'Exceptions';
 
-    public static $statusFilter;
+    public static ?string $statusFilter;
 
     protected static ?string $navigationIcon = 'heroicon-o-exclamation-circle';
 
@@ -49,12 +50,12 @@ class ExceptionLogResource extends Resource
                 SelectFilter::make('sites')
                     ->relationship('site', 'name'),
                 SelectFilter::make('status')
-                    ->default('unresolved')
+                    ->default(ExceptionLogStatus::UNRESOLVED->value)
                     ->options([
-                        'unresolved' => 'Unresolved',
-                        'reviewed' => 'Reviewed',
-                        'ignored' => 'Ignored',
-                        'resolved' => 'Resolved',
+                        ExceptionLogStatus::UNRESOLVED->value => 'Unresolved',
+                        ExceptionLogStatus::RESOLVED->value => 'Resolved',
+                        ExceptionLogStatus::IGNORED->value => 'Ignored',
+                        ExceptionLogStatus::REVIEWED->value => 'Reviewed',
                     ])->query(function (Builder $query, array $data): Builder {
                         self::$statusFilter = $data['value'] ?? null;
 
