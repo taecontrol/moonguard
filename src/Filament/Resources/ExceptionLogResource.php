@@ -6,10 +6,10 @@ use Exception;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Taecontrol\MoonGuard\Filament\Tables\Columns\ExceptionColumn;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
@@ -23,6 +23,8 @@ class ExceptionLogResource extends Resource
 
     protected static ?string $navigationLabel = 'Exceptions';
 
+    public static $statusFilter;
+
     protected static ?string $navigationIcon = 'heroicon-o-exclamation-circle';
 
     /**
@@ -33,11 +35,12 @@ class ExceptionLogResource extends Resource
         return $table
             ->columns([
                 ExceptionColumn::make('exceptions'),
-                TextColumn::make('unresolved')->getStateUsing(function (Model $record) {
-                    return $record->exceptionLogs()
-                        ->where('status', 'unresolved')
-                        ->count();
-                }),
+                TextColumn::make('Events')
+                    ->getStateUsing(function (Model $record) {
+                        return $record->exceptionLogs()
+                            ->where('status', self::$statusFilter)
+                            ->count();
+                    }),
                 TextColumn::make('first_seen')->dateTime()->sortable(),
                 TextColumn::make('last_seen')->dateTime()->sortable(),
             ])
@@ -45,21 +48,22 @@ class ExceptionLogResource extends Resource
             ->filters([
                 SelectFilter::make('sites')
                     ->relationship('site', 'name'),
-                    SelectFilter::make('status')
+                SelectFilter::make('status')
+                    ->default('unresolved')
                     ->options([
                         'unresolved' => 'Unresolved',
                         'reviewed' => 'Reviewed',
                         'ignored' => 'Ignored',
                         'resolved' => 'Resolved',
-                    ])
-                        ->query(function (Builder $query, array $data): Builder {
-                            return $query
-                                ->when(
-                                    $data['value'] ?? null,
-                                    fn (Builder $query, $value): Builder => $query->whereRelation('exceptionLogs', 'status', $value)
-                                );
-                        }),
-      
+                    ])->query(function (Builder $query, array $data): Builder {
+                        self::$statusFilter = $data['value'] ?? null;
+
+                        return $query
+                            ->when(
+                                $data['value'] ?? null,
+                                fn (Builder $query, $value): Builder => $query->whereRelation('exceptionLogs', 'status', $value)
+                            );
+                    }),
             ], layout: FiltersLayout::AboveContent);
     }
 
