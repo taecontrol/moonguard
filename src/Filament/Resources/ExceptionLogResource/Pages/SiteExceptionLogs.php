@@ -63,15 +63,14 @@ class SiteExceptionLogs extends Page
         $status = ExceptionLogStatus::from($this->allExceptionStatusAs)->value;
 
         if ($this->allExceptionStatusAs !== '') {
-            ExceptionLogRepository::query()
-                //->whereIn('id', $this->exceptionLogsCollection->pluck('id'))
+
+            $this->exceptionLogGroup
+                ->exceptionLogs()
+                ->when(
+                    fn () => Str::length($this->exceptionLogStatusFilter) > 0,
+                    fn (Builder $query) => $query->where('status', $this->exceptionLogStatusFilter)
+                )
                 ->update(['status' => $status]);
-
-            //$test = ExceptionLogRepository::query()
-                //->whereIn('id', $this->exceptionLogsCollection->pluck('id'))
-                //->update(['status' => $status]);
-
-            larvis($this->exceptionLogsCollection->pluck('id'));
         }
     }
 
