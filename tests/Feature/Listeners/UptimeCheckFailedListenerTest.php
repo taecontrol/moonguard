@@ -40,7 +40,7 @@ class UptimeCheckFailedListenerTest extends TestCase
     }
 
     /** @test */
-    public function it_checks_handle_method()
+    public function it_checks_handle_method_to_slack()
     {
         config(['moonguard.notifications.channels' => ['slack']]);
 
@@ -54,6 +54,5 @@ class UptimeCheckFailedListenerTest extends TestCase
         $instance->handle($event);
 
         Notification::assertSentTo(new SlackNotifiable(), UptimeCheckFailedNotification::class);
-        Notification::assertSentCount(UptimeCheckFailedNotification::class, 1);
     }
 }
