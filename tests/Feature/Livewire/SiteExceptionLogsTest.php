@@ -8,7 +8,7 @@ use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExcep
 use Taecontrol\MoonGuard\Models\ExceptionLog;
 use Taecontrol\MoonGuard\Models\ExceptionLogGroup;
 use Taecontrol\MoonGuard\Tests\TestCase;
-//use Livewire\Livewire;
+use Livewire\Livewire;
 
 class SiteExceptionLogsTest extends TestCase
 {
@@ -50,10 +50,22 @@ class SiteExceptionLogsTest extends TestCase
 
         $this->siteExceptionLogs->updateAllExceptionLogStatus();
 
-        //Livewire::test(SiteExceptionLogs::class)
-            //->set('allExceptionStatusAs', $allExceptionStatusAs)
-            //->set('exceptionLogStatusFilter', $exceptionLogStatusFilter)
-            //->call('updateAllExceptionLogStatus');
+        //$this->siteExceptionLogs->mount(3);
+
+        //ExceptionLogGroup::factory()->create(['id' => 10]);
+
+
+        ExceptionLogGroup::factory()->has(ExceptionLog::factory()->state([
+                                            'status' => ExceptionLogStatus::UNRESOLVED,
+                                        ])
+                                        ->count(10)
+                                    )
+                                    ->create(['id' => 10]);
+
+        Livewire::test(SiteExceptionLogs::class, ['record' => 10])
+            ->set('allExceptionStatusAs', $allExceptionStatusAs)
+            ->set('exceptionLogStatusFilter', $exceptionLogStatusFilter)
+            ->call('updateAllExceptionLogStatus');
 
         $updatedExceptionLogs = $this->ExceptionLogGroup
                                     ->exceptionLogs()

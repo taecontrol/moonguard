@@ -6,6 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Livewire\LivewireServiceProvider;
 use Taecontrol\MoonGuard\Providers\MoonGuardServiceProvider;
 
 class TestCase extends Orchestra
@@ -25,17 +26,34 @@ class TestCase extends Orchestra
     {
         return [
             MoonGuardServiceProvider::class,
+            LivewireServiceProvider::class,
         ];
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
-        config()->set('database.default', 'sqlite');
-        config()->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
+
+         $app['config']->set('view.paths', [
+            ...$app['config']->get('view.paths'),
+            __DIR__ . '/../resources/views',
         ]);
+
+
+        $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
+
+        $app['config']->set('database.default', 'sqlite');
+        $app['config']->set('database.connections.sqlite', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
+
+        //config()->set('database.default', 'sqlite');
+        //config()->set('database.connections.sqlite', [
+            //'driver' => 'sqlite',
+            //'database' => ':memory:',
+            //'prefix' => '',
+        //]);
         $this->setupMigrations($app);
     }
 

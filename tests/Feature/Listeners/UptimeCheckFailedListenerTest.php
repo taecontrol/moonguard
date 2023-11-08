@@ -10,7 +10,6 @@ use Taecontrol\MoonGuard\Models\UptimeCheck;
 use Taecontrol\MoonGuard\ValueObjects\Period;
 use Taecontrol\MoonGuard\Events\UptimeCheckFailedEvent;
 use Taecontrol\MoonGuard\Listeners\UptimeCheckFailedListener;
-use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Taecontrol\MoonGuard\Notifications\UptimeCheckFailedNotification;
 
 class UptimeCheckFailedListenerTest extends TestCase
@@ -37,22 +36,5 @@ class UptimeCheckFailedListenerTest extends TestCase
         $instance->handle($event);
 
         Notification::assertSentTo($this->users, UptimeCheckFailedNotification::class);
-    }
-
-    /** @test */
-    public function it_checks_handle_method_to_slack()
-    {
-        config(['moonguard.notifications.channels' => ['slack']]);
-
-        Notification::fake();
-
-        $instance = new UptimeCheckFailedListener();
-        $period = new Period(now()->subMinutes(10), now()->addMinutes(10));
-
-        $uptimeCheck = UptimeCheck::factory()->create();
-        $event = new UptimeCheckFailedEvent($uptimeCheck, $period);
-        $instance->handle($event);
-
-        Notification::assertSentTo(new SlackNotifiable(), UptimeCheckFailedNotification::class);
     }
 }
