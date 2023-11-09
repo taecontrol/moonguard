@@ -63,7 +63,6 @@ class SiteExceptionLogs extends Page
         $status = ExceptionLogStatus::from($this->allExceptionStatusAs)->value;
 
         if ($this->allExceptionStatusAs !== '') {
-
             $this->exceptionLogGroup
                 ->exceptionLogs()
                 ->when(
