@@ -38,14 +38,13 @@ class ExceptionLogResource extends Resource
                 ExceptionColumn::make('exceptions'),
                 TextColumn::make('Events')
                     ->getStateUsing(function (Model $record) {
-                        if ( self::$statusFilter === null ) {
+                        if (self::$statusFilter === null) {
                             return $record->exceptionLogs()->count();
                         }
-                        else {
-                            return $record->exceptionLogs()
+
+                        return $record->exceptionLogs()
                             ->where('status', self::$statusFilter)
                             ->count();
-                        }
                     }),
                 TextColumn::make('first_seen')->dateTime()->sortable(),
                 TextColumn::make('last_seen')->dateTime()->sortable(),
@@ -65,18 +64,15 @@ class ExceptionLogResource extends Resource
                         if ($data['value'] ?? null) {
                             self::$statusFilter = $data['value'] ?? null;
 
-                        return $query
-                            ->when(
-                                $data['value'] ?? null,
-                                fn (Builder $query, $value): Builder => $query->whereRelation('exceptionLogs', 'status', $value)
-                            );
+                            return $query
+                                ->when(
+                                    $data['value'] ?? null,
+                                    fn (Builder $query, $value): Builder => $query->whereRelation('exceptionLogs', 'status', $value)
+                                );
+                        }
+                        self::$statusFilter = null;
 
-                        }
-                        else {
-                            self::$statusFilter = null;
-                            return $query;
-                        }
-                        
+                        return $query;
                     }),
             ], layout: FiltersLayout::AboveContent);
     }
