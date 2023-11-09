@@ -2,13 +2,12 @@
 
 namespace Taecontrol\MoonGuard\Tests\Feature\Livewire;
 
-use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
-use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
-use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
-use Taecontrol\MoonGuard\Models\ExceptionLog;
-use Taecontrol\MoonGuard\Models\ExceptionLogGroup;
 use Taecontrol\MoonGuard\Tests\TestCase;
-use Livewire\Livewire;
+use Taecontrol\MoonGuard\Models\ExceptionLog;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
+use Taecontrol\MoonGuard\Models\ExceptionLogGroup;
+use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource\Pages\SiteExceptionLogs;
 
 class SiteExceptionLogsTest extends TestCase
 {
@@ -22,13 +21,14 @@ class SiteExceptionLogsTest extends TestCase
         parent::setUp();
 
         $this->ExceptionLogGroup = ExceptionLogGroup::factory()
-                                    ->has(ExceptionLog::factory()
-                                        ->state([
-                                            'status' => ExceptionLogStatus::UNRESOLVED,
-                                        ])
-                                        ->count(10)
-                                    )
-                                    ->create();
+            ->has(
+                ExceptionLog::factory()
+                    ->state([
+                        'status' => ExceptionLogStatus::UNRESOLVED,
+                    ])
+                    ->count(10)
+            )
+            ->create(['id' => 1]);
 
         $this->siteExceptionLogs = new SiteExceptionLogs();
         $this->siteExceptionLogs->exceptionLogGroup = $this->ExceptionLogGroup;
@@ -44,33 +44,16 @@ class SiteExceptionLogsTest extends TestCase
         $this->siteExceptionLogs->exceptionLogStatusFilter = $exceptionLogStatusFilter;
 
         $exceptionLogs = $this->ExceptionLogGroup
-                            ->exceptionLogs()
-                            ->where('status', ExceptionLogStatus::UNRESOLVED)
-                            ->count();
+            ->exceptionLogs()
+            ->where('status', ExceptionLogStatus::UNRESOLVED)
+            ->count();
 
         $this->siteExceptionLogs->updateAllExceptionLogStatus();
 
-        //$this->siteExceptionLogs->mount(3);
-
-        //ExceptionLogGroup::factory()->create(['id' => 10]);
-
-
-        ExceptionLogGroup::factory()->has(ExceptionLog::factory()->state([
-                                            'status' => ExceptionLogStatus::UNRESOLVED,
-                                        ])
-                                        ->count(10)
-                                    )
-                                    ->create(['id' => 10]);
-
-        Livewire::test(SiteExceptionLogs::class, ['record' => 10])
-            ->set('allExceptionStatusAs', $allExceptionStatusAs)
-            ->set('exceptionLogStatusFilter', $exceptionLogStatusFilter)
-            ->call('updateAllExceptionLogStatus');
-
         $updatedExceptionLogs = $this->ExceptionLogGroup
-                                    ->exceptionLogs()
-                                    ->where('status', ExceptionLogStatus::RESOLVED)
-                                    ->count();
+            ->exceptionLogs()
+            ->where('status', ExceptionLogStatus::RESOLVED)
+            ->count();
 
         $this->assertEquals($exceptionLogs, $updatedExceptionLogs);
     }
