@@ -61,7 +61,7 @@ class ExceptionLogResource extends Resource
                         ExceptionLogStatus::IGNORED->value => 'Ignored',
                         ExceptionLogStatus::REVIEWED->value => 'Reviewed',
                     ])->query(function (Builder $query, array $data): Builder {
-                        if ($data['value'] ?? null) {
+                        if ($data['value']) {
                             self::$statusFilter = $data['value'] ?? null;
 
                             return $query
