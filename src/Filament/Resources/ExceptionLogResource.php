@@ -38,9 +38,14 @@ class ExceptionLogResource extends Resource
                 ExceptionColumn::make('exceptions'),
                 TextColumn::make('Events')
                     ->getStateUsing(function (Model $record) {
-                        return $record->exceptionLogs()
+                        if ( self::$statusFilter === null ) {
+                            return $record->exceptionLogs()->count();
+                        }
+                        else {
+                            return $record->exceptionLogs()
                             ->where('status', self::$statusFilter)
                             ->count();
+                        }
                     }),
                 TextColumn::make('first_seen')->dateTime()->sortable(),
                 TextColumn::make('last_seen')->dateTime()->sortable(),
@@ -57,13 +62,21 @@ class ExceptionLogResource extends Resource
                         ExceptionLogStatus::IGNORED->value => 'Ignored',
                         ExceptionLogStatus::REVIEWED->value => 'Reviewed',
                     ])->query(function (Builder $query, array $data): Builder {
-                        self::$statusFilter = $data['value'] ?? null;
+                        if ($data['value'] ?? null) {
+                            self::$statusFilter = $data['value'] ?? null;
 
                         return $query
                             ->when(
                                 $data['value'] ?? null,
                                 fn (Builder $query, $value): Builder => $query->whereRelation('exceptionLogs', 'status', $value)
                             );
+
+                        }
+                        else {
+                            self::$statusFilter = null;
+                            return $query;
+                        }
+                        
                     }),
             ], layout: FiltersLayout::AboveContent);
     }
