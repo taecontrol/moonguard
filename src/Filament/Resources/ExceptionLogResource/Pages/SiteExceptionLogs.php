@@ -94,6 +94,7 @@ class SiteExceptionLogs extends Page
     public function filterByStatus($status)
     {
         $this->exceptionLogStatusFilter = $status;
+        $this->resetPage();
         $this->getViewData();
     }
 
