@@ -5,7 +5,7 @@
     </div>
 @else
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
-        href="{{ route('filament.moonguard.resources.exceptions.index', ['tableFilters[sites][value]' => $site->id]) }}"
+        href="{{ route('filament.moonguard.resources.exceptions.index', ['tableFilters[sites][value]' => $site->id,  'tableFilters[status][value]' => 'unresolved']) }}"
     >
         <span>Exceptions</span>
         <span>{{ $site->exception_logs_count }}</span>
