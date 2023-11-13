@@ -6,6 +6,8 @@
         <span class="text-gray-400">Disabled</span>
     @elseif($site->uptimeCheck->status === \Taecontrol\MoonGuard\Enums\UptimeStatus::NOT_YET_CHECKED)
         <span class="text-gray-500">---</span>
+    @elseif($site->down_for_maintenance_at)
+        <span class="text-gray-500">---</span>
     @elseif($site->uptimeCheck->status === \Taecontrol\MoonGuard\Enums\UptimeStatus::UP)
         <span
             class="text-green-500 text-sm font-bold">{{ $site->uptimeCheck->request_duration_ms->toMilliseconds() }}</span>
