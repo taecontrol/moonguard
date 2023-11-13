@@ -6,6 +6,8 @@
         <span class="text-gray-400">Disabled</span>
     @elseif($site->sslCertificateCheck->status === \Taecontrol\MoonGuard\Enums\SslCertificateStatus::NOT_YET_CHECKED)
         <span class="text-gray-500">---</span>
+    @elseif($site->down_for_maintenance_at)
+        <span class="text-gray-500">---</span>
     @elseif($site->sslCertificateCheck->status === \Taecontrol\MoonGuard\Enums\SslCertificateStatus::VALID)
         <span class="text-green-500 text-sm font-bold">OK</span>
     @else

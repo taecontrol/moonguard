@@ -17,17 +17,23 @@
         class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"{!! ($pollingInterval = $this->getPollingInterval()) ? "wire:poll.{$pollingInterval}" : '' !!} >
         @foreach($sites as $site)
             <x-filament::card>
-                <div class="divide-y divide-gray-200">
-                    <a class="pb-2" href="{{ route('filament.moonguard.resources.sites.edit', ['record' => $site->id]) }}">
-                        <h3 class="text-xl font-bold">{{ $site->name }}</h3>
-                        <span class="text-sm text-gray-400">{{$site->url}}</span>
-                    </a>
-
-                    <div class="pt-2 space-y-2">
-                        <x-moonguard::site-stats-widget.uptime-list-item  :site="$site"/>
-                        <x-moonguard::site-stats-widget.performace-list-item :site="$site" />
-                        <x-moonguard::site-stats-widget.certificate-list-item :site="$site" />
-                        <x-moonguard::site-stats-widget.exceptions-list-item :site="$site" />
+                <div class="relative">
+                    @if($site->down_for_maintenance_at)
+                        <p class="absolute top-0 right-0 text-xs mt-2 font-bold">
+                            On maintenance
+                        </p>
+                    @endif
+                    <div class="divide-y divide-gray-200">
+                        <a class="pb-2" href="{{ route('filament.moonguard.resources.sites.edit', ['record' => $site->id]) }}">
+                            <h3 class="text-xl font-bold">{{ $site->name }}</h3>
+                            <span class="text-sm text-gray-400">{{$site->url}}</span>
+                        </a>
+                        <div class="pt-2 space-y-2">
+                            <x-moonguard::site-stats-widget.uptime-list-item  :site="$site"/>
+                            <x-moonguard::site-stats-widget.performace-list-item :site="$site" />
+                            <x-moonguard::site-stats-widget.certificate-list-item :site="$site" />
+                            <x-moonguard::site-stats-widget.exceptions-list-item :site="$site" />
+                        </div>
                     </div>
                 </div>
             </x-filament::card>
