@@ -2,7 +2,7 @@
     <span class="text-gray-500">Uptime</span>
     @if(! $site->uptimeCheck)
         <span class="text-gray-500">---</span>
-    @elsef(! $site->uptimeCheck?->is_enabled || ! $site->uptime_check_enabled)
+    @elseif(! $site->uptimeCheck?->is_enabled || ! $site->uptime_check_enabled)
         <span class="text-gray-400">Disabled</span>
     @elseif($site->uptimeCheck->status === \Taecontrol\MoonGuard\Enums\UptimeStatus::NOT_YET_CHECKED)
         <span class="rounded-full h-4 w-4 bg-gray-300"></span>

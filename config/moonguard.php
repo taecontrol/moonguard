@@ -50,6 +50,17 @@ return [
          */
         'notify_expiring_soon_if_certificate_expires_within_days' => 7,
     ],
+    'exception_deletion' => [
+        /*
+         * Enable or disable exception deletion globally.
+         */
+        'enabled' => true,
+    
+        /*
+         * The age in minutes of the exceptions to delete.
+         */
+        'delete_exceptions_older_than_minutes' => 10080,
+    ],
     'exceptions' => [
         /*
          * Enable or disable exception logging globally.
