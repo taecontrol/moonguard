@@ -21,8 +21,6 @@ class DeleteOldExceptionCommandRepository
     public static function deleteOldExceptions(int $time): void
     {
         $exceptions = ExceptionLog::where('thrown_at', '<', now()->subMinutes($time))->get();
-        \Log::info('Found ' . $exceptions->count() . ' exceptions to delete');
-        \Log::info('Deleting exceptions older than ' . now()->subMinutes($time));
         $exceptions->each(function ($exception) {
             $exception->delete();
         });
