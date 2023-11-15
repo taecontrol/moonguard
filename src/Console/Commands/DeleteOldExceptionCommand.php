@@ -3,7 +3,8 @@
 namespace Taecontrol\MoonGuard\Console\Commands;
 
 use Illuminate\Console\Command;
-use Taecontrol\MoonGuard\Repositories\DeleteOldExceptionCommandRepository;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogRepository;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
 class DeleteOldExceptionCommand extends Command
 {
@@ -25,6 +26,24 @@ class DeleteOldExceptionCommand extends Command
 
         $this->info('Old exceptions deleted successfully!');
 
-        DeleteOldExceptionCommandRepository::deleteOldExceptions($time);
+        $this->deleteOldExceptions($time);
+    }
+
+    public function isEnabled(): bool
+    {
+        return config('moonguard.exception_deletion.enabled');
+    }
+
+    public static function getExceptionAge(): int
+    {
+        return config('moonguard.exception_deletion.delete_exceptions_older_than_minutes');
+    }
+
+    public static function deleteOldExceptions(int $time): void
+    {
+        $exceptions = ExceptionLogGroupRepository::query()
+            ->where('first_seen', '<', now()->subMinutes($time));
+
+        $exceptions->delete();
     }
 }
