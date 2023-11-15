@@ -3,7 +3,6 @@
 namespace Taecontrol\MoonGuard\Console\Commands;
 
 use Illuminate\Console\Command;
-use Taecontrol\MoonGuard\Repositories\ExceptionLogRepository;
 use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
 class DeleteOldExceptionCommand extends Command
