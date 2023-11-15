@@ -4,7 +4,6 @@ namespace Taecontrol\MoonGuard\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Taecontrol\MoonGuard\Console\Commands\DeleteOldExceptionCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Taecontrol\MoonGuard\Contracts\MoonGuardUser;
 use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
@@ -12,6 +11,7 @@ use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
 use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
+use Taecontrol\MoonGuard\Console\Commands\DeleteOldExceptionCommand;
 use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardServiceProvider extends ServiceProvider

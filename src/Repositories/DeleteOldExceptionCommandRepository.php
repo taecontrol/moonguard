@@ -27,5 +27,4 @@ class DeleteOldExceptionCommandRepository
             $exception->delete();
         });
     }
-
 }

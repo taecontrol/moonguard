@@ -4,8 +4,8 @@ namespace Taecontrol\MoonGuard\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
-use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 use Taecontrol\MoonGuard\Console\Commands\DeleteOldExceptionCommand;
+use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardCommandsScheduler
 {
@@ -15,7 +15,7 @@ class MoonGuardCommandsScheduler
         $uptimeCheckIsEnabled = config('moonguard.uptime_check.enabled');
         /** @var bool $sslCheckIsEnabled */
         $sslCheckIsEnabled = config('moonguard.ssl_certificate_check.enabled');
-        /** @var bool $deleteOldExceptionIsEnabled*/
+        /** @var bool $deleteOldExceptionIsEnabled */
         $deleteOldExceptionIsEnabled = config('moonguard.exception_deletion.enabled');
 
         if ($uptimeCheckIsEnabled) {

@@ -55,7 +55,7 @@ return [
          * Enable or disable exception deletion globally.
          */
         'enabled' => true,
-    
+
         /*
          * The age in minutes of the exceptions to delete.
          */
