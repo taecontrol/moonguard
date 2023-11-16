@@ -11,6 +11,7 @@ use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
 use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
+use Taecontrol\MoonGuard\Console\Commands\DeleteOldExceptionCommand;
 use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardServiceProvider extends ServiceProvider
@@ -61,6 +62,7 @@ class MoonGuardServiceProvider extends ServiceProvider
             $this->commands([
                 CheckUptimeCommand::class,
                 CheckSslCertificateCommand::class,
+                DeleteOldExceptionCommand::class,
             ]);
         }
     }
