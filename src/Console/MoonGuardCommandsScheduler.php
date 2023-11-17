@@ -9,7 +9,7 @@ use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardCommandsScheduler
 {
-    public static function scheduleMoonGuardCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron, string $deleteOldExceptionCron)
+    public static function scheduleMoonGuardCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron, ?string $deleteOldExceptionCron = null)
     {
         /** @var bool $uptimeCheckIsEnabled */
         $uptimeCheckIsEnabled = config('moonguard.uptime_check.enabled');
@@ -28,7 +28,7 @@ class MoonGuardCommandsScheduler
                 ->cron($sslCertificateCheckCron);
         }
 
-        if ($deleteOldExceptionIsEnabled) {
+        if ($deleteOldExceptionIsEnabled && $deleteOldExceptionCron) {
             $schedule->command(DeleteOldExceptionCommand::class)
                 ->cron($deleteOldExceptionCron);
         }
