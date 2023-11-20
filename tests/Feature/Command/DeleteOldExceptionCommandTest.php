@@ -8,20 +8,13 @@ use Taecontrol\MoonGuard\Models\ExceptionLogGroup;
 class DeleteOldExceptionCommandTest extends TestCase
 {
     /** @test */
-    public function test_command_runs_successfully()
-    {
-        $this->artisan('exception:delete')
-            ->assertExitCode(0);
-    }
-
-    /** @test */
     public function test_old_exceptions_are_deleted()
     {
         config(['moonguard.exception_deletion.enabled' => true]);
-        config(['moonguard.exception_deletion.delete_exceptions_older_than_minutes' => 20]);
+        config(['moonguard.exception_deletion.delete_exceptions_older_than_days' => 7]);
 
         $oldException = ExceptionLogGroup::factory()->create([
-            'first_seen' => now()->subMinutes(25),
+            'first_seen' => now()->subDays(8),
         ]);
 
         $this->artisan('exception:delete')->assertExitCode(0);

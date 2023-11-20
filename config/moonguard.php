@@ -54,12 +54,12 @@ return [
         /*
          * Enable or disable exception deletion globally.
          */
-        'enabled' => true,
+        'enabled' => false,
 
         /*
          * The age in minutes of the exceptions to delete.
          */
-        'delete_exceptions_older_than_minutes' => 10080,
+        'delete_exceptions_older_than_days' => 7,
     ],
     'exceptions' => [
         /*
