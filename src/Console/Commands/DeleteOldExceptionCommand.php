@@ -35,13 +35,13 @@ class DeleteOldExceptionCommand extends Command
 
     public static function getExceptionAge(): int
     {
-        return config('moonguard.exception_deletion.delete_exceptions_older_than_minutes');
+        return config('moonguard.exception_deletion.delete_exceptions_older_than_days');
     }
 
     public static function deleteOldExceptions(int $time): void
     {
         $exceptions = ExceptionLogGroupRepository::query()
-            ->where('first_seen', '<', now()->subMinutes($time));
+            ->where('first_seen', '<', now()->subDays($time));
 
         $exceptions->delete();
     }
