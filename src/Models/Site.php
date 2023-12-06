@@ -5,6 +5,7 @@ namespace Taecontrol\MoonGuard\Models;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Taecontrol\MoonGuard\Models\SystemMetric;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -85,6 +86,11 @@ class Site extends Model implements MoonGuardSite
     {
         return $this->hasMany(ExceptionLogGroupRepository::resolveModelClass());
     }
+
+    public function systemMetrics(): HasMany
+{
+    return $this->hasMany(SystemMetric::class);
+}
 
     public function newCollection(array $models = []): SiteCollection
     {

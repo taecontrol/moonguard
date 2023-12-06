@@ -100,6 +100,20 @@ class CreateMoonGuardTables extends Migration {
 
             $table->timestamps();
         });
+
+        Schema::create('system_metrics', function (Blueprint $table) {
+            $table->id();
+            $table->integer('cpu_usage');
+            $table->integer('memory_usage');
+            $table->integer('disk_usage');
+            $table->timestamp('recorded_at');
+            $table->foreignIdFor(SiteRepository::resolveModelClass())
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -121,10 +135,15 @@ class CreateMoonGuardTables extends Migration {
             $table->dropForeignIdFor(SiteRepository::resolveModelClass());
         });
 
+        Schema::table('system_metrics', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
+
         Schema::dropIfExists('uptime_checks');
         Schema::dropIfExists('ssl_certificate_checks');
         Schema::dropIfExists('exception_logs');
         Schema::dropIfExists('exception_log_groups');
         Schema::dropIfExists('sites');
+        Schema::dropIfExists('system_metrics');
     }
 };

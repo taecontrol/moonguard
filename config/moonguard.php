@@ -57,9 +57,20 @@ return [
         'enabled' => false,
 
         /*
-         * The age in minutes of the exceptions to delete.
+         * The age in days of the exceptions to delete.
          */
         'delete_exceptions_older_than_days' => 7,
+    ],
+    'metric_deletion' => [
+        /*
+         * Enable or disable system metrics globally.
+         */
+        'enabled' => true,
+
+        /*
+         * The age in days of the metrics to delete.
+         */
+        'delete_metrics_older_than_days' => 5,
     ],
     'exceptions' => [
         /*
