@@ -5,7 +5,6 @@ namespace Taecontrol\MoonGuard\Models;
 use Spatie\Url\Url;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Taecontrol\MoonGuard\Models\SystemMetric;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -33,6 +32,10 @@ class Site extends Model implements MoonGuardSite
         'max_request_duration_ms',
         'down_for_maintenance_at',
         'api_token',
+        'cpu_limit',
+        'ram_limit',
+        'disk_limit',
+        'monitoring_notification_enabled',
     ];
 
     protected $casts = [
@@ -40,6 +43,7 @@ class Site extends Model implements MoonGuardSite
         'down_for_maintenance_at' => 'immutable_datetime',
         'uptime_check_enabled' => 'boolean',
         'ssl_certificate_check_enabled' => 'boolean',
+        'monitoring_notification_enabled' => 'boolean',
     ];
 
     public function scopeWhereUptimeCheckEnabled(Builder $query): Builder
@@ -88,9 +92,29 @@ class Site extends Model implements MoonGuardSite
     }
 
     public function systemMetrics(): HasMany
-{
-    return $this->hasMany(SystemMetric::class);
-}
+    {
+        return $this->hasMany(SystemMetric::class);
+    }
+
+    public function getCpuLimit(): int
+    {
+        return $this->cpu_limit ?? 0;
+    }
+
+    public function getRamLimit(): int
+    {
+        return $this->ram_limit ?? 0;
+    }
+
+    public function getDiskLimit(): int
+    {
+        return $this->disk_limit ?? 0;
+    }
+
+    public function getMonitoringNotificationEnabled(): bool
+    {
+        return $this->monitoring_notification_enabled;
+    }
 
     public function newCollection(array $models = []): SiteCollection
     {

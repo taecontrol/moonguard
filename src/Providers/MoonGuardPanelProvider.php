@@ -18,9 +18,10 @@ use Taecontrol\MoonGuard\Filament\Resources\SiteResource;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Taecontrol\MoonGuard\Filament\Widgets\SiteStatsWidget;
-use Taecontrol\MoonGuard\Filament\Widgets\MonitoringWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Taecontrol\MoonGuard\Filament\Resources\MonitoringResource;
 use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
+use Taecontrol\MoonGuard\Filament\Resources\MonitoringResource\Widgets\MonitoringOverview;
 
 class MoonGuardPanelProvider extends PanelProvider
 {
@@ -31,11 +32,12 @@ class MoonGuardPanelProvider extends PanelProvider
     protected array $resources = [
         SiteResource::class,
         ExceptionLogResource::class,
+        MonitoringResource::class,
     ];
 
     protected array $widgets = [
         SiteStatsWidget::class,
-        MonitoringWidget::class,
+        MonitoringOverview::class,
     ];
 
     public function panel(Panel $panel): Panel

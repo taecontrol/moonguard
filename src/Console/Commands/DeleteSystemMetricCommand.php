@@ -41,7 +41,7 @@ class DeleteSystemMetricCommand extends Command
     public static function deleteOldSystemMetrics(int $time): void
     {
         $metrics = SystemMetric::query()
-            ->where('recorded_at', '<', now()->subDays($time));
+            ->where('created_at', '<', now()->subDays($time));
 
         $metrics->delete();
     }

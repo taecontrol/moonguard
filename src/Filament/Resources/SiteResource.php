@@ -64,6 +64,30 @@ class SiteResource extends Resource
                             ->when(SslCertificateCheckRepository::isEnabled())
                             ->label('SSL certificate check'),
                     ]),
+                Fieldset::make('Monitoring Alert')
+                    ->schema([
+                        Toggle::make('monitoring_notification_enabled')
+                            ->label('Enabled alert notification')
+                            ->inline(false),
+                        TextInput::make('cpu_limit')
+                            ->label('CPU load is above (%)')
+                            ->numeric()
+                            ->default(80)
+                            ->minValue(10)
+                            ->maxValue(99),
+                        TextInput::make('ram_limit')
+                            ->label('Memory usage is above (%)')
+                            ->numeric()
+                            ->default(80)
+                            ->minValue(10)
+                            ->maxValue(99),
+                        TextInput::make('disk_limit')
+                            ->label('Disk usage is above (%)')
+                            ->numeric()
+                            ->default(80)
+                            ->minValue(1)
+                            ->maxValue(99),
+                    ]),
                 Fieldset::make('API Token')
                     ->schema([
                         Toggle::make('api_token_enabled')

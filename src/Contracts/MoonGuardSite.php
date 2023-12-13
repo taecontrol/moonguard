@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property MoonGuardUptimeCheck $uptimeCheck
  * @property MoonGuardSslCertificateCheck $sslCertificateCheck
  * @property MoonGuardExceptionLog $exceptionLogs
+ * @property int $cpu_limit
+ * @property int $ram_limit
+ * @property int $disk_limit
+ * @property bool $monitoring_notification_enabled
  */
 interface MoonGuardSite
 {
@@ -37,4 +41,12 @@ interface MoonGuardSite
     public function exceptionLogGroups(): HasMany;
 
     public function url(): Attribute;
+
+    public function getCpuLimit(): int;
+
+    public function getRamLimit(): int;
+
+    public function getDiskLimit(): int;
+
+    public function getMonitoringNotificationEnabled(): bool;
 }

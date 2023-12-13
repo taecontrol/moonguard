@@ -135,6 +135,9 @@ return [
             \Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent::class => [
                 \Taecontrol\MoonGuard\Listeners\ExceptionLogGroupUpdatedListener::class,
             ],
+            \Taecontrol\MoonGuard\Events\SystemMetricEvent::class => [
+                \Taecontrol\MoonGuard\Listeners\SystemMetricListener::class,
+            ],
         ],
     ],
     'notifications' => [

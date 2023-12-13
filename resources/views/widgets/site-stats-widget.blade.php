@@ -33,6 +33,7 @@
                             <x-moonguard::site-stats-widget.performace-list-item :site="$site" />
                             <x-moonguard::site-stats-widget.certificate-list-item :site="$site" />
                             <x-moonguard::site-stats-widget.exceptions-list-item :site="$site" />
+                            <x-moonguard::site-stats-widget.system-metrics-item :site="$site"/>
                         </div>
                     </div>
                 </div>
