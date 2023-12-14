@@ -8,7 +8,7 @@ use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Contracts\Support\Htmlable;
-use Taecontrol\MoonGuard\Filament\Resources\MonitoringResource\Widgets\MonitoringOverview;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\SystemMonitoringOverview;
 
 class Dashboard extends Page
 {
@@ -56,7 +56,7 @@ class Dashboard extends Page
         $widgets = $this->getWidgets();
 
         return array_filter($widgets, function ($widget) {
-            return $widget !== MonitoringOverview::class;
+            return $widget !== SystemMonitoringOverview::class;
         });
     }
 

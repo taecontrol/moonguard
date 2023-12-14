@@ -7,7 +7,7 @@ use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Models\SystemMetric;
-use Taecontrol\MoonGuard\Events\SystemMetricEvent;
+use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
 use Taecontrol\MoonGuard\Listeners\SystemMetricListener;
 use Taecontrol\MoonGuard\Notifications\SystemMetricNotification;
 
@@ -30,7 +30,7 @@ class SystemMetricListenerTest extends TestCase
         $instance = new SystemMetricListener();
 
         $systemMetric = SystemMetric::factory()->create();
-        $event = new SystemMetricEvent($systemMetric->site, 'resource', 'usage', true);
+        $event = new SystemMetricAlertEvent($systemMetric->site, 'resource', 'usage', true);
 
         $instance->handle($event);
 

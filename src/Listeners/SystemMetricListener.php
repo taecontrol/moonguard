@@ -4,8 +4,8 @@ namespace Taecontrol\MoonGuard\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\MoonGuard\Events\SystemMetricEvent;
 use Taecontrol\MoonGuard\Repositories\UserRepository;
+use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
 use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Taecontrol\MoonGuard\Notifications\SystemMetricNotification;
 
@@ -13,7 +13,7 @@ class SystemMetricListener
 {
     use InteractsWithQueue;
 
-    public function handle(SystemMetricEvent $event)
+    public function handle(SystemMetricAlertEvent $event)
     {
         $channels = config('moonguard.notifications.channels');
 

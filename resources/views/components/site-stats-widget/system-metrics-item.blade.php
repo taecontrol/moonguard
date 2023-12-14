@@ -22,7 +22,7 @@
 @else
     <div class="flex items-center justify-between text-gray-500">
         <span>Memory Usage</span>
-        <span class="text-gray-600">No Data</span>
+        <span class="text-gray-500">---</span>
     </div>
 @endif
 
@@ -30,7 +30,7 @@
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
         href="{{ route('filament.moonguard.resources.system-monitorings.index') }}">
         <span>CPU Usage</span>
-        <span class="{{ $cpuUsage > $site->cpu_limit? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $cpuUsage > $site->cpu_limit ? 'text-red-500' : 'text-green-500' }}">
             {{ $cpuUsage . '%' }}
         </span>
 
@@ -38,7 +38,7 @@
 @else
     <div class="flex items-center justify-between text-gray-500">
         <span>CPU Usage</span>
-        <span class="text-gray-600">No Data</span>
+        <span class="text-gray-500">---</span>
     </div>
 @endif
 
@@ -55,19 +55,6 @@
 @else
     <div class="flex items-center justify-between text-gray-500">
         <span>Disk Usage</span>
-        <span class="text-gray-600">No Data</span>
+        <span class="text-gray-500">---</span>
     </div>
-@endif
-
-
-@if (!$site->hardware_monitoring_notification_enabled)
-    <div class="flex items-center justify-between text-gray-500">
-        <span>Monitoring Health</span>
-        <span class="text-gray-600">Disabled</span>
-    </div>
-@else
-    <a class="flex items-center justify-between text-gray-500">
-        <span>Monitoring Health</span>
-        <span class="text-green-500">Enabled</span>
-    </a>
 @endif

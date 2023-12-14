@@ -7,8 +7,8 @@ use Illuminate\Http\JsonResponse;
 use Taecontrol\MoonGuard\Models\Site;
 use Taecontrol\MoonGuard\Models\SystemMetric;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
-use Taecontrol\MoonGuard\Events\SystemMetricEvent;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
 
 class SystemMetricsController extends Controller
 {
@@ -47,17 +47,17 @@ class SystemMetricsController extends Controller
         $diskUsagePercentage = floatval($systemMetric->disk_usage);
 
         if ($cpuLoad >= $cpuLimit) {
-            $event = new SystemMetricEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);
+            $event = new SystemMetricAlertEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
 
         if ($memory >= $ramLimit) {
-            $event = new SystemMetricEvent($site, 'ram', $memory, $site->hardware_monitoring_notification_enabled);
+            $event = new SystemMetricAlertEvent($site, 'ram', $memory, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
 
         if ($diskUsagePercentage >= $diskLimit) {
-            $event = new SystemMetricEvent($site, 'disk', $diskUsagePercentage, $site->hardware_monitoring_notification_enabled);
+            $event = new SystemMetricAlertEvent($site, 'disk', $diskUsagePercentage, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
     }
