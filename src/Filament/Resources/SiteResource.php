@@ -54,17 +54,17 @@ class SiteResource extends Resource
                     ->minValue(0)
                     ->suffix('ms')
                     ->required(),
-                    Fieldset::make('Check Enabled')
+                Fieldset::make('Check Enabled')
                     ->when(UptimeCheckRepository::isEnabled() || SslCertificateCheckRepository::isEnabled())
                     ->schema([
                         Checkbox::make('uptime_check_enabled')
-                        ->when(UptimeCheckRepository::isEnabled())
-                        ->label('Uptime check'),
+                            ->when(UptimeCheckRepository::isEnabled())
+                            ->label('Uptime check'),
                         Checkbox::make('ssl_certificate_check_enabled')
-                        ->when(SslCertificateCheckRepository::isEnabled())
-                        ->label('SSL certificate check'),
+                            ->when(SslCertificateCheckRepository::isEnabled())
+                            ->label('SSL certificate check'),
                     ]),
-                    Toggle::make('hardware_monitoring_notification_enabled')
+                Toggle::make('hardware_monitoring_notification_enabled')
                     ->label('Alert Notification Enabled')
                     ->inline(false),
                 Fieldset::make('Monitoring Limit')
