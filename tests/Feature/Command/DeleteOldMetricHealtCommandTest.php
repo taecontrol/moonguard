@@ -10,8 +10,8 @@ class DeleteOldMetricHealtCommandTest extends TestCase
     /** @test */
     public function test_command_deletes_old_metrics_when_deletion_is_enabled()
     {
-        config(['moonguard.metric_deletion.enabled' => true]);
-        config(['moonguard.metric_deletion.delete_metrics_older_than_days' => 5]);
+        config(['moonguard.system_monitoring_records_deletion.enabled' => true]);
+        config(['moonguard.system_monitoring_records_deletion.delete_system_monitoring_records_older_than_days' => 5]);
 
         $oldMetric = SystemMetric::factory()->create(['created_at' => now()->subDays(6)]);
 

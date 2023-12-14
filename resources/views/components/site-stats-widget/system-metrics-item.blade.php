@@ -7,15 +7,15 @@
     if ($systemMetric) {
         $cpuUsage = $systemMetric->cpu_usage;
         $ramUsage = $systemMetric->memory_usage;
-        $diskUsage = $systemMetric->disk_usage_percentage;
+        $diskUsage = $systemMetric->disk_usage;
     }
 @endphp
 
 @if (isset($ramUsage))
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
-        href="{{ route('filament.moonguard.resources.monitorings.index') }}">
+        href="{{ route('filament.moonguard.resources.system-monitorings.index') }}">
         <span>Memory Usage</span>
-        <span class="{{ $ramUsage > $site->getRamLimit() ? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $ramUsage > $site->ram_limit ? 'text-red-500' : 'text-green-500' }}">
             {{ $ramUsage . '%' }}
         </span>
     </a>
@@ -28,11 +28,12 @@
 
 @if (isset($cpuUsage))
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
-        href="{{ route('filament.moonguard.resources.monitorings.index') }}">
+        href="{{ route('filament.moonguard.resources.system-monitorings.index') }}">
         <span>CPU Usage</span>
-        <span class="{{ $cpuUsage > $site->getCpuLimit() ? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $cpuUsage > $site->cpu_limit? 'text-red-500' : 'text-green-500' }}">
             {{ $cpuUsage . '%' }}
         </span>
+
     </a>
 @else
     <div class="flex items-center justify-between text-gray-500">
@@ -44,11 +45,12 @@
 
 @if (isset($diskUsage))
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
-        href="{{ route('filament.moonguard.resources.monitorings.index') }}">
+        href="{{ route('filament.moonguard.resources.system-monitorings.index') }}">
         <span>Total Disk Used</span>
-        <span class="{{ $diskUsage > $site->getDiskLimit() ? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $diskUsage > $site->disk_limit ? 'text-red-500' : 'text-green-500' }}">
             {{ $diskUsage . '%' }}
         </span>
+
     </a>
 @else
     <div class="flex items-center justify-between text-gray-500">
@@ -58,7 +60,7 @@
 @endif
 
 
-@if (!$site->monitoring_notification_enabled)
+@if (!$site->hardware_monitoring_notification_enabled)
     <div class="flex items-center justify-between text-gray-500">
         <span>Monitoring Health</span>
         <span class="text-gray-600">Disabled</span>

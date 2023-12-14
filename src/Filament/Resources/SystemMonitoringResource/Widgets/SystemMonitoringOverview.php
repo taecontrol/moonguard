@@ -1,12 +1,12 @@
 <?php
 
-namespace Taecontrol\MoonGuard\Filament\Resources\MonitoringResource\Widgets;
+namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
-class MonitoringOverview extends BaseWidget
+class SystemMonitoringOverview extends BaseWidget
 {
     protected $listeners = ['updateMonitoringWidget' => '$refresh'];
 
@@ -21,23 +21,23 @@ class MonitoringOverview extends BaseWidget
         $stats = [];
 
         foreach ($sites as $site) {
-            $systemMetric = $site->systemMetrics()->latest()->first();
+            $systemMetrics = $site->systemMetrics()->latest()->first();
 
-            if (! $systemMetric) {
+            if (! $systemMetrics) {
                 continue;
             }
 
-            $cpuColor = $systemMetric->cpu_usage > $site->getCpuLimit() ? 'danger' : 'success';
-            $ramColor = $systemMetric->memory_usage > $site->getRamLimit() ? 'danger' : 'success';
-            $diskColor = $systemMetric->disk_usage_percentage > $site->getDiskLimit() ? 'danger' : 'success';
+            $cpuColor = $systemMetrics->cpu_usage > $site->cpu_limit ? 'danger' : 'success';
+            $ramColor = $systemMetrics->memory_usage > $site->ram_limit ? 'danger' : 'success';
+            $diskColor = $systemMetrics->disk_usage > $site->disk_limit ? 'danger' : 'success';
 
             $ramDescription = $ramColor === 'danger' ? 'Memory usage is above the limit' : 'Memory usage is stable';
             $cpuDescription = $cpuColor === 'danger' ? 'CPU usage is above the limit' : 'CPU usage is stable';
             $diskDescription = $diskColor === 'danger' ? 'Disk usage is above the limit' : 'Disk usage is stable';
 
-            $stats[] = $this->createStat($site, $systemMetric->memory_usage, $ramDescription, null, $ramColor);
-            $stats[] = $this->createStat($site, $systemMetric->cpu_usage, $cpuDescription, null, $cpuColor);
-            $stats[] = $this->createStat($site, $systemMetric->disk_usage_percentage, $diskDescription, 'heroicon-m-server', $diskColor);
+            $stats[] = $this->createStat($site, $systemMetrics->memory_usage, $ramDescription, null, $ramColor);
+            $stats[] = $this->createStat($site, $systemMetrics->cpu_usage, $cpuDescription, null, $cpuColor);
+            $stats[] = $this->createStat($site, $systemMetrics->disk_usage, $diskDescription, 'heroicon-m-server', $diskColor);
         }
 
         return $stats;

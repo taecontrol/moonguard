@@ -5,9 +5,9 @@ namespace Taecontrol\MoonGuard\Filament\Resources;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Taecontrol\MoonGuard\Models\SystemMetric;
-use Taecontrol\MoonGuard\Filament\Resources\MonitoringResource\Pages\ListMonitoring;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Pages\ListSystemMonitoring;
 
-class MonitoringResource extends Resource
+class SystemMonitoringResource extends Resource
 {
     protected static ?string $model = SystemMetric::class;
 
@@ -22,7 +22,7 @@ class MonitoringResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListMonitoring::route('/'),
+            'index' => ListSystemMonitoring::route('/'),
         ];
     }
 }

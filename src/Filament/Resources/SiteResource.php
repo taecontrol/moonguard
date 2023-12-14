@@ -66,27 +66,27 @@ class SiteResource extends Resource
                     ]),
                 Fieldset::make('Monitoring Alert')
                     ->schema([
-                        Toggle::make('monitoring_notification_enabled')
+                        Toggle::make('hardware_monitoring_notification_enabled')
                             ->label('Enabled alert notification')
                             ->inline(false),
                         TextInput::make('cpu_limit')
                             ->label('CPU load is above (%)')
                             ->numeric()
                             ->default(80)
-                            ->minValue(10)
-                            ->maxValue(99),
+                            ->minValue(1)
+                            ->maxValue(100),
                         TextInput::make('ram_limit')
                             ->label('Memory usage is above (%)')
                             ->numeric()
                             ->default(80)
-                            ->minValue(10)
-                            ->maxValue(99),
+                            ->minValue(1)
+                            ->maxValue(100),
                         TextInput::make('disk_limit')
                             ->label('Disk usage is above (%)')
                             ->numeric()
                             ->default(80)
                             ->minValue(1)
-                            ->maxValue(99),
+                            ->maxValue(100),
                     ]),
                 Fieldset::make('API Token')
                     ->schema([

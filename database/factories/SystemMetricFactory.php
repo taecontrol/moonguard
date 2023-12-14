@@ -16,7 +16,6 @@ class SystemMetricFactory extends Factory
             'cpu_usage' => $this->faker->randomFloat(2, 0, 100),
             'memory_usage' => $this->faker->randomFloat(2, 0, 100),
             'disk_usage' => $this->faker->randomFloat(2, 0, 100),
-            'disk_usage_percentage' => $this->faker->randomFloat(2, 0, 100),
             'site_id' => fn () => Site::factory()->create()->id,
             'created_at' => $this->faker->dateTimeBetween('-6 days', 'now'),
         ];

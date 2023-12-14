@@ -10,7 +10,7 @@ use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardCommandsScheduler
 {
-    public static function scheduleMoonGuardCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron, ?string $deleteOldExceptionCron = null, string $deleteOldMetricsCron)
+    public static function scheduleMoonGuardCommands(Schedule $schedule, string $uptimeCheckCron, string $sslCertificateCheckCron, ?string $deleteOldExceptionCron = null, ?string $deleteOldSystemMetricsCron = null)
     {
         /** @var bool $uptimeCheckIsEnabled */
         $uptimeCheckIsEnabled = config('moonguard.uptime_check.enabled');
@@ -18,8 +18,8 @@ class MoonGuardCommandsScheduler
         $sslCheckIsEnabled = config('moonguard.ssl_certificate_check.enabled');
         /** @var bool $deleteOldExceptionIsEnabled */
         $deleteOldExceptionIsEnabled = config('moonguard.exception_deletion.enabled');
-        /** @var bool $deleteOldMetricsIsEnabled */
-        $deleteOldMetricsIsEnabled = config('moonguard.metrics_deletion.enabled');
+        /** @var bool $deleteOldSystemMetricsIsEnabled */
+        $deleteOldSystemMetricsIsEnabled = config('moonguard.system_monitoring_records_deletion.enabled');
 
         if ($uptimeCheckIsEnabled) {
             $schedule->command(CheckUptimeCommand::class)
@@ -36,9 +36,9 @@ class MoonGuardCommandsScheduler
                 ->cron($deleteOldExceptionCron);
         }
 
-        if ($deleteOldMetricsIsEnabled) {
+        if ($deleteOldSystemMetricsIsEnabled && $deleteOldSystemMetricsCron) {
             $schedule->command(DeleteSystemMetricCommand::class)
-                ->cron($deleteOldMetricsCron);
+                ->cron($deleteOldSystemMetricsCron);
         }
     }
 }

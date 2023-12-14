@@ -61,16 +61,16 @@ return [
          */
         'delete_exceptions_older_than_days' => 7,
     ],
-    'metric_deletion' => [
+    'system_monitoring_records_deletion' => [
         /*
-         * Enable or disable system metrics globally.
+         * enables or disables the deletion of monitoring logs.
          */
         'enabled' => true,
 
         /*
-         * The age in days of the metrics to delete.
+         * The age in days of the system monitoring records to delete.
          */
-        'delete_metrics_older_than_days' => 5,
+        'delete_system_monitoring_records_older_than_days' => 5,
     ],
     'exceptions' => [
         /*

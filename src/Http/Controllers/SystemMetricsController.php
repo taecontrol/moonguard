@@ -25,7 +25,6 @@ class SystemMetricsController extends Controller
             'cpu_usage' => $request->input('cpuLoad'),
             'memory_usage' => $request->input('memory'),
             'disk_usage' => json_encode($request->input('disk')),
-            'disk_usage_percentage' => $this->calculateDiskUsagePercentage($request),
             'site_id' => $site->id,
         ]);
 
@@ -36,39 +35,29 @@ class SystemMetricsController extends Controller
         ]);
     }
 
-    private function calculateDiskUsagePercentage(Request $request)
-    {
-        $diskUsage = $request->input('disk');
-        $freeSpace = $diskUsage ? $diskUsage['freeSpace'] : null;
-        $totalSpace = $diskUsage ? $diskUsage['totalSpace'] : null;
-
-        $percentage = $totalSpace ? ($totalSpace - $freeSpace) / $totalSpace * 100 : 0;
-
-        return number_format($percentage, 2);
-    }
-
     private function checkLimits(MoonGuardSite $site, Request $request)
     {
-        $cpuLimit = $site->getCpuLimit();
-        $ramLimit = $site->getRamLimit();
-        $diskLimit = $site->getDiskLimit();
+        $cpuLimit = $site->cpu_limit;
+        $ramLimit = $site->ram_limit;
+        $diskLimit = $site->disk_limit;
 
         $cpuLoad = $request->input('cpuLoad');
         $memory = $request->input('memory');
-        $diskUsagePercentage = $this->calculateDiskUsagePercentage($request);
+        $systemMetric = SystemMetric::where('site_id', $site->id)->first();
+        $diskUsagePercentage = floatval($systemMetric->disk_usage);
 
-        if ($cpuLoad > $cpuLimit) {
-            $event = new SystemMetricEvent($site, 'cpu', $cpuLoad, $site->monitoring_notification_enabled);
+        if ($cpuLoad >= $cpuLimit) {
+            $event = new SystemMetricEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
 
-        if ($memory > $ramLimit) {
-            $event = new SystemMetricEvent($site, 'ram', $memory, $site->monitoring_notification_enabled);
+        if ($memory >= $ramLimit) {
+            $event = new SystemMetricEvent($site, 'ram', $memory, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
 
-        if ($diskUsagePercentage > $diskLimit) {
-            $event = new SystemMetricEvent($site, 'disk', $diskUsagePercentage, $site->monitoring_notification_enabled);
+        if ($diskUsagePercentage >= $diskLimit) {
+            $event = new SystemMetricEvent($site, 'disk', $diskUsagePercentage, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
     }

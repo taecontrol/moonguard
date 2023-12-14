@@ -21,7 +21,7 @@ class SystemMetricListener
         $notifiablesForSlack = new SlackNotifiable();
 
         foreach ($channels as $channel) {
-            if ($event->monitoring_notification_enabled) {
+            if ($event->hardware_monitoring_notification_enabled) {
                 $notifiables = ($channel === 'slack') ? $notifiablesForSlack : $notifiablesForMail;
 
                 Notification::send(

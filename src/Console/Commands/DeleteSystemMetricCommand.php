@@ -30,12 +30,12 @@ class DeleteSystemMetricCommand extends Command
 
     public function isEnabled(): bool
     {
-        return config('moonguard.metric_deletion.enabled');
+        return config('moonguard.system_monitoring_records_deletion.enabled');
     }
 
     public static function getSystemMetricAge(): int
     {
-        return config('moonguard.metric_deletion.delete_metrics_older_than_days');
+        return config('moonguard.system_monitoring_records_deletion.delete_system_monitoring_records_older_than_days');
     }
 
     public static function deleteOldSystemMetrics(int $time): void

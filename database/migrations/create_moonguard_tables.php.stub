@@ -25,7 +25,7 @@ class CreateMoonGuardTables extends Migration {
             $table->integer('cpu_limit')->nullable();
             $table->integer('ram_limit')->nullable();
             $table->integer('disk_limit')->nullable();
-            $table->boolean('monitoring_notification_enabled')->default(false);
+            $table->boolean('hardware_monitoring_notification_enabled')->default(false);
 
             $table->timestamps();
         });
@@ -110,7 +110,6 @@ class CreateMoonGuardTables extends Migration {
             $table->integer('cpu_usage');
             $table->integer('memory_usage');
             $table->json('disk_usage');
-            $table->decimal('disk_usage_percentage', 5, 2);
             $table->foreignIdFor(SiteRepository::resolveModelClass())
                 ->constrained()
                 ->cascadeOnDelete()
