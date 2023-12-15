@@ -12,7 +12,7 @@ use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
 
 class SystemMetricsController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         /** @var Site */
         $site = SiteRepository::query()

@@ -9,4 +9,4 @@ if (ExceptionLogGroupRepository::isEnabled()) {
     Route::post('/exceptions', ExceptionLogsController::class)->name('moonguard.api.exceptions');
 }
 
-Route::post('/hardware', [SystemMetricsController::class, 'store']);
+Route::post('/hardware', SystemMetricsController::class)->name('moonguard.api.hardware');
