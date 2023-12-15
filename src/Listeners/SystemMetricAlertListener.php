@@ -9,7 +9,7 @@ use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
 use Taecontrol\MoonGuard\Notifications\SlackNotifiable;
 use Taecontrol\MoonGuard\Notifications\SystemMetricNotification;
 
-class SystemMetricListener
+class SystemMetricAlertListener
 {
     use InteractsWithQueue;
 

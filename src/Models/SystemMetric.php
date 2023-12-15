@@ -31,14 +31,22 @@ class SystemMetric extends Model
     public function diskUsage(): Attribute
     {
         return Attribute::make(
-            set: function ($value) {
+            get: function ($value) {
                 $diskUsage = json_decode($value, true);
                 $freeSpace = $diskUsage['freeSpace'] ?? null;
                 $totalSpace = $diskUsage['totalSpace'] ?? null;
+                $percentage = 0;
 
-                $diskPercentage = $totalSpace ? ($totalSpace - $freeSpace) / $totalSpace * 100 : 0;
+                if ($totalSpace && $freeSpace) {
+                    $percentage = number_format(($totalSpace - $freeSpace) / $totalSpace * 100, 2);
+                }
+                $percentage = floatval($percentage);
 
-                return number_format($diskPercentage, 2);
+                return [
+                    'freeSpace' => $freeSpace,
+                    'totalSpace' => $totalSpace,
+                    'percentage' => $percentage,
+                ];
             }
         );
     }

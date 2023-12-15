@@ -29,7 +29,7 @@ class SystemMonitoringOverview extends BaseWidget
 
             $cpuColor = $systemMetrics->cpu_usage > $site->cpu_limit ? 'danger' : 'success';
             $ramColor = $systemMetrics->memory_usage > $site->ram_limit ? 'danger' : 'success';
-            $diskColor = $systemMetrics->disk_usage > $site->disk_limit ? 'danger' : 'success';
+            $diskColor = $systemMetrics->disk_usage['percentage'] > $site->disk_limit ? 'danger' : 'success';
 
             $ramDescription = $ramColor === 'danger' ? 'Memory usage is above the limit' : 'Memory usage is stable';
             $cpuDescription = $cpuColor === 'danger' ? 'CPU usage is above the limit' : 'CPU usage is stable';
@@ -37,7 +37,7 @@ class SystemMonitoringOverview extends BaseWidget
 
             $stats[] = $this->createStat($site, $systemMetrics->memory_usage, $ramDescription, null, $ramColor);
             $stats[] = $this->createStat($site, $systemMetrics->cpu_usage, $cpuDescription, null, $cpuColor);
-            $stats[] = $this->createStat($site, $systemMetrics->disk_usage, $diskDescription, 'heroicon-m-server', $diskColor);
+            $stats[] = $this->createStat($site, $systemMetrics->disk_usage['percentage'], $diskDescription, 'heroicon-m-server', $diskColor);
         }
 
         return $stats;

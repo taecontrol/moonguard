@@ -7,7 +7,7 @@
     if ($systemMetric) {
         $cpuUsage = $systemMetric->cpu_usage;
         $ramUsage = $systemMetric->memory_usage;
-        $diskUsage = $systemMetric->disk_usage;
+        $diskUsage = $systemMetric->disk_usage['percentage'];
     }
 @endphp
 

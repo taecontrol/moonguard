@@ -21,30 +21,29 @@ class SystemMetricsController extends Controller
 
         abort_if(! $site, 403);
 
-        SystemMetric::create([
+        $systemMetric = SystemMetric::create([
             'cpu_usage' => $request->input('cpuLoad'),
             'memory_usage' => $request->input('memory'),
-            'disk_usage' => json_encode($request->input('disk')),
+            'disk_usage' => $request->input('disk'),
             'site_id' => $site->id,
         ]);
 
-        $this->checkLimits($site, $request);
+        $cpuLoad = $request->input('cpuLoad');
+        $memory = $request->input('memory');
+        $diskUsagePercentage = $systemMetric->disk_usage['percentage'];
+
+        $this->checkLimits($site, $cpuLoad, $memory, $diskUsagePercentage);
 
         return response()->json([
             'success' => true,
         ]);
     }
 
-    private function checkLimits(MoonGuardSite $site, Request $request)
+    private function checkLimits(MoonGuardSite $site, int $cpuLoad, int $memory, float $diskUsagePercentage)
     {
         $cpuLimit = $site->cpu_limit;
         $ramLimit = $site->ram_limit;
         $diskLimit = $site->disk_limit;
-
-        $cpuLoad = $request->input('cpuLoad');
-        $memory = $request->input('memory');
-        $systemMetric = SystemMetric::where('site_id', $site->id)->first();
-        $diskUsagePercentage = floatval($systemMetric->disk_usage);
 
         if ($cpuLoad >= $cpuLimit) {
             $event = new SystemMetricAlertEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);

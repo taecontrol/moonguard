@@ -64,11 +64,12 @@ class SiteResource extends Resource
                             ->when(SslCertificateCheckRepository::isEnabled())
                             ->label('SSL certificate check'),
                     ]),
-                Toggle::make('hardware_monitoring_notification_enabled')
-                    ->label('Alert Notification Enabled')
-                    ->inline(false),
                 Fieldset::make('Monitoring Limit')
                     ->schema([
+                        Toggle::make('hardware_monitoring_notification_enabled')
+                            ->label('Alert Notification Enabled')
+                            ->inline(false)
+                            ->columnSpan('full'),
                         TextInput::make('cpu_limit')
                             ->label('CPU load is above (%)')
                             ->numeric()
@@ -87,7 +88,8 @@ class SiteResource extends Resource
                             ->default(80)
                             ->minValue(1)
                             ->maxValue(100),
-                    ]),
+                    ])
+                    ->columns(3),
                 Fieldset::make('API Token')
                     ->schema([
                         Toggle::make('api_token_enabled')

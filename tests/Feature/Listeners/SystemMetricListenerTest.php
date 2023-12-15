@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
 use Taecontrol\MoonGuard\Models\SystemMetric;
 use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
-use Taecontrol\MoonGuard\Listeners\SystemMetricListener;
+use Taecontrol\MoonGuard\Listeners\SystemMetricAlertListener;
 use Taecontrol\MoonGuard\Notifications\SystemMetricNotification;
 
-class SystemMetricListenerTest extends TestCase
+class SystemMetricAlertListenerTest extends TestCase
 {
     /** @var Collection<User> */
     protected Collection $users;
@@ -27,7 +27,7 @@ class SystemMetricListenerTest extends TestCase
     public function listener_sends_notification_when_a_system_metric_is_created()
     {
         Notification::fake();
-        $instance = new SystemMetricListener();
+        $instance = new SystemMetricAlertListener();
 
         $systemMetric = SystemMetric::factory()->create();
         $event = new SystemMetricAlertEvent($systemMetric->site, 'resource', 'usage', true);
