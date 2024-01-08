@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property MoonGuardUptimeCheck $uptimeCheck
  * @property MoonGuardSslCertificateCheck $sslCertificateCheck
  * @property MoonGuardExceptionLog $exceptionLogs
+ * @property int $cpu_limit
+ * @property int $ram_limit
+ * @property int $disk_limit
+ * @property bool $hardware_monitoring_notification_enabled
  */
 interface MoonGuardSite
 {

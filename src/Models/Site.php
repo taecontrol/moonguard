@@ -32,6 +32,10 @@ class Site extends Model implements MoonGuardSite
         'max_request_duration_ms',
         'down_for_maintenance_at',
         'api_token',
+        'cpu_limit',
+        'ram_limit',
+        'disk_limit',
+        'hardware_monitoring_notification_enabled',
     ];
 
     protected $casts = [
@@ -39,6 +43,7 @@ class Site extends Model implements MoonGuardSite
         'down_for_maintenance_at' => 'immutable_datetime',
         'uptime_check_enabled' => 'boolean',
         'ssl_certificate_check_enabled' => 'boolean',
+        'hardware_monitoring_notification_enabled' => 'boolean',
     ];
 
     public function scopeWhereUptimeCheckEnabled(Builder $query): Builder
@@ -84,6 +89,11 @@ class Site extends Model implements MoonGuardSite
     public function exceptionLogGroups(): HasMany
     {
         return $this->hasMany(ExceptionLogGroupRepository::resolveModelClass());
+    }
+
+    public function systemMetrics(): HasMany
+    {
+        return $this->hasMany(SystemMetric::class);
     }
 
     public function newCollection(array $models = []): SiteCollection
