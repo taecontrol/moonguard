@@ -12,6 +12,11 @@ class ListSystemMonitoring extends ListRecords
 
     protected static ?string $title = 'System Monitoring List';
 
+    public function getRecordPageRoute($record): string
+    {
+        return route('filament.moonguard.resources.system-monitoring.index');
+    }
+
     protected function getHeaderWidgets(): array
     {
         return [

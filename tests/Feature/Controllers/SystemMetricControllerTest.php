@@ -16,7 +16,7 @@ class SystemMetricsControllerTest extends TestCase
         $this->withoutExceptionHandling();
         $site = Site::factory()->create();
 
-        $diskJson = json_encode(['freeSpace' => 1000, 'totalSpace' => 2000]);
+        $diskJson = ['freeSpace' => 1000, 'totalSpace' => 2000];
         $data = [
             'api_token' => $site->api_token,
             'cpuLoad' => 10,
@@ -30,7 +30,7 @@ class SystemMetricsControllerTest extends TestCase
         $this->assertDatabaseHas('system_metrics', [
             'cpu_usage' => 10,
             'memory_usage' => 20,
-            'disk_usage' => $diskJson,
+            'disk_usage' => json_encode($diskJson),
             'site_id' => $site->id,
         ]);
     }

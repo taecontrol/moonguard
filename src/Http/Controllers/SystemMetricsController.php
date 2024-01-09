@@ -24,7 +24,7 @@ class SystemMetricsController extends Controller
         $systemMetric = SystemMetric::create([
             'cpu_usage' => $request->input('cpuLoad'),
             'memory_usage' => $request->input('memory'),
-            'disk_usage' => $request->input('disk'),
+            'disk_usage' => json_encode($request->input('disk')),
             'site_id' => $site->id,
         ]);
 
