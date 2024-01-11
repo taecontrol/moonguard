@@ -25,6 +25,7 @@ class SystemMonitoringPage extends Page
 
     public function mount(): void
     {
+        //Find the first record from Site.
         $this->selectedSiteId = 1;
     }
 
