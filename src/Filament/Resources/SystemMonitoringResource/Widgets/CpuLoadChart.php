@@ -27,15 +27,11 @@ class CpuLoadChart extends ChartWidget
 
             $labels = [];
 
-            $trend = Trend::model(SystemMetric::class)
-            ->between(
-                start: now()->startOfYear(),
-                end: now()->endOfYear(),
-            )
-            ->perMonth()
-            ->count();
-
-            larvis($trend);
+            foreach ($cpuUsages as $metric) {
+                $hour = $metric->created_at->hour;
+                $minute = $metric->created_at->minute;
+                $labels[] = sprintf('%02d:%02d', $hour, $minute);
+            }
 
             $chartData = [
                 'datasets' => [
