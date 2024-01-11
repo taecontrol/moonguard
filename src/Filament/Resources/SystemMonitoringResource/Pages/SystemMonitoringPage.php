@@ -5,6 +5,7 @@ namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Pages
 use Filament\Resources\Pages\Page;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\CpuLoadChart;
 
 class SystemMonitoringPage extends Page
 {
@@ -22,4 +23,20 @@ class SystemMonitoringPage extends Page
 
     public $selectedSiteId;
 
+    public function mount(): void
+    {
+        $this->selectedSiteId = 1;
+    }
+
+    public function siteChanged(): void
+    {
+        $this->dispatch('selected-site-changed', siteId: $this->selectedSiteId);
+    }
+
+    protected function getFooterWidgets(): array
+    {
+        return [
+            CpuLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
+        ];
+    }
 }

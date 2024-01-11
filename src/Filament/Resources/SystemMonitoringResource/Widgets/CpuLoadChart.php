@@ -2,6 +2,7 @@
 
 namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
 
+use Livewire\Attributes\On;
 use Filament\Widgets\ChartWidget;
 use Taecontrol\MoonGuard\Models\SystemMetric;
 
@@ -9,29 +10,18 @@ class CpuLoadChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
 
-    public ?int $selectedSiteId = null;
+    public string | int | null $selectedSiteId = null;
 
-    public function updateSite($event): void
+    #[On('selected-site-changed')]
+    public function updateSiteId($siteId): void
     {
-        $this->selectedSiteId = $event['siteId'];
-        $this->updateChartData();
-    }
-
-    public function updateChartData(): void
-    {
+        $this->selectedSiteId = $siteId;
         $this->getData();
-    }
-
-    protected function getListeners()
-    {
-        return [
-            'siteChanged' => 'updateSite',
-        ];
     }
 
     protected function getData(): array
     {
-        if ($this->selectedSiteId !== null) {
+        if ($this->selectedSiteId) {
             $cpuUsages = SystemMetric::where('site_id', $this->selectedSiteId)->get();
 
             $labels = [];
