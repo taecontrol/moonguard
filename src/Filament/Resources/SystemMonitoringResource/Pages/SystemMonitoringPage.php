@@ -24,7 +24,6 @@ class SystemMonitoringPage extends Page
 
     public bool $noMetricsAvailable = false;
 
-
     public ?array $data = [];
 
     public $selectedSiteId;
@@ -32,12 +31,12 @@ class SystemMonitoringPage extends Page
     public function mount(): void
     {
         $siteWithMetrics = Site::whereHas('systemMetrics')->first();
+
         if ($siteWithMetrics !== null) {
             $this->selectedSiteId = $siteWithMetrics->id;
         } else {
             $this->noMetricsAvailable = true;
         }
-        
     }
 
     public function siteChanged(): void
@@ -46,15 +45,15 @@ class SystemMonitoringPage extends Page
     }
 
     protected function getFooterWidgets(): array
-{
-   if (!$this->noMetricsAvailable) {
-       return [
-           CpuLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
-           MemoryLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
-           DiskSpaceChart::make(['selectedSiteId' => $this->selectedSiteId]),
-       ];
-   }
+    {
+        if (! $this->noMetricsAvailable) {
+            return [
+                CpuLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
+                MemoryLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
+                DiskSpaceChart::make(['selectedSiteId' => $this->selectedSiteId]),
+            ];
+        }
 
-   return [];
-}
+        return [];
+    }
 }

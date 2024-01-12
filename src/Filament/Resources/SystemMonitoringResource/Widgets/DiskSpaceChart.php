@@ -29,10 +29,12 @@ class DiskSpaceChart extends ChartWidget
     {
         if ($this->selectedSiteId) {
             $filter = $this->filter;
+
             $subquery = SystemMetric::selectRaw("site_id,created_at,
             (JSON_EXTRACT(disk_usage, '$.totalSpace') - JSON_EXTRACT(disk_usage, '$.freeSpace')) / JSON_EXTRACT(disk_usage, '$.totalSpace') * 100 AS percentage")
                 ->whereColumn('site_id', 'system_metrics.site_id')
                 ->whereColumn('created_at', 'system_metrics.created_at');
+
             $query = SystemMetric::fromSub($subquery, 'system_metrics')
                 ->where('site_id', $this->selectedSiteId);
 
