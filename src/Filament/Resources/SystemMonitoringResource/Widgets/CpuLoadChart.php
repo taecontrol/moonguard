@@ -3,6 +3,7 @@
 namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
 
 use Flowframe\Trend\Trend;
+use Filament\Support\RawJs;
 use Livewire\Attributes\On;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
@@ -99,5 +100,20 @@ class CpuLoadChart extends ChartWidget
             'day' => 'Last Day',
             'week' => 'Last Week',
         ];
+    }
+
+    protected function getOptions(): RawJs
+    {
+        return RawJs::make(<<<JS
+        {
+            scales: {
+                y: {
+                    ticks: {
+                        callback: (value) => value + '%',
+                    },
+                },
+            },
+        }
+    JS);
     }
 }

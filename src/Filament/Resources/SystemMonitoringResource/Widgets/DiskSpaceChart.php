@@ -3,6 +3,7 @@
 namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
 
 use Flowframe\Trend\Trend;
+use Filament\Support\RawJs;
 use Livewire\Attributes\On;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
@@ -30,8 +31,8 @@ class DiskSpaceChart extends ChartWidget
         if ($this->selectedSiteId) {
             $filter = $this->filter;
 
-            $subquery = SystemMetric::selectRaw("site_id,created_at,
-            (JSON_EXTRACT(disk_usage, '$.totalSpace') - JSON_EXTRACT(disk_usage, '$.freeSpace')) / JSON_EXTRACT(disk_usage, '$.totalSpace') * 100 AS percentage")
+            $subquery = SystemMetric::selectRaw("site_id, created_at, CAST(ROUND(((JSON_EXTRACT(disk_usage, '$.totalSpace')
+                - JSON_EXTRACT(disk_usage, '$.freeSpace')) / JSON_EXTRACT(disk_usage, '$.totalSpace') * 100), 2) AS DECIMAL(5,2)) AS percentage")
                 ->whereColumn('site_id', 'system_metrics.site_id')
                 ->whereColumn('created_at', 'system_metrics.created_at');
 
@@ -106,5 +107,20 @@ class DiskSpaceChart extends ChartWidget
             'day' => 'Last Day',
             'week' => 'Last Week',
         ];
+    }
+
+    protected function getOptions(): RawJs
+    {
+        return RawJs::make(<<<JS
+        {
+            scales: {
+                y: {
+                    ticks: {
+                        callback: (value) => value + '%',
+                    },
+                },
+            },
+        }
+    JS);
     }
 }
