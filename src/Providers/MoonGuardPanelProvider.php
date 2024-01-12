@@ -22,6 +22,8 @@ use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
 use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource;
 use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\CpuLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\DiskSpaceChart;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\MemoryLoadChart;
 
 class MoonGuardPanelProvider extends PanelProvider
 {
@@ -38,6 +40,8 @@ class MoonGuardPanelProvider extends PanelProvider
     protected array $widgets = [
         SiteStatsWidget::class,
         CpuLoadChart::class,
+        DiskSpaceChart::class,
+        MemoryLoadChart::class,
     ];
 
     public function panel(Panel $panel): Panel

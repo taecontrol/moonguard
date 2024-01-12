@@ -3,9 +3,12 @@
 namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Pages;
 
 use Filament\Resources\Pages\Page;
+use Taecontrol\MoonGuard\Models\Site;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource;
 use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\CpuLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\DiskSpaceChart;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\MemoryLoadChart;
 
 class SystemMonitoringPage extends Page
 {
@@ -19,14 +22,22 @@ class SystemMonitoringPage extends Page
 
     protected static ?int $sort = 1;
 
+    public bool $noMetricsAvailable = false;
+
+
     public ?array $data = [];
 
     public $selectedSiteId;
 
     public function mount(): void
     {
-        //Find the first record from Site.
-        $this->selectedSiteId = 1;
+        $siteWithMetrics = Site::whereHas('systemMetrics')->first();
+        if ($siteWithMetrics !== null) {
+            $this->selectedSiteId = $siteWithMetrics->id;
+        } else {
+            $this->noMetricsAvailable = true;
+        }
+        
     }
 
     public function siteChanged(): void
@@ -35,9 +46,15 @@ class SystemMonitoringPage extends Page
     }
 
     protected function getFooterWidgets(): array
-    {
-        return [
-            CpuLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
-        ];
-    }
+{
+   if (!$this->noMetricsAvailable) {
+       return [
+           CpuLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
+           MemoryLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
+           DiskSpaceChart::make(['selectedSiteId' => $this->selectedSiteId]),
+       ];
+   }
+
+   return [];
+}
 }

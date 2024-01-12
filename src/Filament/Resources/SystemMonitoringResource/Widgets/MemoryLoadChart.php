@@ -8,7 +8,7 @@ use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
 use Taecontrol\MoonGuard\Models\SystemMetric;
 
-class CpuLoadChart extends ChartWidget
+class MemoryLoadChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
 
@@ -36,7 +36,7 @@ class CpuLoadChart extends ChartWidget
                     $data = Trend::query($query)
                         ->between(start: now()->subHour(), end: now())
                         ->perMinute()
-                        ->average('cpu_usage');
+                        ->average('memory_usage');
 
                     break;
 
@@ -44,7 +44,7 @@ class CpuLoadChart extends ChartWidget
                     $data = Trend::query($query)
                         ->between(start: now()->subDay(), end: now())
                         ->perHour()
-                        ->average('cpu_usage');
+                        ->average('memory_usage');
 
                     break;
 
@@ -52,7 +52,7 @@ class CpuLoadChart extends ChartWidget
                     $data = Trend::query($query)
                         ->between(start: now()->subWeek(), end: now())
                         ->perDay()
-                        ->average('cpu_usage');
+                        ->average('memory_usage');
 
                     break;
             }
@@ -60,9 +60,9 @@ class CpuLoadChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'CPU Usage',
+                        'label' => 'Memory Usage',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
-                        'borderColor' => '#9BD0F5',
+                        'borderColor' => '#fcd34d',
                         'fill' => true,
                     ],
                 ],

@@ -8,7 +8,7 @@ use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
 use Taecontrol\MoonGuard\Models\SystemMetric;
 
-class CpuLoadChart extends ChartWidget
+class DiskSpaceChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
 
@@ -29,14 +29,19 @@ class CpuLoadChart extends ChartWidget
     {
         if ($this->selectedSiteId) {
             $filter = $this->filter;
-            $query = SystemMetric::where('site_id', $this->selectedSiteId);
+            $subquery = SystemMetric::selectRaw("site_id,created_at,
+            (JSON_EXTRACT(disk_usage, '$.totalSpace') - JSON_EXTRACT(disk_usage, '$.freeSpace')) / JSON_EXTRACT(disk_usage, '$.totalSpace') * 100 AS percentage")
+                ->whereColumn('site_id', 'system_metrics.site_id')
+                ->whereColumn('created_at', 'system_metrics.created_at');
+            $query = SystemMetric::fromSub($subquery, 'system_metrics')
+                ->where('site_id', $this->selectedSiteId);
 
             switch ($filter) {
                 case 'hour':
                     $data = Trend::query($query)
                         ->between(start: now()->subHour(), end: now())
                         ->perMinute()
-                        ->average('cpu_usage');
+                        ->average('percentage');
 
                     break;
 
@@ -44,7 +49,7 @@ class CpuLoadChart extends ChartWidget
                     $data = Trend::query($query)
                         ->between(start: now()->subDay(), end: now())
                         ->perHour()
-                        ->average('cpu_usage');
+                        ->average('percentage');
 
                     break;
 
@@ -52,7 +57,7 @@ class CpuLoadChart extends ChartWidget
                     $data = Trend::query($query)
                         ->between(start: now()->subWeek(), end: now())
                         ->perDay()
-                        ->average('cpu_usage');
+                        ->average('percentage');
 
                     break;
             }
@@ -60,9 +65,9 @@ class CpuLoadChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'CPU Usage',
+                        'label' => 'Disk Space Occupied',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
-                        'borderColor' => '#9BD0F5',
+                        'borderColor' => '#4ade80',
                         'fill' => true,
                     ],
                 ],
