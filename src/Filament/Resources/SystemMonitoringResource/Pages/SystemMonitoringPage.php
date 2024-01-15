@@ -16,6 +16,10 @@ class SystemMonitoringPage extends Page
 
     protected static string $resource = SystemMonitoringResource::class;
 
+    protected static ?string $breadcrumb = '';
+
+    protected static ?string $title = 'System Monitoring';
+
     protected static string $view = 'moonguard::resources.system-monitoring-resource.pages.system-monitoring-page';
 
     protected $columnSpan = 'full';

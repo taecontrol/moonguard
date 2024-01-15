@@ -114,13 +114,27 @@ class DiskSpaceChart extends ChartWidget
         return RawJs::make(<<<JS
         {
             scales: {
-                y: {
-                    ticks: {
-                        callback: (value) => value + '%',
-                    },
-                },
+            y: {
+                ticks: {
+                callback: (value) => value + '%',
             },
+        },
+    },
+    plugins: {
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                let label = context.dataset.label || '';
+                    if (label) {
+                        label += ': ';
+                    }
+                        label += Math.round(context.raw) + '%';
+                    return label;
+            }
         }
+        }
+        }
+    }
     JS);
     }
 }

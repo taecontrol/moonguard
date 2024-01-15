@@ -1,14 +1,4 @@
 @php
-    $sitesWithMetrics = Taecontrol\MoonGuard\Models\SystemMetric::has('site')
-        ->get()
-        ->unique('site_id');
-    $options = [];
-    foreach ($sitesWithMetrics as $metric) {
-        $options[$metric->site->id] = $metric->site->name;
-    }
-@endphp
-
-@php
    $sitesWithMetrics = Taecontrol\MoonGuard\Models\SystemMetric::has('site')
        ->get()
        ->unique('site_id');

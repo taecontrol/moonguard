@@ -10,7 +10,13 @@ use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Pages\Syste
 
 class SystemMonitoringResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
+
+    protected static ?string $navigationLabel = 'System Monitoring';
+
+    protected static ?string $breadcrumb = '';
+
+    protected static ?string $slug = 'system-monitoring';
 
     public static function getPages(): array
     {
