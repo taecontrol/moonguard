@@ -50,7 +50,7 @@ class MoonGuardServiceProvider extends ServiceProvider
 
     protected function publishMigrations(): void
     {
-        if (! class_exists('CreateMoonGuardTables') | ! class_exists('AddSystemMonitoringFieldsOnSite')) {
+        if (! class_exists('CreateMoonGuardTables') | ! class_exists('AddSMFieldsOnSitesTable')) {
             $this->publishes([
                 __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_moonguard_tables.php'),
                 __DIR__ . '/../../database/migrations/add_system_monitoring_fields_on_sites_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_add_sm_fields_on_sites_table.php'),
