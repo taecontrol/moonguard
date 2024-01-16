@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddSystemMonitoringFieldsOnSite extends Migration
+{
+    public function up()
+    {
+        Schema::table('sites', function (Blueprint $table) {
+            $table->boolean('hardware_monitoring_notification_enabled')->default(false);
+            $table->integer('cpu_limit')->nullable();
+            $table->integer('ram_limit')->nullable();
+            $table->integer('disk_limit')->nullable();
+        });
+    }
+}
