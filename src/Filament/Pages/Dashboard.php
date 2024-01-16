@@ -8,7 +8,9 @@ use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Contracts\Support\Htmlable;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\SystemMonitoringOverview;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\CpuLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\DiskSpaceChart;
+use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\MemoryLoadChart;
 
 class Dashboard extends Page
 {
@@ -56,7 +58,13 @@ class Dashboard extends Page
         $widgets = $this->getWidgets();
 
         return array_filter($widgets, function ($widget) {
-            return $widget !== SystemMonitoringOverview::class;
+            $hiddenWidgets = [
+                CpuLoadChart::class,
+                DiskSpaceChart::class,
+                MemoryLoadChart::class,
+            ];
+
+            return ! in_array($widget, $hiddenWidgets);
         });
     }
 
