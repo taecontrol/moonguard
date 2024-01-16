@@ -48,12 +48,24 @@ class MoonGuardServiceProvider extends ServiceProvider
         ], ['moonguard-config']);
     }
 
+    protected function getMigrationTimestamp(): string
+    {
+        sleep(1);
+
+        return date('Y_m_d_His', time());
+    }
+
     protected function publishMigrations(): void
     {
-        if (! class_exists('CreateMoonGuardTables') | ! class_exists('AddSMFieldsOnSitesTable')) {
+        if (! class_exists('CreateMoonGuardTables')) {
             $this->publishes([
-                __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_moonguard_tables.php'),
-                __DIR__ . '/../../database/migrations/add_system_monitoring_fields_on_sites_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_add_sm_fields_on_sites_table.php'),
+                __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_create_moonguard_tables.php'),
+            ], ['moonguard-migrations']);
+        }
+
+        if (! class_exists('AddSMFieldsOnSitesTable')) {
+            $this->publishes([
+                __DIR__ . '/../../database/migrations/add_system_monitoring_fields_on_sites_table.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_add_sm_fields_on_sites_table.php'),
             ], ['moonguard-migrations']);
         }
     }
