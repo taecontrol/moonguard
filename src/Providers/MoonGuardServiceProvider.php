@@ -50,7 +50,7 @@ class MoonGuardServiceProvider extends ServiceProvider
 
     protected function getMigrationTimestamp(): string
     {
-        sleep(1);
+        sleep(2);
 
         return date('Y_m_d_His', time());
     }
