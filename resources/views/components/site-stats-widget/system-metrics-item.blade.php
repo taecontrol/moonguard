@@ -15,7 +15,7 @@
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
         href="{{ route('filament.moonguard.resources.system-monitoring.index') }}">
         <span>Memory Usage</span>
-        <span class="{{ $ramUsage > $site->ram_limit ? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $ramUsage > $site->ram_limit ? 'text-red-500' : 'text-green-500' }} font-bold">
             {{ $ramUsage . '%' }}
         </span>
     </a>
@@ -30,7 +30,7 @@
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
         href="{{ route('filament.moonguard.resources.system-monitoring.index') }}">
         <span>CPU Usage</span>
-        <span class="{{ $cpuUsage > $site->cpu_limit ? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $cpuUsage > $site->cpu_limit ? 'text-red-500' : 'text-green-500' }} font-bold">
             {{ $cpuUsage . '%' }}
         </span>
 
@@ -47,7 +47,7 @@
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
         href="{{ route('filament.moonguard.resources.system-monitoring.index') }}">
         <span>Total Disk Used</span>
-        <span class="{{ $diskUsage > $site->disk_limit ? 'text-red-500' : 'text-green-500' }}">
+        <span class="{{ $diskUsage > $site->disk_limit ? 'text-red-500' : 'text-green-500' }} font-bold">
             {{ $diskUsage . '%' }}
         </span>
 
