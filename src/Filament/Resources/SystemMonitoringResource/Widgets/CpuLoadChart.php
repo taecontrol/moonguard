@@ -32,31 +32,22 @@ class CpuLoadChart extends ChartWidget
             $filter = $this->filter;
             $query = SystemMetric::where('site_id', $this->selectedSiteId);
 
-            switch ($filter) {
-                case 'hour':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subHour(), end: now())
-                        ->perMinute()
-                        ->average('cpu_usage');
+            match ($filter) {
+                'hour' => $data = Trend::query($query)
+                    ->between(start: now()->subHour(), end: now())
+                    ->perMinute()
+                    ->average('cpu_usage'),
 
-                    break;
+                'day' => $data = Trend::query($query)
+                    ->between(start: now()->subDay(), end: now())
+                    ->perHour()
+                    ->average('cpu_usage'),
 
-                case 'day':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subDay(), end: now())
-                        ->perHour()
-                        ->average('cpu_usage');
-
-                    break;
-
-                case 'week':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subWeek(), end: now())
-                        ->perDay()
-                        ->average('cpu_usage');
-
-                    break;
-            }
+                'week' => $data = Trend::query($query)
+                    ->between(start: now()->subWeek(), end: now())
+                    ->perDay()
+                    ->average('cpu_usage')
+            };
 
             $chartData = [
                 'datasets' => [
