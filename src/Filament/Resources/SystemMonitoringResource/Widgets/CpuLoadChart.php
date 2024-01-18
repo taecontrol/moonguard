@@ -36,7 +36,6 @@ class CpuLoadChart extends ChartWidget
                 'hour' => $data = MTrend::query($query)
                     ->between(start: now()->subHour(), end: now())
                     ->perMinute()
-                    ->timeFrequency("5")
                     ->average('cpu_usage'),
 
                 'day' => $data = MTrend::query($query)
@@ -50,11 +49,32 @@ class CpuLoadChart extends ChartWidget
                     ->average('cpu_usage')
             };
 
+            $constantValue = 0;
+            $noDataTries = 0;
+
+            $formatted = $data->map(function (TrendValue $value) use (&$constantValue, &$noDataTries) {
+                if ($value->aggregate > 0) {
+                    $constantValue = $value->aggregate;
+                }
+
+                if ($value->aggregate === 0) {
+                    $noDataTries++;
+                }
+
+                if ($noDataTries > 12) {
+                    $constantValue = 0;
+                    $noDataTries = 0;
+                }
+
+                return $constantValue;
+            });
+
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'CPU Usage',
-                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                        'label' => 'CPU Load (5m)',
+                        'data' => $formatted,
+                        'spanGaps' => true,
                         'borderColor' => '#9BD0F5',
                         'fill' => true,
                     ],
@@ -98,6 +118,7 @@ class CpuLoadChart extends ChartWidget
     {
         return RawJs::make(<<<JS
         {
+            responsive: true,
             scales: {
                 y: {
                     ticks: {
