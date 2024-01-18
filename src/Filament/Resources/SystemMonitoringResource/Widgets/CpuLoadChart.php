@@ -26,10 +26,6 @@ class CpuLoadChart extends ChartWidget
         $this->getData();
     }
 
-    protected function skipped($ctx) {
-        return "rgb(0,0,0,0.2)";
-    }
-
     protected function getData(): array
     {
         if ($this->selectedSiteId) {
