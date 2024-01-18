@@ -2,12 +2,12 @@
 
 namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
 
+use Flowframe\Trend\Trend;
 use Filament\Support\RawJs;
 use Livewire\Attributes\On;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
 use Taecontrol\MoonGuard\Models\SystemMetric;
-use Taecontrol\MoonGuard\Support\Trend\MTrend;
 
 class CpuLoadChart extends ChartWidget
 {
@@ -26,6 +26,10 @@ class CpuLoadChart extends ChartWidget
         $this->getData();
     }
 
+    protected function skipped($ctx) {
+        return "rgb(0,0,0,0.2)";
+    }
+
     protected function getData(): array
     {
         if ($this->selectedSiteId) {
@@ -33,49 +37,30 @@ class CpuLoadChart extends ChartWidget
             $query = SystemMetric::where('site_id', $this->selectedSiteId);
 
             match ($filter) {
-                'hour' => $data = MTrend::query($query)
+                'hour' => $data = Trend::query($query)
                     ->between(start: now()->subHour(), end: now())
                     ->perMinute()
                     ->average('cpu_usage'),
 
-                'day' => $data = MTrend::query($query)
+                'day' => $data = Trend::query($query)
                     ->between(start: now()->subDay(), end: now())
                     ->perHour()
                     ->average('cpu_usage'),
 
-                'week' => $data = MTrend::query($query)
+                'week' => $data = Trend::query($query)
                     ->between(start: now()->subWeek(), end: now())
                     ->perDay()
                     ->average('cpu_usage')
             };
 
-            $constantValue = 0;
-            $noDataTries = 0;
-
-            $formatted = $data->map(function (TrendValue $value) use (&$constantValue, &$noDataTries) {
-                if ($value->aggregate > 0) {
-                    $constantValue = $value->aggregate;
-                }
-
-                if ($value->aggregate === 0) {
-                    $noDataTries++;
-                }
-
-                if ($noDataTries > 12) {
-                    $constantValue = 0;
-                    $noDataTries = 0;
-                }
-
-                return $constantValue;
-            });
-
             $chartData = [
                 'datasets' => [
                     [
                         'label' => 'CPU Load (5m)',
-                        'data' => $formatted,
+                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#9BD0F5',
+                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],
