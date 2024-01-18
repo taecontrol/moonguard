@@ -2,12 +2,12 @@
 
 namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
 
-use Flowframe\Trend\Trend;
 use Filament\Support\RawJs;
 use Livewire\Attributes\On;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
 use Taecontrol\MoonGuard\Models\SystemMetric;
+use Taecontrol\MoonGuard\Support\Trend\MTrend;
 
 class CpuLoadChart extends ChartWidget
 {
@@ -33,17 +33,18 @@ class CpuLoadChart extends ChartWidget
             $query = SystemMetric::where('site_id', $this->selectedSiteId);
 
             match ($filter) {
-                'hour' => $data = Trend::query($query)
+                'hour' => $data = MTrend::query($query)
                     ->between(start: now()->subHour(), end: now())
                     ->perMinute()
+                    ->timeFrequency("5")
                     ->average('cpu_usage'),
 
-                'day' => $data = Trend::query($query)
+                'day' => $data = MTrend::query($query)
                     ->between(start: now()->subDay(), end: now())
                     ->perHour()
                     ->average('cpu_usage'),
 
-                'week' => $data = Trend::query($query)
+                'week' => $data = MTrend::query($query)
                     ->between(start: now()->subWeek(), end: now())
                     ->perDay()
                     ->average('cpu_usage')
