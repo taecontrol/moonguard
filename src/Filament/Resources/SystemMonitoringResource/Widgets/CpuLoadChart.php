@@ -32,38 +32,31 @@ class CpuLoadChart extends ChartWidget
             $filter = $this->filter;
             $query = SystemMetric::where('site_id', $this->selectedSiteId);
 
-            switch ($filter) {
-                case 'hour':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subHour(), end: now())
-                        ->perMinute()
-                        ->average('cpu_usage');
+            match ($filter) {
+                'hour' => $data = Trend::query($query)
+                    ->between(start: now()->subHour(), end: now())
+                    ->perMinute()
+                    ->average('cpu_usage'),
 
-                    break;
+                'day' => $data = Trend::query($query)
+                    ->between(start: now()->subDay(), end: now())
+                    ->perHour()
+                    ->average('cpu_usage'),
 
-                case 'day':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subDay(), end: now())
-                        ->perHour()
-                        ->average('cpu_usage');
-
-                    break;
-
-                case 'week':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subWeek(), end: now())
-                        ->perDay()
-                        ->average('cpu_usage');
-
-                    break;
-            }
+                'week' => $data = Trend::query($query)
+                    ->between(start: now()->subWeek(), end: now())
+                    ->perDay()
+                    ->average('cpu_usage')
+            };
 
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'CPU Usage',
-                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                        'label' => 'CPU Load (5m)',
+                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
+                        'spanGaps' => true,
                         'borderColor' => '#9BD0F5',
+                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],
@@ -106,6 +99,7 @@ class CpuLoadChart extends ChartWidget
     {
         return RawJs::make(<<<JS
         {
+            responsive: true,
             scales: {
                 y: {
                     ticks: {

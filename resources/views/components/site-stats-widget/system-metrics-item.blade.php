@@ -1,14 +1,7 @@
 @php
-    $systemMetric = $site
-        ->systemMetrics()
-        ->latest()
-        ->first();
-    $cpuUsage = $ramUsage = $diskUsage = null;
-    if ($systemMetric) {
-        $cpuUsage = $systemMetric->cpu_usage;
-        $ramUsage = $systemMetric->memory_usage;
-        $diskUsage = $systemMetric->disk_usage['percentage'];
-    }
+    $cpuUsage = $site->systemMetrics->first()->cpu_usage ?? null;
+    $ramUsage = $site->systemMetrics->first()->memory_usage ?? null;
+    $diskUsage = $site->systemMetrics->first()->disk_usage['percentage'] ?? null;
 @endphp
 
 @if (isset($ramUsage))

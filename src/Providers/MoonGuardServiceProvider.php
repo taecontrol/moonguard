@@ -17,6 +17,8 @@ use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardServiceProvider extends ServiceProvider
 {
+    protected int $migrationCounter = 0;
+
     public function boot(): void
     {
         $this->publishConfigFiles();
@@ -50,9 +52,11 @@ class MoonGuardServiceProvider extends ServiceProvider
 
     protected function getMigrationTimestamp(): string
     {
-        sleep(2);
+        $unixTimestamp = date('Y_m_d_His', time());
+        $time = "{$unixTimestamp}{$this->migrationCounter}";
+        $this->migrationCounter++;
 
-        return date('Y_m_d_His', time());
+        return $time;
     }
 
     protected function publishMigrations(): void

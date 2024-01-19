@@ -39,38 +39,31 @@ class DiskSpaceChart extends ChartWidget
             $query = SystemMetric::fromSub($subquery, 'system_metrics')
                 ->where('site_id', $this->selectedSiteId);
 
-            switch ($filter) {
-                case 'hour':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subHour(), end: now())
-                        ->perMinute()
-                        ->average('percentage');
+            match ($filter) {
+                'hour' => $data = Trend::query($query)
+                    ->between(start: now()->subHour(), end: now())
+                    ->perMinute()
+                    ->average('percentage'),
 
-                    break;
+                'day' => $data = Trend::query($query)
+                    ->between(start: now()->subDay(), end: now())
+                    ->perHour()
+                    ->average('percentage'),
 
-                case 'day':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subDay(), end: now())
-                        ->perHour()
-                        ->average('percentage');
-
-                    break;
-
-                case 'week':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subWeek(), end: now())
-                        ->perDay()
-                        ->average('percentage');
-
-                    break;
-            }
+                'week' => $data = Trend::query($query)
+                    ->between(start: now()->subWeek(), end: now())
+                    ->perDay()
+                    ->average('percentage'),
+            };
 
             $chartData = [
                 'datasets' => [
                     [
                         'label' => 'Disk Space Occupied',
-                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
+                        'spanGaps' => true,
                         'borderColor' => '#4ade80',
+                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],

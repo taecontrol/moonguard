@@ -32,38 +32,31 @@ class MemoryLoadChart extends ChartWidget
             $filter = $this->filter;
             $query = SystemMetric::where('site_id', $this->selectedSiteId);
 
-            switch ($filter) {
-                case 'hour':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subHour(), end: now())
-                        ->perMinute()
-                        ->average('memory_usage');
+            match($filter) {
+                'hour' => $data = Trend::query($query)
+                    ->between(start: now()->subHour(), end: now())
+                    ->perMinute()
+                    ->average('memory_usage'),
 
-                    break;
+                'day' => $data = Trend::query($query)
+                    ->between(start: now()->subDay(), end: now())
+                    ->perHour()
+                    ->average('memory_usage'),
 
-                case 'day':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subDay(), end: now())
-                        ->perHour()
-                        ->average('memory_usage');
-
-                    break;
-
-                case 'week':
-                    $data = Trend::query($query)
-                        ->between(start: now()->subWeek(), end: now())
-                        ->perDay()
-                        ->average('memory_usage');
-
-                    break;
-            }
+                'week' => $data = Trend::query($query)
+                    ->between(start: now()->subWeek(), end: now())
+                    ->perDay()
+                    ->average('memory_usage')
+            };
 
             $chartData = [
                 'datasets' => [
                     [
                         'label' => 'Memory Usage',
-                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                        'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
+                        'spanGaps' => true,
                         'borderColor' => '#fcd34d',
+                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],
