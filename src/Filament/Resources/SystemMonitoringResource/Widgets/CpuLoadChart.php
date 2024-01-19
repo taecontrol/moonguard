@@ -36,17 +36,17 @@ class CpuLoadChart extends ChartWidget
                 'hour' => $data = Trend::query($query)
                     ->between(start: now()->subHour(), end: now())
                     ->perMinute()
-                    ->average('cpu_usage'),
+                    ->average('cpu_load'),
 
                 'day' => $data = Trend::query($query)
                     ->between(start: now()->subDay(), end: now())
                     ->perHour()
-                    ->average('cpu_usage'),
+                    ->average('cpu_load'),
 
                 'week' => $data = Trend::query($query)
                     ->between(start: now()->subWeek(), end: now())
                     ->perDay()
-                    ->average('cpu_usage')
+                    ->average('cpu_load')
             };
 
             $chartData = [

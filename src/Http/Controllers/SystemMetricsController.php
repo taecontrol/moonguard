@@ -22,7 +22,7 @@ class SystemMetricsController extends Controller
         abort_if(! $site, 403);
 
         $systemMetric = SystemMetric::create([
-            'cpu_usage' => $request->input('cpuLoad'),
+            'cpu_load' => $request->input('cpuLoad'),
             'memory_usage' => $request->input('memory'),
             'disk_usage' => json_encode($request->input('disk')),
             'site_id' => $site->id,
