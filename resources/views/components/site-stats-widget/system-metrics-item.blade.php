@@ -30,7 +30,7 @@
     </a>
 @else
     <div class="flex items-center justify-between text-gray-500">
-        <span>CPU Usage</span>
+        <span>CPU Load</span>
         <span class="text-gray-500">---</span>
     </div>
 @endif
