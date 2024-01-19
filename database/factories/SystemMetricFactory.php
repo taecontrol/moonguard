@@ -13,7 +13,7 @@ class SystemMetricFactory extends Factory
     public function definition(): array
     {
         return [
-            'cpu_usage' => $this->faker->randomFloat(2, 0, 100),
+            'cpu_load' => $this->faker->randomFloat(2, 0, 100),
             'memory_usage' => $this->faker->randomFloat(2, 0, 100),
             'disk_usage' => $this->faker->randomFloat(2, 0, 100),
             'site_id' => fn () => Site::factory()->create()->id,

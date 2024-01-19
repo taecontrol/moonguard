@@ -118,7 +118,7 @@ class CreateMoonGuardTables extends Migration {
         if ( !Schema::hasTable('system_metrics') ) {
             Schema::create('system_metrics', function (Blueprint $table) {
                 $table->id();
-                $table->integer('cpu_usage');
+                $table->integer('cpu_load');
                 $table->integer('memory_usage');
                 $table->json('disk_usage');
                 $table->foreignIdFor(SiteRepository::resolveModelClass())

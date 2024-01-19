@@ -1,5 +1,5 @@
 @php
-    $cpuUsage = $site->systemMetrics->first()->cpu_usage ?? null;
+    $cpuLoad = $site->systemMetrics->first()->cpu_load ?? null;
     $ramUsage = $site->systemMetrics->first()->memory_usage ?? null;
     $diskUsage = $site->systemMetrics->first()->disk_usage['percentage'] ?? null;
 @endphp
@@ -19,12 +19,12 @@
     </div>
 @endif
 
-@if (isset($cpuUsage))
+@if (isset($cpuLoad))
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
         href="{{ route('filament.moonguard.resources.system-monitoring.index') }}">
-        <span>CPU Usage</span>
-        <span class="{{ $cpuUsage > $site->cpu_limit ? 'text-red-500' : 'text-green-500' }} font-bold">
-            {{ $cpuUsage . '%' }}
+        <span>CPU Load</span>
+        <span class="{{ $cpuLoad > $site->cpu_limit ? 'text-red-500' : 'text-green-500' }} font-bold">
+            {{ $cpuLoad . '%' }}
         </span>
 
     </a>

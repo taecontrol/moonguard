@@ -28,7 +28,7 @@ class SystemMetricsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertDatabaseHas('system_metrics', [
-            'cpu_usage' => 10,
+            'cpu_load' => 10,
             'memory_usage' => 20,
             'disk_usage' => json_encode($diskJson),
             'site_id' => $site->id,

@@ -17,7 +17,7 @@ class SystemMetric extends Model
     const CREATED_AT = 'created_at';
 
     protected $fillable = [
-        'cpu_usage',
+        'cpu_load',
         'memory_usage',
         'disk_usage',
         'site_id',
