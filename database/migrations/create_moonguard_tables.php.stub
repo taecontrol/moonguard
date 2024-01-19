@@ -23,10 +23,6 @@ class CreateMoonGuardTables extends Migration {
                 $table->unsignedInteger('max_request_duration_ms')->default(1000);
                 $table->timestamp('down_for_maintenance_at')->nullable();
                 $table->string('api_token', 60)->nullable();
-                $table->integer('cpu_limit')->nullable();
-                $table->integer('ram_limit')->nullable();
-                $table->integer('disk_limit')->nullable();
-                $table->boolean('hardware_monitoring_notification_enabled')->default(false);
 
                 $table->timestamps();
             });
