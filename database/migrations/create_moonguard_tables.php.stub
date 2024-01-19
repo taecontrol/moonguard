@@ -164,7 +164,7 @@ class CreateMoonGuardTables extends Migration {
         Schema::dropIfExists('ssl_certificate_checks');
         Schema::dropIfExists('exception_logs');
         Schema::dropIfExists('exception_log_groups');
-        Schema::dropIfExists('sites');
         Schema::dropIfExists('system_metrics');
+        Schema::dropIfExists('sites');
     }
 };
