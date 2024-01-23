@@ -52,11 +52,10 @@ class CpuLoadChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'CPU Load (5m)',
+                        'label' => 'CPU Load -- UTC time',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#9BD0F5',
-                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],
@@ -68,7 +67,7 @@ class CpuLoadChart extends ChartWidget
                     } elseif ($filter === 'day') {
                         [$date, $time] = explode(' ', $value->date);
 
-                        return $date;
+                        return $time;
                     } else {
                         return $value->date;
                     }
@@ -102,6 +101,8 @@ class CpuLoadChart extends ChartWidget
             responsive: true,
             scales: {
                 y: {
+                    min: 0,
+                    max: 100,
                     ticks: {
                         callback: (value) => value + '%',
                     },

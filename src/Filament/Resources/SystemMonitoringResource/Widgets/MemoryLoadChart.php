@@ -52,11 +52,10 @@ class MemoryLoadChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'Memory Usage',
+                        'label' => 'Memory Usage -- UTC time',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#fcd34d',
-                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],
@@ -68,7 +67,7 @@ class MemoryLoadChart extends ChartWidget
                     } elseif ($filter === 'day') {
                         [$date, $time] = explode(' ', $value->date);
 
-                        return $date;
+                        return $time;
                     } else {
                         return $value->date;
                     }
@@ -100,7 +99,9 @@ class MemoryLoadChart extends ChartWidget
         return RawJs::make(<<<JS
         {
             scales: {
-                y: {
+                y: {    
+                        min: 0,
+                        max: 100,
                         ticks: {
                         callback: (value) => value + '%',
                     },
