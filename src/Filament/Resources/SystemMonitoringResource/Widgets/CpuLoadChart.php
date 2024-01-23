@@ -26,6 +26,11 @@ class CpuLoadChart extends ChartWidget
         $this->getData();
     }
 
+    public function getDescription(): ?string
+    {
+        return 'Time in chart displayed in UTC.';
+    }
+
     protected function getData(): array
     {
         if ($this->selectedSiteId) {
@@ -52,7 +57,7 @@ class CpuLoadChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'CPU Load -- UTC time',
+                        'label' => 'CPU Load',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#9BD0F5',

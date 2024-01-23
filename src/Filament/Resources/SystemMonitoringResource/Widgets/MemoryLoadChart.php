@@ -26,6 +26,11 @@ class MemoryLoadChart extends ChartWidget
         $this->getData();
     }
 
+    public function getDescription(): ?string
+    {
+        return 'Time in chart displayed in UTC.';
+    }
+
     protected function getData(): array
     {
         if ($this->selectedSiteId) {
@@ -52,7 +57,7 @@ class MemoryLoadChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'Memory Usage -- UTC time',
+                        'label' => 'Memory Usage',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#fcd34d',

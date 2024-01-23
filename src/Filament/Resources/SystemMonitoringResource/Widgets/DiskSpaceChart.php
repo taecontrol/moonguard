@@ -26,6 +26,11 @@ class DiskSpaceChart extends ChartWidget
         $this->getData();
     }
 
+    public function getDescription(): ?string
+    {
+        return 'Time in chart displayed in UTC.';
+    }
+
     protected function getData(): array
     {
         if ($this->selectedSiteId) {
@@ -59,7 +64,7 @@ class DiskSpaceChart extends ChartWidget
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'Disk Space Occupied -- UTC time',
+                        'label' => 'Disk Space Occupied',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#4ade80',
