@@ -26,6 +26,11 @@ class MemoryLoadChart extends ChartWidget
         $this->getData();
     }
 
+    public function getDescription(): ?string
+    {
+        return 'Time in chart displayed in UTC.';
+    }
+
     protected function getData(): array
     {
         if ($this->selectedSiteId) {
@@ -56,7 +61,6 @@ class MemoryLoadChart extends ChartWidget
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
                         'borderColor' => '#fcd34d',
-                        'stepped' => 'middle',
                         'fill' => true,
                     ],
                 ],
@@ -68,7 +72,7 @@ class MemoryLoadChart extends ChartWidget
                     } elseif ($filter === 'day') {
                         [$date, $time] = explode(' ', $value->date);
 
-                        return $date;
+                        return $time;
                     } else {
                         return $value->date;
                     }
@@ -100,7 +104,9 @@ class MemoryLoadChart extends ChartWidget
         return RawJs::make(<<<JS
         {
             scales: {
-                y: {
+                y: {    
+                        min: 0,
+                        max: 100,
                         ticks: {
                         callback: (value) => value + '%',
                     },
