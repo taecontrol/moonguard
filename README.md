@@ -14,7 +14,7 @@ MoonGuard Filament Plugin aims to be the free open source alternative for monito
 
 For more information about MoonGuard Filament Plugin and its features, please visit our [official site](https://moonguard.dev/filament-plugin).
 
-We prepared a demo for MoonGuard, you can access the demo [here](https://moonguard.dev/demo).
+We prepared a demo for MoonGuard, you can access the demo [here](https://moonguard.dev/moonguard).
 
 ## How MoonGuard Filament Plugin works
 
