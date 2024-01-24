@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
+namespace Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets;
 
 use Flowframe\Trend\Trend;
 use Filament\Support\RawJs;
@@ -9,7 +9,7 @@ use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
 use Taecontrol\MoonGuard\Models\SystemMetric;
 
-class DiskSpaceChart extends ChartWidget
+class MemoryLoadChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
 
@@ -35,39 +35,32 @@ class DiskSpaceChart extends ChartWidget
     {
         if ($this->selectedSiteId) {
             $filter = $this->filter;
+            $query = SystemMetric::where('site_id', $this->selectedSiteId);
 
-            $subquery = SystemMetric::selectRaw("site_id, created_at, CAST(ROUND(((JSON_EXTRACT(disk_usage, '$.totalSpace')
-                - JSON_EXTRACT(disk_usage, '$.freeSpace')) / JSON_EXTRACT(disk_usage, '$.totalSpace') * 100), 2) AS DECIMAL(5,2)) AS percentage")
-                ->whereColumn('site_id', 'system_metrics.site_id')
-                ->whereColumn('created_at', 'system_metrics.created_at');
-
-            $query = SystemMetric::fromSub($subquery, 'system_metrics')
-                ->where('site_id', $this->selectedSiteId);
-
-            match ($filter) {
+            match($filter) {
                 'hour' => $data = Trend::query($query)
                     ->between(start: now()->subHour(), end: now())
                     ->perMinute()
-                    ->average('percentage'),
+                    ->average('memory_usage'),
 
                 'day' => $data = Trend::query($query)
                     ->between(start: now()->subDay(), end: now())
                     ->perHour()
-                    ->average('percentage'),
+                    ->average('memory_usage'),
 
                 'week' => $data = Trend::query($query)
                     ->between(start: now()->subWeek(), end: now())
                     ->perDay()
-                    ->average('percentage'),
+                    ->average('memory_usage')
             };
 
             $chartData = [
                 'datasets' => [
                     [
-                        'label' => 'Disk Space Occupied',
+                        'label' => 'Memory Usage',
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate == 0 ? null : $value->aggregate),
                         'spanGaps' => true,
-                        'borderColor' => '#4ade80',
+                        'borderColor' => '#fcd34d',
                         'fill' => true,
                     ],
                 ],
@@ -111,10 +104,10 @@ class DiskSpaceChart extends ChartWidget
         return RawJs::make(<<<JS
         {
             scales: {
-                y: {
-                    min: 0,
-                    max: 100,
-                    ticks: {
+                y: {    
+                        min: 0,
+                        max: 100,
+                        ticks: {
                         callback: (value) => value + '%',
                     },
                 },

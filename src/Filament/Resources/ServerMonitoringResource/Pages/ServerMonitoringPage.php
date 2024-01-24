@@ -1,26 +1,26 @@
 <?php
 
-namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Pages;
+namespace Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Pages;
 
 use Filament\Resources\Pages\Page;
 use Taecontrol\MoonGuard\Models\Site;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\CpuLoadChart;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\DiskSpaceChart;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\MemoryLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\CpuLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\DiskSpaceChart;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\MemoryLoadChart;
 
-class SystemMonitoringPage extends Page
+class ServerMonitoringPage extends Page
 {
     use InteractsWithForms;
 
-    protected static string $resource = SystemMonitoringResource::class;
+    protected static string $resource = ServerMonitoringResource::class;
 
     protected static ?string $breadcrumb = '';
 
-    protected static ?string $title = 'System Monitoring';
+    protected static ?string $title = 'Server Monitoring';
 
-    protected static string $view = 'moonguard::resources.system-monitoring-resource.pages.system-monitoring-page';
+    protected static string $view = 'moonguard::resources.server-monitoring-resource.pages.server-monitoring-page';
 
     protected $columnSpan = 'full';
 

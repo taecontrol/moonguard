@@ -64,7 +64,7 @@ class SiteResource extends Resource
                             ->when(SslCertificateCheckRepository::isEnabled())
                             ->label('SSL certificate check'),
                     ]),
-                Fieldset::make('Monitoring Limit')
+                Fieldset::make('Server Monitoring')
                     ->schema([
                         Toggle::make('hardware_monitoring_notification_enabled')
                             ->label('Alert Notification Enabled')

@@ -12,7 +12,7 @@
     <x-filament-panels::page>
         <x-filament::section>
             <x-slot name="heading">
-                Sites
+                Site
             </x-slot>
             <x-slot name="description">
                 Select a site to load it's monitoring data.

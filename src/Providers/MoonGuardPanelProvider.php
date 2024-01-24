@@ -20,10 +20,10 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Taecontrol\MoonGuard\Filament\Widgets\SiteStatsWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Taecontrol\MoonGuard\Filament\Resources\ExceptionLogResource;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\CpuLoadChart;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\DiskSpaceChart;
-use Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets\MemoryLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\CpuLoadChart;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\DiskSpaceChart;
+use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\MemoryLoadChart;
 
 class MoonGuardPanelProvider extends PanelProvider
 {
@@ -34,7 +34,7 @@ class MoonGuardPanelProvider extends PanelProvider
     protected array $resources = [
         SiteResource::class,
         ExceptionLogResource::class,
-        SystemMonitoringResource::class,
+        ServerMonitoringResource::class,
     ];
 
     protected array $widgets = [

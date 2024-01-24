@@ -1,6 +1,6 @@
 <?php
 
-namespace Taecontrol\MoonGuard\Filament\Resources\SystemMonitoringResource\Widgets;
+namespace Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets;
 
 use Flowframe\Trend\Trend;
 use Filament\Support\RawJs;

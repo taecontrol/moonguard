@@ -68,7 +68,7 @@ return [
         'enabled' => true,
 
         /*
-         * The age in days of the system monitoring records to delete.
+         * The age in days of the server monitoring records to delete.
          */
         'delete_system_monitoring_records_older_than_days' => 7,
     ],
