@@ -7,7 +7,7 @@ use Filament\Support\RawJs;
 use Livewire\Attributes\On;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
-use Taecontrol\MoonGuard\Models\SystemMetric;
+use Taecontrol\MoonGuard\Models\ServerMetric;
 
 class DiskSpaceChart extends ChartWidget
 {
@@ -36,12 +36,12 @@ class DiskSpaceChart extends ChartWidget
         if ($this->selectedSiteId) {
             $filter = $this->filter;
 
-            $subquery = SystemMetric::selectRaw("site_id, created_at, CAST(ROUND(((JSON_EXTRACT(disk_usage, '$.totalSpace')
+            $subquery = ServerMetric::selectRaw("site_id, created_at, CAST(ROUND(((JSON_EXTRACT(disk_usage, '$.totalSpace')
                 - JSON_EXTRACT(disk_usage, '$.freeSpace')) / JSON_EXTRACT(disk_usage, '$.totalSpace') * 100), 2) AS DECIMAL(5,2)) AS percentage")
-                ->whereColumn('site_id', 'system_metrics.site_id')
-                ->whereColumn('created_at', 'system_metrics.created_at');
+                ->whereColumn('site_id', 'server_metrics.site_id')
+                ->whereColumn('created_at', 'server_metrics.created_at');
 
-            $query = SystemMetric::fromSub($subquery, 'system_metrics')
+            $query = ServerMetric::fromSub($subquery, 'server_metrics')
                 ->where('site_id', $this->selectedSiteId);
 
             match ($filter) {

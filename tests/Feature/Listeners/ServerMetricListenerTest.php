@@ -6,12 +6,12 @@ use Taecontrol\MoonGuard\Models\User;
 use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
-use Taecontrol\MoonGuard\Models\SystemMetric;
-use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
-use Taecontrol\MoonGuard\Listeners\SystemMetricAlertListener;
-use Taecontrol\MoonGuard\Notifications\SystemMetricNotification;
+use Taecontrol\MoonGuard\Models\ServerMetric;
+use Taecontrol\MoonGuard\Events\ServerMetricAlertEvent;
+use Taecontrol\MoonGuard\Listeners\ServerMetricAlertListener;
+use Taecontrol\MoonGuard\Notifications\ServerMetricNotification;
 
-class SystemMetricAlertListenerTest extends TestCase
+class ServerMetricAlertListenerTest extends TestCase
 {
     /** @var Collection<User> */
     protected Collection $users;
@@ -27,13 +27,13 @@ class SystemMetricAlertListenerTest extends TestCase
     public function listener_sends_notification_when_a_system_metric_is_created()
     {
         Notification::fake();
-        $instance = new SystemMetricAlertListener();
+        $instance = new ServerMetricAlertListener();
 
-        $systemMetric = SystemMetric::factory()->create();
-        $event = new SystemMetricAlertEvent($systemMetric->site, 'resource', 'usage', true);
+        $systemMetric = ServerMetric::factory()->create();
+        $event = new ServerMetricAlertEvent($systemMetric->site, 'resource', 'usage', true);
 
         $instance->handle($event);
 
-        Notification::assertSentTo($this->users, SystemMetricNotification::class);
+        Notification::assertSentTo($this->users, ServerMetricNotification::class);
     }
 }

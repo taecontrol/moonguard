@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
-class SystemMetricNotification extends Notification implements ShouldQueue
+class ServerMetricNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

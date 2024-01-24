@@ -1,5 +1,5 @@
 @php
-    $sitesWithMetrics = Taecontrol\MoonGuard\Models\SystemMetric::has('site')
+    $sitesWithMetrics = Taecontrol\MoonGuard\Models\ServerMetric::has('site')
         ->get()
         ->unique('site_id');
     $options = [];

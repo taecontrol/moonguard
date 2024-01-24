@@ -5,12 +5,12 @@ namespace Taecontrol\MoonGuard\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Taecontrol\MoonGuard\Models\Site;
-use Taecontrol\MoonGuard\Models\SystemMetric;
+use Taecontrol\MoonGuard\Models\ServerMetric;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
-use Taecontrol\MoonGuard\Events\SystemMetricAlertEvent;
+use Taecontrol\MoonGuard\Events\ServerMetricAlertEvent;
 
-class SystemMetricsController extends Controller
+class ServerMetricsController extends Controller
 {
     public function __invoke(Request $request): JsonResponse
     {
@@ -21,7 +21,7 @@ class SystemMetricsController extends Controller
 
         abort_if(! $site, 403);
 
-        $systemMetric = SystemMetric::create([
+        $systemMetric = ServerMetric::create([
             'cpu_load' => $request->input('cpuLoad'),
             'memory_usage' => $request->input('memory'),
             'disk_usage' => json_encode($request->input('disk')),
@@ -46,17 +46,17 @@ class SystemMetricsController extends Controller
         $diskLimit = $site->disk_limit;
 
         if ($cpuLoad >= $cpuLimit) {
-            $event = new SystemMetricAlertEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);
+            $event = new ServerMetricAlertEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
 
         if ($memory >= $ramLimit) {
-            $event = new SystemMetricAlertEvent($site, 'ram', $memory, $site->hardware_monitoring_notification_enabled);
+            $event = new ServerMetricAlertEvent($site, 'ram', $memory, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
 
         if ($diskUsagePercentage >= $diskLimit) {
-            $event = new SystemMetricAlertEvent($site, 'disk', $diskUsagePercentage, $site->hardware_monitoring_notification_enabled);
+            $event = new ServerMetricAlertEvent($site, 'disk', $diskUsagePercentage, $site->hardware_monitoring_notification_enabled);
             event($event);
         }
     }

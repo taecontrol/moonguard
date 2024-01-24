@@ -7,7 +7,7 @@ use Filament\Support\RawJs;
 use Livewire\Attributes\On;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\ChartWidget;
-use Taecontrol\MoonGuard\Models\SystemMetric;
+use Taecontrol\MoonGuard\Models\ServerMetric;
 
 class CpuLoadChart extends ChartWidget
 {
@@ -35,7 +35,7 @@ class CpuLoadChart extends ChartWidget
     {
         if ($this->selectedSiteId) {
             $filter = $this->filter;
-            $query = SystemMetric::where('site_id', $this->selectedSiteId);
+            $query = ServerMetric::where('site_id', $this->selectedSiteId);
 
             match ($filter) {
                 'hour' => $data = Trend::query($query)

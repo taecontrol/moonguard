@@ -6,7 +6,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class SystemMetricAlertEvent
+class ServerMetricAlertEvent
 {
     use Dispatchable;
     use InteractsWithSockets;

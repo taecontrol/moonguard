@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Taecontrol\MoonGuard\Repositories\SiteRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Taecontrol\MoonGuard\Database\Factories\SystemMetricFactory;
+use Taecontrol\MoonGuard\Database\Factories\ServerMetricFactory;
 
-class SystemMetric extends Model
+class ServerMetric extends Model
 {
     use HasFactory;
 
@@ -53,6 +53,6 @@ class SystemMetric extends Model
 
     protected static function newFactory(): Factory
     {
-        return SystemMetricFactory::new();
+        return ServerMetricFactory::new();
     }
 }

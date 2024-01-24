@@ -9,7 +9,7 @@ class AddSMFieldsOnSitesTable extends Migration
     public function up()
     {
         Schema::table('sites', function (Blueprint $table) {
-            $table->boolean('hardware_monitoring_notification_enabled')->default(false);
+            $table->boolean('server_monitoring_notification_enabled')->default(false);
             $table->integer('cpu_limit')->nullable();
             $table->integer('ram_limit')->nullable();
             $table->integer('disk_limit')->nullable();

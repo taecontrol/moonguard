@@ -111,8 +111,8 @@ class CreateMoonGuardTables extends Migration {
             });
         }
 
-        if ( !Schema::hasTable('system_metrics') ) {
-            Schema::create('system_metrics', function (Blueprint $table) {
+        if ( !Schema::hasTable('server_metrics') ) {
+            Schema::create('server_metrics', function (Blueprint $table) {
                 $table->id();
                 $table->integer('cpu_load');
                 $table->integer('memory_usage');
@@ -154,8 +154,8 @@ class CreateMoonGuardTables extends Migration {
             });
         }
 
-        if ( !Schema::hasTable('system_metrics') ) {
-            Schema::table('system_metrics', function (Blueprint $table) {
+        if ( !Schema::hasTable('server_metrics') ) {
+            Schema::table('server_metrics', function (Blueprint $table) {
                 $table->dropForeignIdFor(SiteRepository::resolveModelClass());
             });
         }
@@ -164,7 +164,7 @@ class CreateMoonGuardTables extends Migration {
         Schema::dropIfExists('ssl_certificate_checks');
         Schema::dropIfExists('exception_logs');
         Schema::dropIfExists('exception_log_groups');
-        Schema::dropIfExists('system_metrics');
+        Schema::dropIfExists('server_metrics');
         Schema::dropIfExists('sites');
     }
 };

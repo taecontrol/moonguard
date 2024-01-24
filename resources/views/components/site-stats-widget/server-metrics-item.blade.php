@@ -1,7 +1,7 @@
 @php
-    $cpuLoad = $site->systemMetrics->first()->cpu_load ?? null;
-    $ramUsage = $site->systemMetrics->first()->memory_usage ?? null;
-    $diskUsage = $site->systemMetrics->first()->disk_usage['percentage'] ?? null;
+    $cpuLoad = $site->serverMetrics->first()->cpu_load ?? null;
+    $ramUsage = $site->serverMetrics->first()->memory_usage ?? null;
+    $diskUsage = $site->serverMetrics->first()->disk_usage['percentage'] ?? null;
 @endphp
 
 

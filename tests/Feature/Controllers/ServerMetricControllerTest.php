@@ -6,12 +6,12 @@ use Taecontrol\MoonGuard\Models\Site;
 use Taecontrol\MoonGuard\Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class SystemMetricsControllerTest extends TestCase
+class ServerMetricsControllerTest extends TestCase
 {
     use WithFaker;
 
     /** @test */
-    public function it_stores_system_metrics()
+    public function it_stores_server_metrics()
     {
         $this->withoutExceptionHandling();
         $site = Site::factory()->create();
@@ -27,7 +27,7 @@ class SystemMetricsControllerTest extends TestCase
         $this->postJson(route('moonguard.api.hardware'), $data)
             ->assertStatus(200);
 
-        $this->assertDatabaseHas('system_metrics', [
+        $this->assertDatabaseHas('server_metrics', [
             'cpu_load' => 10,
             'memory_usage' => 20,
             'disk_usage' => json_encode($diskJson),

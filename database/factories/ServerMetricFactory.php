@@ -3,12 +3,12 @@
 namespace Taecontrol\MoonGuard\Database\Factories;
 
 use Taecontrol\MoonGuard\Models\Site;
-use Taecontrol\MoonGuard\Models\SystemMetric;
+use Taecontrol\MoonGuard\Models\ServerMetric;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SystemMetricFactory extends Factory
+class ServerMetricFactory extends Factory
 {
-    protected $model = SystemMetric::class;
+    protected $model = ServerMetric::class;
 
     public function definition(): array
     {

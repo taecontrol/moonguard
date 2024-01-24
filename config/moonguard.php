@@ -61,7 +61,7 @@ return [
          */
         'delete_exceptions_older_than_days' => 7,
     ],
-    'system_monitoring_records_deletion' => [
+    'server_monitoring_records_deletion' => [
         /*
          * enables or disables the deletion of monitoring logs.
          */
@@ -70,7 +70,7 @@ return [
         /*
          * The age in days of the server monitoring records to delete.
          */
-        'delete_system_monitoring_records_older_than_days' => 7,
+        'delete_server_monitoring_records_older_than_days' => 7,
     ],
     'exceptions' => [
         /*
@@ -135,8 +135,8 @@ return [
             \Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent::class => [
                 \Taecontrol\MoonGuard\Listeners\ExceptionLogGroupUpdatedListener::class,
             ],
-            \Taecontrol\MoonGuard\Events\SystemMetricAlertEvent::class => [
-                \Taecontrol\MoonGuard\Listeners\SystemMetricAlertListener::class,
+            \Taecontrol\MoonGuard\Events\ServerMetricAlertEvent::class => [
+                \Taecontrol\MoonGuard\Listeners\ServerMetricAlertListener::class,
             ],
         ],
     ],

@@ -34,7 +34,7 @@ class ServerMonitoringPage extends Page
 
     public function mount(): void
     {
-        $siteWithMetrics = Site::whereHas('systemMetrics')->first();
+        $siteWithMetrics = Site::whereHas('serverMetrics')->first();
 
         if ($siteWithMetrics !== null) {
             $this->selectedSiteId = $siteWithMetrics->id;
