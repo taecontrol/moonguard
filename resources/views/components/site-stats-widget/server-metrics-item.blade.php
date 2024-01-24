@@ -34,8 +34,8 @@
 
 <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
     href="{{ route('filament.moonguard.resources.server-monitoring.index') }}">
+    <span>Total Disk Used</span>
     @if (isset($diskUsage))
-        <span>Total Disk Used</span>
         <span class="{{ $diskUsage > $site->disk_limit ? 'text-red-500' : 'text-green-500' }} font-bold text-sm">
             {{ $diskUsage . '%' }}
         </span>
