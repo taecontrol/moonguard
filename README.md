@@ -25,7 +25,7 @@ Larvis is a lightweight package that integrates with the MoonGuard ecosystem. It
 
 ## Documentation
 
-You can find the whole guide, configuration, setup on our full [documentation site](https://docs.moonguard.dev).
+You can find the whole guide, configuration and setup in our [documentation site](https://docs.moonguard.dev).
 
 ## MoonGuard: The Software Creator's Journey
 
