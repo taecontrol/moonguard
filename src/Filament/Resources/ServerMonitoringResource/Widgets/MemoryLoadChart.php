@@ -13,7 +13,7 @@ class MemoryLoadChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
 
-    public string | int | null $selectedSiteId = null;
+    public string | int | null $siteId = null;
 
     protected static ?string $maxHeight = '300px';
 
@@ -22,7 +22,7 @@ class MemoryLoadChart extends ChartWidget
     #[On('selected-site-changed')]
     public function updateSiteId($siteId): void
     {
-        $this->selectedSiteId = $siteId;
+        $this->siteId = $siteId;
         $this->getData();
     }
 
@@ -33,9 +33,9 @@ class MemoryLoadChart extends ChartWidget
 
     protected function getData(): array
     {
-        if ($this->selectedSiteId) {
+        if ($this->siteId) {
             $filter = $this->filter;
-            $query = ServerMetric::where('site_id', $this->selectedSiteId);
+            $query = ServerMetric::where('site_id', $this->siteId);
 
             match($filter) {
                 'hour' => $data = Trend::query($query)

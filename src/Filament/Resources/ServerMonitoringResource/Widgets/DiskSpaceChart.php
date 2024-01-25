@@ -13,7 +13,7 @@ class DiskSpaceChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
 
-    public string | int | null $selectedSiteId = null;
+    public string | int | null $siteId = null;
 
     protected static ?string $maxHeight = '300px';
 
@@ -22,7 +22,7 @@ class DiskSpaceChart extends ChartWidget
     #[On('selected-site-changed')]
     public function updateSiteId($siteId): void
     {
-        $this->selectedSiteId = $siteId;
+        $this->siteId = $siteId;
         $this->getData();
     }
 
@@ -33,7 +33,7 @@ class DiskSpaceChart extends ChartWidget
 
     protected function getData(): array
     {
-        if ($this->selectedSiteId) {
+        if ($this->siteId) {
             $filter = $this->filter;
 
             $subquery = ServerMetric::selectRaw("site_id, created_at, CAST(ROUND(((JSON_EXTRACT(disk_usage, '$.totalSpace')
@@ -42,7 +42,7 @@ class DiskSpaceChart extends ChartWidget
                 ->whereColumn('created_at', 'server_metrics.created_at');
 
             $query = ServerMetric::fromSub($subquery, 'server_metrics')
-                ->where('site_id', $this->selectedSiteId);
+                ->where('site_id', $this->siteId);
 
             match ($filter) {
                 'hour' => $data = Trend::query($query)

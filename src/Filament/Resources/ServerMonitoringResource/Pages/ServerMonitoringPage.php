@@ -4,6 +4,7 @@ namespace Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Pages
 
 use Filament\Resources\Pages\Page;
 use Taecontrol\MoonGuard\Models\Site;
+use Illuminate\Database\Eloquent\Collection;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource;
 use Taecontrol\MoonGuard\Filament\Resources\ServerMonitoringResource\Widgets\CpuLoadChart;
@@ -26,38 +27,53 @@ class ServerMonitoringPage extends Page
 
     protected static ?int $sort = 1;
 
-    public bool $noMetricsAvailable = false;
+    public bool $metricsAvailable = false;
 
-    public ?array $data = [];
+    public bool $sitesAvailable = false;
 
-    public $selectedSiteId;
+    public bool $needsToSelect = false;
+
+    public $siteId = null;
+
+    protected $queryString = ['siteId'];
 
     public function mount(): void
     {
-        $siteWithMetrics = Site::whereHas('serverMetrics')->first();
+        $sites = Site::all();
 
-        if ($siteWithMetrics !== null) {
-            $this->selectedSiteId = $siteWithMetrics->id;
-        } else {
-            $this->noMetricsAvailable = true;
+        if (! $sites->isEmpty()) {
+            $this->sitesAvailable = true;
         }
     }
 
     public function siteChanged(): void
     {
-        $this->dispatch('selected-site-changed', siteId: $this->selectedSiteId);
+        if ($this->siteId !== '') {
+            $this->dispatch('selected-site-changed', siteId: $this->siteId);
+            $this->needsToSelect = false;
+        }
+    }
+
+    protected function getViewData(): array
+    {
+        /** @var Collection */
+        $sites = Site::all();
+
+        return [
+            'sites' => $sites,
+        ];
     }
 
     protected function getFooterWidgets(): array
     {
-        if (! $this->noMetricsAvailable) {
-            return [
-                CpuLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
-                MemoryLoadChart::make(['selectedSiteId' => $this->selectedSiteId]),
-                DiskSpaceChart::make(['selectedSiteId' => $this->selectedSiteId]),
-            ];
+        if (! $this->sitesAvailable || $this->needsToSelect) {
+            return [];
         }
 
-        return [];
+        return [
+            CpuLoadChart::make(['siteId' => $this->siteId]),
+            MemoryLoadChart::make(['siteId' => $this->siteId]),
+            DiskSpaceChart::make(['siteId' => $this->siteId]),
+        ];
     }
 }
