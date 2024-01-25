@@ -66,7 +66,7 @@ class SiteResource extends Resource
                     ]),
                 Fieldset::make('Server Monitoring')
                     ->schema([
-                        Toggle::make('hardware_monitoring_notification_enabled')
+                        Toggle::make('server_monitoring_notification_enabled')
                             ->label('Alert Notification Enabled')
                             ->inline(false)
                             ->columnSpan('full'),

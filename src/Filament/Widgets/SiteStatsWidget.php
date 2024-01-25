@@ -21,7 +21,7 @@ class SiteStatsWidget extends PollableWidget
                 }])
                 ->withCount(['exceptionLogs' => function ($query) {
                     $query->where('status', 'unresolved');
-                }])
+                }, 'serverMetrics'])
                 ->get(),
         ];
     }
