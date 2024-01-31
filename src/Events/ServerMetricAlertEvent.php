@@ -18,13 +18,13 @@ class ServerMetricAlertEvent
 
     public $usage;
 
-    public $hardware_monitoring_notification_enabled;
+    public $server_monitoring_notification_enabled;
 
-    public function __construct($site, $resource, $usage, $hardware_monitoring_notification_enabled)
+    public function __construct($site, $resource, $usage, $server_monitoring_notification_enabled)
     {
         $this->site = $site;
         $this->resource = $resource;
         $this->usage = $usage;
-        $this->hardware_monitoring_notification_enabled = $hardware_monitoring_notification_enabled;
+        $this->server_monitoring_notification_enabled = $server_monitoring_notification_enabled;
     }
 }

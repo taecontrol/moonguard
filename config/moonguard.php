@@ -50,27 +50,27 @@ return [
          */
         'notify_expiring_soon_if_certificate_expires_within_days' => 7,
     ],
-    'exception_deletion' => [
+    'prune_exception' => [
         /*
-         * Enable or disable exception deletion globally.
-         */
-        'enabled' => false,
-
-        /*
-         * The age in days of the exceptions to delete.
-         */
-        'delete_exceptions_older_than_days' => 7,
-    ],
-    'server_monitoring_records_deletion' => [
-        /*
-         * enables or disables the deletion of monitoring logs.
+         * Enable or disable pruning exceptions data.
          */
         'enabled' => true,
 
         /*
-         * The age in days of the server monitoring records to delete.
+         * Eliminates exceptions that are older than 7 days.
          */
-        'delete_server_monitoring_records_older_than_days' => 7,
+        'prune_exceptions_older_than_days' => 7,
+    ],
+    'prune_server_monitoring' => [
+        /*
+         * Enables or disables pruning server monitoring data.
+         */
+        'enabled' => true,
+
+        /*
+         * Deletes server monitoring logs that are older than 7 days..
+         */
+        'prune_server_monitoring_records_older_than_days' => 7,
     ],
     'exceptions' => [
         /*

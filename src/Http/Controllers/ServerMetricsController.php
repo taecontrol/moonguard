@@ -21,7 +21,7 @@ class ServerMetricsController extends Controller
 
         abort_if(! $site, 403);
 
-        $systemMetric = ServerMetric::create([
+        $serverMetric = ServerMetric::create([
             'cpu_load' => $request->input('cpuLoad'),
             'memory_usage' => $request->input('memory'),
             'disk_usage' => json_encode($request->input('disk')),
@@ -30,7 +30,7 @@ class ServerMetricsController extends Controller
 
         $cpuLoad = $request->input('cpuLoad');
         $memory = $request->input('memory');
-        $diskUsagePercentage = $systemMetric->disk_usage['percentage'];
+        $diskUsagePercentage = $serverMetric->disk_usage['percentage'];
 
         $this->checkLimits($site, $cpuLoad, $memory, $diskUsagePercentage);
 
@@ -46,17 +46,17 @@ class ServerMetricsController extends Controller
         $diskLimit = $site->disk_limit;
 
         if ($cpuLoad >= $cpuLimit) {
-            $event = new ServerMetricAlertEvent($site, 'cpu', $cpuLoad, $site->hardware_monitoring_notification_enabled);
+            $event = new ServerMetricAlertEvent($site, 'cpu', $cpuLoad, $site->server_monitoring_notification_enabled);
             event($event);
         }
 
         if ($memory >= $ramLimit) {
-            $event = new ServerMetricAlertEvent($site, 'ram', $memory, $site->hardware_monitoring_notification_enabled);
+            $event = new ServerMetricAlertEvent($site, 'ram', $memory, $site->server_monitoring_notification_enabled);
             event($event);
         }
 
         if ($diskUsagePercentage >= $diskLimit) {
-            $event = new ServerMetricAlertEvent($site, 'disk', $diskUsagePercentage, $site->hardware_monitoring_notification_enabled);
+            $event = new ServerMetricAlertEvent($site, 'disk', $diskUsagePercentage, $site->server_monitoring_notification_enabled);
             event($event);
         }
     }

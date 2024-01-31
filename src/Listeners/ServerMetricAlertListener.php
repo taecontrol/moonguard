@@ -21,7 +21,7 @@ class ServerMetricAlertListener
         $notifiablesForSlack = new SlackNotifiable();
 
         foreach ($channels as $channel) {
-            if ($event->hardware_monitoring_notification_enabled) {
+            if ($event->server_monitoring_notification_enabled) {
                 $notifiables = ($channel === 'slack') ? $notifiablesForSlack : $notifiablesForMail;
 
                 Notification::send(
