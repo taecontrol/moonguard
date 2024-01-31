@@ -24,13 +24,13 @@ class ServerMetricAlertListenerTest extends TestCase
     }
 
     /** @test */
-    public function listener_sends_notification_when_a_system_metric_is_created()
+    public function listener_sends_notification_when_a_server_metric_is_created()
     {
         Notification::fake();
         $instance = new ServerMetricAlertListener();
 
-        $systemMetric = ServerMetric::factory()->create();
-        $event = new ServerMetricAlertEvent($systemMetric->site, 'resource', 'usage', true);
+        $serverMetric = ServerMetric::factory()->create();
+        $event = new ServerMetricAlertEvent($serverMetric->site, 'resource', 'usage', true);
 
         $instance->handle($event);
 

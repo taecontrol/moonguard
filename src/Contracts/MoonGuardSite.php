@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int $cpu_limit
  * @property int $ram_limit
  * @property int $disk_limit
- * @property bool $hardware_monitoring_notification_enabled
+ * @property bool $server_monitoring_notification_enabled
  */
 interface MoonGuardSite
 {

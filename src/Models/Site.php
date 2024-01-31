@@ -35,7 +35,7 @@ class Site extends Model implements MoonGuardSite
         'cpu_limit',
         'ram_limit',
         'disk_limit',
-        'hardware_monitoring_notification_enabled',
+        'server_monitoring_notification_enabled',
     ];
 
     protected $casts = [
@@ -43,7 +43,7 @@ class Site extends Model implements MoonGuardSite
         'down_for_maintenance_at' => 'immutable_datetime',
         'uptime_check_enabled' => 'boolean',
         'ssl_certificate_check_enabled' => 'boolean',
-        'hardware_monitoring_notification_enabled' => 'boolean',
+        'server_monitoring_notification_enabled' => 'boolean',
     ];
 
     public function scopeWhereUptimeCheckEnabled(Builder $query): Builder

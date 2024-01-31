@@ -10,9 +10,9 @@ use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
 use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Console\Commands\PruneExceptionCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
-use Taecontrol\MoonGuard\Console\Commands\DeleteOldExceptionCommand;
-use Taecontrol\MoonGuard\Console\Commands\DeleteServerMetricCommand;
+use Taecontrol\MoonGuard\Console\Commands\PruneServerMetricCommand;
 use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardServiceProvider extends ServiceProvider
@@ -69,7 +69,7 @@ class MoonGuardServiceProvider extends ServiceProvider
 
         if (! class_exists('AddSMFieldsOnSitesTable')) {
             $this->publishes([
-                __DIR__ . '/../../database/migrations/add_system_monitoring_fields_on_sites_table.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_add_sm_fields_on_sites_table.php'),
+                __DIR__ . '/../../database/migrations/add_server_monitoring_fields_on_sites_table.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_add_sm_fields_on_sites_table.php'),
             ], ['moonguard-migrations']);
         }
     }
@@ -80,8 +80,8 @@ class MoonGuardServiceProvider extends ServiceProvider
             $this->commands([
                 CheckUptimeCommand::class,
                 CheckSslCertificateCommand::class,
-                DeleteOldExceptionCommand::class,
-                DeleteServerMetricCommand::class,
+                PruneExceptionCommand::class,
+                PruneServerMetricCommand::class,
             ]);
         }
     }
