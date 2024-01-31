@@ -8,21 +8,25 @@
 
 ## About MoonGuard Filament Plugin
 
-MoonGuard is a **Filament plugin** that provides you with tools to track the status, performance, health and crashes of multiple Laravel apps in production. MoonGuard is designed to work seamlessly with Laravel applications and gives you the flexibility to customize it according to your needs.
+Your server can become overloaded, the application can crash, errors can occur, all without your notice. Our open-source tool is designed to ensure maximum performance and availability of your Laravel Apps in production.
 
-MoonGuard Filament Plugin aims to be the free open source alternative for monitoring production site's health.
+MoonGuard is a Filament plugin that helps you to monitor multiple Laravel Apps simultaneously, validate their proper functioning, oversee their real-time performance, and notify you of any changes detected in any of them. It offers you the flexibility to customize it according to your needs.
 
-For more information about MoonGuard Filament Plugin and its features, please visit our [official site](https://moonguard.dev/filament-plugin).
-
-We prepared a demo for MoonGuard, you can access the demo [here](https://moonguard.dev/moonguard).
+Check the MoonGuard Filament Plugin demo [here](https://moonguard.dev/filament-plugin).
 
 ## How MoonGuard Filament Plugin works
 
-MoonGuard helps you monitor the status, performance and SSL certificate status of your websites. To use MoonGuard, you need to deploy it and add some sites. If you also want to collect server health data or exceptions from your sites, you need to install [Larvis](https://github.com/taecontrol/larvis) in your site's project.
+This plugin offers comprehensive monitoring for multiple Laravel Apps simultaneously. It vigilantly tracks site uptime and keeps a close watch on SSL certificate validity. In addition, it logs any exceptions or errors that arise on your App. To ensure you're always in the loop, the plugin promptly sends alerts through email or Slack when specific conditions are met, such as a Laravel App experiencing downtime.
 
-Larvis is a lightweight package that integrates with the MoonGuard ecosystem. First, it has to be installed in your site's project, and then it has to be configured to send data to your MoonGuard system through HTTP requests. Larvis can send data to your MoonGuard system or the Krater desktop app. 
+If you want to get detailed information about the status of your servers, including CPU load, RAM usage, and disk space, or catch exceptions from your applications, you must integrate [Larvis](https://github.com/taecontrol/larvis) into your project. Larvis is a lightweight package that is part of the MoonGuard ecosystem. Its installation is straightforward: once added to your project, you just need to configure it to send data to your MoonGuard system via HTTP requests. Furthermore, Larvis has the versatility to communicate with both the MoonGuard Filament Plugin and the [Krater](https://moonguard.dev/krater) desktop application.
 
-Larvis is designed to work seamlessly with MoonGuard to enhance its functionality.
+But what is Krater? It's a desktop application designed for developers working with Laravel. It offers an advanced debugging tool that allows users to examine and analyze their applications locally.
+
+## From Idea to Launch: MoonGuard Filament Plugin Book
+
+You have the opportunity to create your very own Laravel package from scratch. To guide you through this creative journey, our team has written a comprehensive book just for you. It outlines the entire process of conception, development, and launch of the MoonGuard Filament Plugin, step by step. The best part? This book is completely free, and you can obtain your own digital copy [here](https://moonguard.dev/book).
+
+Titled "MoonGuard: The Software Creator's Journey," the purpose of the book is to illustrate the package-building process with specific code examples that provide context to understand each decision we made while designing the Moonguard Filament Plugin. Let this book be the springboard for your very own package-creating adventure!
 
 ## Documentation
 
@@ -38,11 +42,11 @@ composer test
 
 <p align="center"><a href="https://moonguard.dev/krater" target="_blank"><img src="https://github.com/taecontrol/moonguard/assets/61505019/63c0ca3d-6a91-4c50-a399-a804cdaf71f0" alt="MoonGuard: Krater Image"></a></p>
 
-Krater is a lightweight, cross-platform application that revolutionizes Laravel app debugging on your next major project. 
+Krater is a lightweight, cross-platform application that revolutionizes Laravel app debugging on your next major project.
 
 ## MoonGuard: The Software Creator's Journey [Book]
 
-The MoonGuard development team has written a book named "MoonGuard: The Software Creator's Journey." In this book, we document and explain the entire process of creating, developing, publishing MoonGuard as a Filament Plugin. Every hard corner and special tricks were registered on this book, you can obtain your own digital copy [here](https://moonguard.dev/book). 
+The MoonGuard development team has written a book named "MoonGuard: The Software Creator's Journey." In this book, we document and explain the entire process of creating, developing, publishing MoonGuard as a Filament Plugin. Every hard corner and special tricks were registered on this book, you can obtain your own digital copy [here](https://moonguard.dev/book).
 
 <p align="center"><a href="https://moonguard.dev/book" target="_blank"><img src="https://github.com/taecontrol/moonguard/assets/61505019/ecae1c7a-9602-4c43-8ee0-ac684bd636b1" alt="MoonGuard: Book"></a></p>
 
