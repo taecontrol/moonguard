@@ -16,12 +16,10 @@ class SiteStatsWidget extends PollableWidget
     {
         return [
             'sites' => SiteRepository::query()
-                ->with(['uptimeCheck', 'sslCertificateCheck', 'serverMetrics' => function ($query) {
-                    $query->latest();
-                }])
+                ->with(['uptimeCheck', 'sslCertificateCheck'])
                 ->withCount(['exceptionLogs' => function ($query) {
                     $query->where('status', 'unresolved');
-                }, 'serverMetrics'])
+                }])
                 ->get(),
         ];
     }
