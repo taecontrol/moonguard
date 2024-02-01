@@ -1,9 +1,7 @@
 @php
-    $siteMetrics = $site->serverMetrics;
-    
-    $cpuLoad = $site->serverMetrics->first()->cpu_load ?? null;
-    $ramUsage = $site->serverMetrics->first()->memory_usage ?? null;
-    $diskUsage = $site->serverMetrics->first()->disk_usage['percentage'] ?? null;
+    $cpuLoad = $site->latestServerMetric->cpu_load ?? null;
+    $ramUsage = $site->latestServerMetric->memory_usage ?? null;
+    $diskUsage = $site->latestServerMetric->disk_usage['percentage'] ?? null;
 @endphp
 
 @if ($site->server_metrics_count > 0)
