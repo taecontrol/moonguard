@@ -91,9 +91,9 @@ class Site extends Model implements MoonGuardSite
         return $this->hasMany(ExceptionLogGroupRepository::resolveModelClass());
     }
 
-    public function serverMetrics(): HasMany
+    public function latestServerMetric(): HasOne
     {
-        return $this->hasMany(ServerMetric::class);
+        return $this->hasOne(ServerMetric::class)->latestOfMany();
     }
 
     public function newCollection(array $models = []): SiteCollection
