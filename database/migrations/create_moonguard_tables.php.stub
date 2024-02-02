@@ -1,18 +1,19 @@
 <?php
 
-use Taecontrol\MoonGuard\Enums\UptimeStatus;
-use Taecontrol\MoonGuard\Enums\SslCertificateStatus;
-use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
-use Taecontrol\MoonGuard\Repositories\SiteRepository;
-use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Taecontrol\MoonGuard\Enums\UptimeStatus;
 use Illuminate\Database\Migrations\Migration;
+use Taecontrol\MoonGuard\Enums\ExceptionLogStatus;
+use Taecontrol\MoonGuard\Enums\SslCertificateStatus;
+use Taecontrol\MoonGuard\Repositories\SiteRepository;
+use Taecontrol\MoonGuard\Repositories\ExceptionLogGroupRepository;
 
-class CreateMoonGuardTables extends Migration {
+class CreateMoonGuardTables extends Migration
+{
     public function up()
     {
-        if ( !Schema::hasTable('sites') ) {
+        if (! Schema::hasTable('sites')) {
             Schema::create('sites', function (Blueprint $table) {
                 $table->id();
 
@@ -22,13 +23,17 @@ class CreateMoonGuardTables extends Migration {
                 $table->boolean('ssl_certificate_check_enabled')->default(true);
                 $table->unsignedInteger('max_request_duration_ms')->default(1000);
                 $table->timestamp('down_for_maintenance_at')->nullable();
+                $table->boolean('server_monitoring_notification_enabled')->default(false);
+                $table->integer('cpu_limit')->nullable();
+                $table->integer('ram_limit')->nullable();
+                $table->integer('disk_limit')->nullable();
                 $table->string('api_token', 60)->nullable();
 
                 $table->timestamps();
             });
         }
 
-        if ( !Schema::hasTable('uptime_checks') ) {
+        if (! Schema::hasTable('uptime_checks')) {
             Schema::create('uptime_checks', function (Blueprint $table) {
                 $table->id();
 
@@ -53,7 +58,7 @@ class CreateMoonGuardTables extends Migration {
             });
         }
 
-        if ( !Schema::hasTable('ssl_certificate_checks') ) {
+        if (! Schema::hasTable('ssl_certificate_checks')) {
             Schema::create('ssl_certificate_checks', function (Blueprint $table) {
                 $table->id();
 
@@ -70,7 +75,7 @@ class CreateMoonGuardTables extends Migration {
             });
         }
 
-        if ( !Schema::hasTable('exception_log_groups') ) {
+        if (! Schema::hasTable('exception_log_groups')) {
             Schema::create('exception_log_groups', function (Blueprint $table) {
                 $table->id();
 
@@ -89,7 +94,7 @@ class CreateMoonGuardTables extends Migration {
             });
         }
 
-        if ( !Schema::hasTable('exception_logs') ) {
+        if (! Schema::hasTable('exception_logs')) {
             Schema::create('exception_logs', function (Blueprint $table) {
                 $table->id();
 
@@ -111,7 +116,7 @@ class CreateMoonGuardTables extends Migration {
             });
         }
 
-        if ( !Schema::hasTable('server_metrics') ) {
+        if (! Schema::hasTable('server_metrics')) {
             Schema::create('server_metrics', function (Blueprint $table) {
                 $table->id();
                 $table->integer('cpu_load');
@@ -129,36 +134,26 @@ class CreateMoonGuardTables extends Migration {
 
     public function down()
     {
-        if ( !Schema::hasTable('uptime_checks') ) {
-            Schema::table('uptime_checks', function (Blueprint $table) {
-                $table->dropForeignIdFor(SiteRepository::resolveModelClass());
-            });
-        }
+        Schema::table('uptime_checks', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
 
-        if ( !Schema::hasTable('ssl_certificate_checks') ) {
-            Schema::table('ssl_certificate_checks', function (Blueprint $table) {
-                $table->dropForeignIdFor(SiteRepository::resolveModelClass());
-            });
-        }
+        Schema::table('ssl_certificate_checks', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
 
-        if ( !Schema::hasTable('exception_logs') ) {
-            Schema::table('exception_logs', function (Blueprint $table) {
-                $table->dropForeignIdFor(SiteRepository::resolveModelClass());
-                $table->dropForeignIdFor(ExceptionLogGroupRepository::resolveModelClass());
-            });
-        }
+        Schema::table('exception_logs', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+            $table->dropForeignIdFor(ExceptionLogGroupRepository::resolveModelClass());
+        });
 
-        if ( !Schema::hasTable('exception_log_groups') ) {
-            Schema::table('exception_log_groups', function (Blueprint $table) {
-                $table->dropForeignIdFor(SiteRepository::resolveModelClass());
-            });
-        }
+        Schema::table('exception_log_groups', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
 
-        if ( !Schema::hasTable('server_metrics') ) {
-            Schema::table('server_metrics', function (Blueprint $table) {
-                $table->dropForeignIdFor(SiteRepository::resolveModelClass());
-            });
-        }
+        Schema::table('server_metrics', function (Blueprint $table) {
+            $table->dropForeignIdFor(SiteRepository::resolveModelClass());
+        });
 
         Schema::dropIfExists('uptime_checks');
         Schema::dropIfExists('ssl_certificate_checks');
@@ -167,4 +162,4 @@ class CreateMoonGuardTables extends Migration {
         Schema::dropIfExists('server_metrics');
         Schema::dropIfExists('sites');
     }
-};
+}

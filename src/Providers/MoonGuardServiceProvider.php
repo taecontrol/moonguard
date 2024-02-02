@@ -66,12 +66,6 @@ class MoonGuardServiceProvider extends ServiceProvider
                 __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_create_moonguard_tables.php'),
             ], ['moonguard-migrations']);
         }
-
-        if (! class_exists('AddSMFieldsOnSitesTable')) {
-            $this->publishes([
-                __DIR__ . '/../../database/migrations/add_server_monitoring_fields_on_sites_table.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_add_sm_fields_on_sites_table.php'),
-            ], ['moonguard-migrations']);
-        }
     }
 
     protected function publishCommands(): void
