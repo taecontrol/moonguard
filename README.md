@@ -12,7 +12,7 @@ Your server can become overloaded, the application can crash, errors can occur, 
 
 MoonGuard is a Filament plugin that helps you to monitor multiple Laravel Apps simultaneously, validate their proper functioning, oversee their real-time performance, and notify you of any changes detected in any of them. It offers you the flexibility to customize it according to your needs.
 
-<p align="center"><a href="https://moonguard.dev/filament-plugin" target="_blank"><img src="https://github.com/taecontrol/moonguard/assets/61505019/84d68b46-1963-4fcf-8a76-806c199e4007" alt="MoonGuard Demo"></a></p>
+<p align="center"><a href="https://moonguard.dev/filament-plugin" target="_blank"><img src="https://github.com/taecontrol/moonguard/assets/61505019/28009a81-da97-47e7-a1bc-03a37bb25eaf" alt="MoonGuard Demo"></a></p>
 
 Check the MoonGuard Filament Plugin demo [here](https://moonguard.dev/filament-plugin).
 
