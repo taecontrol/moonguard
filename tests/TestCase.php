@@ -2,7 +2,6 @@
 
 namespace Taecontrol\MoonGuard\Tests;
 
-use AddSMFieldsOnSitesTable;
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -53,9 +52,6 @@ class TestCase extends Orchestra
         });
 
         include_once __DIR__ . '/../database/migrations/create_moonguard_tables.php.stub';
-
-        include_once __DIR__ . '/../database/migrations/add_server_monitoring_fields_on_sites_table.php.stub';
         (new \CreateMoonGuardTables)->up();
-        (new AddSMFieldsOnSitesTable)->up();
     }
 }
