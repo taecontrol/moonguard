@@ -4,7 +4,7 @@
     $diskUsage = $site->latestServerMetric->disk_usage['percentage'] ?? null;
 @endphp
 
-@if ($site->server_metrics_count > 0)
+@if ($cpuLoad || $ramUsage || $diskUsage)
     <a class="flex items-center justify-between text-gray-500 hover:text-gray-800 hover:underline dark:hover:text-gray-300"
         href="{{ route('filament.moonguard.resources.server-monitoring.index', ['siteId' => $site->id]) }}">
         <span>Memory Usage</span>
