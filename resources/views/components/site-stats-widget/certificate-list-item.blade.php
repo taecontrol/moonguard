@@ -1,5 +1,5 @@
 <div class="flex items-center justify-between">
-    <span class="text-gray-500">Certificate</span>
+    <span class="text-gray-500">SSL Certificate</span>
     @if(! $site->sslCertificateCheck)
         <span class="text-gray-500">---</span>
     @elseif(! $site->sslCertificateCheck?->is_enabled || ! $site->ssl_certificate_check_enabled)

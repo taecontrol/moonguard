@@ -54,7 +54,7 @@ class SiteResource extends Resource
                     ->minValue(0)
                     ->suffix('ms')
                     ->required(),
-                Fieldset::make('Enabled checks')
+                Fieldset::make('Check Enabled')
                     ->when(UptimeCheckRepository::isEnabled() || SslCertificateCheckRepository::isEnabled())
                     ->schema([
                         Checkbox::make('uptime_check_enabled')
@@ -64,6 +64,32 @@ class SiteResource extends Resource
                             ->when(SslCertificateCheckRepository::isEnabled())
                             ->label('SSL certificate check'),
                     ]),
+                Fieldset::make('Server Monitoring')
+                    ->schema([
+                        Toggle::make('server_monitoring_notification_enabled')
+                            ->label('Alert Notification Enabled')
+                            ->inline(false)
+                            ->columnSpan('full'),
+                        TextInput::make('cpu_limit')
+                            ->label('CPU load is above (%)')
+                            ->numeric()
+                            ->default(80)
+                            ->minValue(1)
+                            ->maxValue(100),
+                        TextInput::make('ram_limit')
+                            ->label('Memory usage is above (%)')
+                            ->numeric()
+                            ->default(80)
+                            ->minValue(1)
+                            ->maxValue(100),
+                        TextInput::make('disk_limit')
+                            ->label('Disk usage is above (%)')
+                            ->numeric()
+                            ->default(80)
+                            ->minValue(1)
+                            ->maxValue(100),
+                    ])
+                    ->columns(3),
                 Fieldset::make('API Token')
                     ->schema([
                         Toggle::make('api_token_enabled')

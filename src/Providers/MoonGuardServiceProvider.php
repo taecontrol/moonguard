@@ -10,12 +10,15 @@ use Taecontrol\MoonGuard\Contracts\MoonGuardUptimeCheck;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLog;
 use Taecontrol\MoonGuard\Console\Commands\CheckUptimeCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardExceptionLogGroup;
+use Taecontrol\MoonGuard\Console\Commands\PruneExceptionCommand;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSslCertificateCheck;
-use Taecontrol\MoonGuard\Console\Commands\DeleteOldExceptionCommand;
+use Taecontrol\MoonGuard\Console\Commands\PruneServerMetricCommand;
 use Taecontrol\MoonGuard\Console\Commands\CheckSslCertificateCommand;
 
 class MoonGuardServiceProvider extends ServiceProvider
 {
+    protected int $migrationCounter = 0;
+
     public function boot(): void
     {
         $this->publishConfigFiles();
@@ -47,11 +50,20 @@ class MoonGuardServiceProvider extends ServiceProvider
         ], ['moonguard-config']);
     }
 
+    protected function getMigrationTimestamp(): string
+    {
+        $unixTimestamp = date('Y_m_d_His', time());
+        $time = "{$unixTimestamp}{$this->migrationCounter}";
+        $this->migrationCounter++;
+
+        return $time;
+    }
+
     protected function publishMigrations(): void
     {
         if (! class_exists('CreateMoonGuardTables')) {
             $this->publishes([
-                __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_moonguard_tables.php'),
+                __DIR__ . '/../../database/migrations/create_moonguard_tables.php.stub' => database_path('migrations/' . $this->getMigrationTimestamp() . '_create_moonguard_tables.php'),
             ], ['moonguard-migrations']);
         }
     }
@@ -62,7 +74,8 @@ class MoonGuardServiceProvider extends ServiceProvider
             $this->commands([
                 CheckUptimeCommand::class,
                 CheckSslCertificateCommand::class,
-                DeleteOldExceptionCommand::class,
+                PruneExceptionCommand::class,
+                PruneServerMetricCommand::class,
             ]);
         }
     }

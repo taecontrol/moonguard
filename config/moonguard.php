@@ -50,16 +50,27 @@ return [
          */
         'notify_expiring_soon_if_certificate_expires_within_days' => 7,
     ],
-    'exception_deletion' => [
+    'prune_exception' => [
         /*
-         * Enable or disable exception deletion globally.
+         * Enable or disable pruning exceptions data.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
-         * The age in minutes of the exceptions to delete.
+         * Eliminates exceptions that are older than 7 days.
          */
-        'delete_exceptions_older_than_days' => 7,
+        'prune_exceptions_older_than_days' => 7,
+    ],
+    'prune_server_monitoring' => [
+        /*
+         * Enables or disables pruning server monitoring data.
+         */
+        'enabled' => true,
+
+        /*
+         * Deletes server monitoring logs that are older than 7 days..
+         */
+        'prune_server_monitoring_records_older_than_days' => 7,
     ],
     'exceptions' => [
         /*
@@ -123,6 +134,9 @@ return [
             ],
             \Taecontrol\MoonGuard\Events\ExceptionLogGroupUpdatedEvent::class => [
                 \Taecontrol\MoonGuard\Listeners\ExceptionLogGroupUpdatedListener::class,
+            ],
+            \Taecontrol\MoonGuard\Events\ServerMetricAlertEvent::class => [
+                \Taecontrol\MoonGuard\Listeners\ServerMetricAlertListener::class,
             ],
         ],
     ],
