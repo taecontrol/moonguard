@@ -49,6 +49,11 @@ return [
          * The number of days before a certificate expires to send a notification.
          */
         'notify_expiring_soon_if_certificate_expires_within_days' => 7,
+
+        /*
+         * 
+         */
+        'notification_frequency_minutes' => 5,
     ],
     'prune_exception' => [
         /*
