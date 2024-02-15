@@ -66,6 +66,8 @@ class SslCertificateCheckService
 
     protected function notifyFailure(): void
     {
-        event(new SslCertificateCheckFailedEvent($this->sslCertificateCheck));
+        if ($this->sslCertificateCheck->shouldNotifyAboutFailure()) {
+            event(new SslCertificateCheckFailedEvent($this->sslCertificateCheck));
+        }
     }
 }
