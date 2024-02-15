@@ -85,7 +85,6 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
         $minutesSinceFirstFailure = now()->diffInMinutes($this->ssl_error_occurrence_time);
 
         $notificationInterval = config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes');
-        \Log::debug('minutos:' . $minutesSinceFirstFailure . ' intervalo:' . $notificationInterval);
 
         if ($minutesSinceFirstFailure >= $notificationInterval) {
             $this->ssl_error_occurrence_time = now();
