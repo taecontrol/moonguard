@@ -66,7 +66,6 @@ class CreateMoonGuardTables extends Migration
                 $table->string('issuer')->nullable();
                 $table->timestamp('expiration_date')->nullable();
                 $table->string('check_failure_reason')->nullable();
-                $table->timestamp('ssl_error_occurrence_time')->nullable();
 
                 $table->foreignIdFor(SiteRepository::resolveModelClass())
                     ->constrained()

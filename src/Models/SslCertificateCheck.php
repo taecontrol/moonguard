@@ -4,6 +4,7 @@ namespace Taecontrol\MoonGuard\Models;
 
 use Exception;
 use Spatie\Url\Url;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -23,7 +24,6 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
     protected $casts = [
         'status' => SslCertificateStatus::class,
         'expiration_date' => 'immutable_datetime',
-        'ssl_error_occurrence_time' => 'immutable_datetime',
     ];
 
     public function site(): BelongsTo
@@ -51,8 +51,8 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
         $this->issuer = '';
         $this->check_failure_reason = $exception->getMessage();
 
-        if (! $this->ssl_error_occurrence_time) {
-            $this->ssl_error_occurrence_time = now();
+        if (Cache::get('ssl_error_occurrence_time') === null) {
+            Cache::put('ssl_error_occurrence_time', now(), 60 * 24);
         }
 
         $this->save();
@@ -82,13 +82,17 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
 
     public function shouldNotifyAboutFailure(): bool
     {
-        $minutesSinceFirstFailure = now()->diffInMinutes($this->ssl_error_occurrence_time);
+        $firstErrorTime = Cache::get('ssl_error_occurrence_time');
 
+        if ($firstErrorTime === null) {
+            return false;
+        }
+
+        $minutesSinceFirstFailure = now()->diffInMinutes($firstErrorTime);
         $notificationInterval = config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes');
 
         if ($minutesSinceFirstFailure >= $notificationInterval) {
-            $this->ssl_error_occurrence_time = now();
-            $this->save();
+            Cache::put('ssl_error_occurrence_time', now(), 60 * 24);
 
             return true;
         }

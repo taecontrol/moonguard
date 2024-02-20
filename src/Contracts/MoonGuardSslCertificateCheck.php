@@ -3,7 +3,6 @@
 namespace Taecontrol\MoonGuard\Contracts;
 
 use Exception;
-use Carbon\Carbon;
 use Spatie\Url\Url;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $certificate_check_failure_reason;
  * @property MoonGuardSite $site
  * @property bool $is_enabled
- * @property Carbon $ssl_error_occurrence_time
  *
  */
 interface MoonGuardSslCertificateCheck
