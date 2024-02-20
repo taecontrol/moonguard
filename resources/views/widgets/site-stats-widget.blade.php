@@ -24,7 +24,7 @@
                         </p>
                     @endif
                     <div class="divide-y divide-gray-200">
-                        <a class="pb-2" href="{{ route('filament.moonguard.resources.sites.edit', ['record' => $site->id]) }}">
+                        <a class=" break-all pb-2" href="{{ route('filament.moonguard.resources.sites.edit', ['record' => $site->id]) }}">
                             <h3 class="text-xl font-bold">{{ $site->name }}</h3>
                             <span class="text-sm text-gray-400">{{$site->url}}</span>
                         </a>
