@@ -96,7 +96,7 @@ class SslCertificateCheckServiceTest extends TestCase
 
         SslCertificateCheck::factory()->for($site)->create();
 
-        Cache::put('ssl_error_occurrence_time', now()->subMinutes(config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes')),   60 *   24);
+        Cache::put('ssl_error_occurrence_time', now()->subMinutes(config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes')), 60 * 24);
 
         Carbon::setTestNow(now()->addMinutes(config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes')));
 
