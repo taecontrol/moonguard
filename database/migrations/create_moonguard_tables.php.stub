@@ -43,7 +43,6 @@ class CreateMoonGuardTables extends Migration
                 $table->integer('check_times_failed_in_a_row')->default(0);
                 $table->timestamp('status_last_change_date')->nullable();
                 $table->timestamp('last_check_date')->nullable();
-                $table->timestamp('status_recovery_date')->nullable();
                 $table->timestamp('check_failed_event_fired_on_date')->nullable();
                 $table->integer('request_duration_ms')->nullable();
                 $table->string('check_method')->default('get');

@@ -4,6 +4,7 @@ namespace Taecontrol\MoonGuard\Models;
 
 use Exception;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Taecontrol\MoonGuard\Enums\UptimeStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -43,12 +44,14 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
     {
         $this->status = UptimeStatus::UP;
         $this->check_failure_reason = '';
-        $this->status_recovery_date = now();
         $this->check_times_failed_in_a_row = 0;
         $this->last_check_date = now();
         $this->request_duration_ms = RequestDuration::from(
             round(data_get($response->handlerStats(), 'total_time_us') / 1000)
         );
+
+        // Guarda la hora de recuperación en la caché
+        Cache::put('recovery_time', now());
 
         $this->save();
     }
@@ -57,10 +60,6 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
     {
         $this->status = UptimeStatus::DOWN;
         $this->check_times_failed_in_a_row++;
-
-        if ($this->status == UptimeStatus::UP) {
-            $this->status_last_change_date = now();
-        }
         $this->last_check_date = now();
         $this->check_failure_reason = $response instanceof Response ? $response->reason() : $response->getMessage();
         $this->request_duration_ms = RequestDuration::from(null);
@@ -87,6 +86,21 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
         return Attribute::make(
             get: fn () => UptimeCheckRepository::isEnabled(),
         );
+    }
+
+    protected static function booted()
+    {
+        static::saving(function (self $uptime) {
+            if (is_null($uptime->status_last_change_date)) {
+                $uptime->status_last_change_date = now();
+
+                return;
+            }
+
+            if ($uptime->getOriginal('status') != $uptime->status && $uptime->status == UptimeStatus::DOWN) {
+                $uptime->status_last_change_date = now();
+            }
+        });
     }
 
     protected static function newFactory(): Factory

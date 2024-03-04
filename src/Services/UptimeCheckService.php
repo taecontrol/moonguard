@@ -5,6 +5,7 @@ namespace Taecontrol\MoonGuard\Services;
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 use Taecontrol\MoonGuard\ValueObjects\Period;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Taecontrol\MoonGuard\Events\UptimeCheckFailedEvent;
@@ -109,9 +110,9 @@ class UptimeCheckService
     {
         $lastStatusChangeDate = $this->uptimeCheck->status_last_change_date ? clone $this->uptimeCheck->status_last_change_date : null;
 
-        $recoveryDate = $this->uptimeCheck->status_recovery_date ? clone $this->uptimeCheck->status_recovery_date : null;
+        $recoveryTime = Cache::get('recovery_time');
 
-        $downtimePeriod = new Period($lastStatusChangeDate, $recoveryDate);
+        $downtimePeriod = new Period($lastStatusChangeDate, $recoveryTime);
 
         event(new UptimeCheckRecoveredEvent($this->uptimeCheck, $downtimePeriod));
 
