@@ -31,6 +31,4 @@ interface MoonGuardSslCertificateCheck
     public function certificateIsAboutToExpire(int $maxDaysToExpire): bool;
 
     public function isEnabled(): Attribute;
-
-    public function shouldNotifyAboutFailure(): bool;
 }

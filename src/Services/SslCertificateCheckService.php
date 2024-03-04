@@ -3,6 +3,7 @@
 namespace Taecontrol\MoonGuard\Services;
 
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Spatie\SslCertificate\SslCertificate;
 use Taecontrol\MoonGuard\Contracts\MoonGuardSite;
 use Taecontrol\MoonGuard\Events\SslCertificateCheckFailedEvent;
@@ -64,10 +65,21 @@ class SslCertificateCheckService
         }
     }
 
+    protected function shouldNotifyFailure(): bool
+    {
+        $sslErrorOccurrenceTime = Cache::get('ssl_error_occurrence_time');
+
+        $resendNotificationMinutes = config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes');
+
+        return $sslErrorOccurrenceTime !== null && now()->diffInMinutes($sslErrorOccurrenceTime) >= $resendNotificationMinutes;
+    }
+
     protected function notifyFailure(): void
     {
-        if ($this->sslCertificateCheck->shouldNotifyAboutFailure()) {
+        if ($this->shouldNotifyFailure()) {
             event(new SslCertificateCheckFailedEvent($this->sslCertificateCheck));
+
+            Cache::put('ssl_error_occurrence_time', now());
         }
     }
 }
