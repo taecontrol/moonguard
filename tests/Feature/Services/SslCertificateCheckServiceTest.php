@@ -2,7 +2,9 @@
 
 namespace Taecontrol\MoonGuard\Tests\Feature\Services;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use Taecontrol\MoonGuard\Models\Site;
 use Taecontrol\MoonGuard\Models\User;
@@ -86,11 +88,17 @@ class SslCertificateCheckServiceTest extends TestCase
         Http::fake();
         Event::fake();
 
+        config(['moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes' => 5]);
+
         $site = Site::factory()->create([
             'url' => 'https://localhost',
         ]);
 
         SslCertificateCheck::factory()->for($site)->create();
+
+        Cache::put('ssl_error_occurrence_time', now()->subMinutes(config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes')), 60 * 24);
+
+        Carbon::setTestNow(now()->addMinutes(config('moonguard.ssl_certificate_check.resend_invalid_certificate_notification_every_minutes')));
 
         $this->sslCertificateCheckService->check($site);
 
