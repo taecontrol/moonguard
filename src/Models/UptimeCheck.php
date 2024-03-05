@@ -30,7 +30,6 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
         'status' => UptimeStatus::class,
         'status_last_change_date' => 'immutable_datetime',
         'last_check_date' => 'immutable_datetime',
-        'status_recovery_date' => 'immutable_datetime',
         'check_failed_event_fired_on_date' => 'immutable_datetime',
         'request_duration_ms' => RequestDurationCast::class,
     ];
@@ -49,8 +48,6 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
         $this->request_duration_ms = RequestDuration::from(
             round(data_get($response->handlerStats(), 'total_time_us') / 1000)
         );
-
-        // Guarda la hora de recuperación en la caché
         Cache::put('recovery_time', now());
 
         $this->save();
@@ -97,7 +94,7 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
                 return;
             }
 
-            if ($uptime->getOriginal('status') != $uptime->status && $uptime->status == UptimeStatus::DOWN) {
+            if ($uptime->status == UptimeStatus::DOWN) {
                 $uptime->status_last_change_date = now();
             }
         });
