@@ -4,6 +4,7 @@ namespace Taecontrol\MoonGuard\Models;
 
 use Exception;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Taecontrol\MoonGuard\Enums\UptimeStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -47,6 +48,7 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
         $this->request_duration_ms = RequestDuration::from(
             round(data_get($response->handlerStats(), 'total_time_us') / 1000)
         );
+        Cache::put('recovery_time', now());
 
         $this->save();
     }
@@ -92,7 +94,7 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
                 return;
             }
 
-            if ($uptime->getOriginal('status') != $uptime->status) {
+            if ($uptime->status == UptimeStatus::DOWN) {
                 $uptime->status_last_change_date = now();
             }
         });
