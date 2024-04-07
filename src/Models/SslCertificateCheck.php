@@ -23,6 +23,7 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
     protected $casts = [
         'status' => SslCertificateStatus::class,
         'expiration_date' => 'immutable_datetime',
+        'ssl_error_occurrence_time' => 'immutable_datetime',
     ];
 
     public function site(): BelongsTo
@@ -49,6 +50,10 @@ class SslCertificateCheck extends Model implements MoonGuardSslCertificateCheck
         $this->expiration_date = null;
         $this->issuer = '';
         $this->check_failure_reason = $exception->getMessage();
+
+        if (! $this->ssl_error_occurrence_time) {
+            $this->ssl_error_occurrence_time = now();
+        }
 
         $this->save();
     }
