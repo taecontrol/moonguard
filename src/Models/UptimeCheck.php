@@ -32,6 +32,7 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
         'last_check_date' => 'immutable_datetime',
         'check_failed_event_fired_on_date' => 'immutable_datetime',
         'request_duration_ms' => RequestDurationCast::class,
+        'last_recovery_time' => 'immutable_datetime',
     ];
 
     public function site(): BelongsTo
@@ -45,6 +46,7 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
         $this->check_failure_reason = '';
         $this->check_times_failed_in_a_row = 0;
         $this->last_check_date = now();
+        $this->last_recovery_time = now();
         $this->request_duration_ms = RequestDuration::from(
             round(data_get($response->handlerStats(), 'total_time_us') / 1000)
         );
@@ -55,9 +57,16 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
 
     public function saveFailedCheck(Response|Exception $response): void
     {
+        $previousStatus = $this->status;
+
         $this->status = UptimeStatus::DOWN;
         $this->check_times_failed_in_a_row++;
         $this->last_check_date = now();
+
+        if ($previousStatus == UptimeStatus::UP) {
+            $this->status_last_change_date = now();
+        }
+
         $this->check_failure_reason = $response instanceof Response ? $response->reason() : $response->getMessage();
         $this->request_duration_ms = RequestDuration::from(null);
         $this->save();
@@ -94,7 +103,7 @@ class UptimeCheck extends Model implements MoonGuardUptimeCheck
                 return;
             }
 
-            if ($uptime->status == UptimeStatus::DOWN) {
+            if ($uptime->getOriginal('status') != $uptime->status && $uptime->status == UptimeStatus::DOWN) {
                 $uptime->status_last_change_date = now();
             }
         });

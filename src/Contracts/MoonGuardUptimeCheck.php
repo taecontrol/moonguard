@@ -20,6 +20,7 @@ use Taecontrol\MoonGuard\ValueObjects\RequestDuration;
  * @property bool $was_failing
  * @property bool $is_enabled
  * @property MoonGuardSite $site
+ * @property Carbon $last_recovery_time
  */
 interface MoonGuardUptimeCheck
 {
