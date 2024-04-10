@@ -81,7 +81,10 @@ class UptimeCheckServiceTest extends TestCase
 
         $site = Site::factory()->create();
 
-        UptimeCheck::factory()->for($site->first())->create();
+        UptimeCheck::factory()->for($site)->create([
+            'status_last_change_date' => now(),
+            'last_check_date' => now(),
+        ]);
 
         $this->uptimeCheckService->check($site, Http::get($site->url));
 

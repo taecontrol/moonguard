@@ -108,7 +108,10 @@ class UptimeCheckService
     protected function notifyUptimeWasRecovered(): void
     {
         $lastStatusChangeDate = $this->uptimeCheck->status_last_change_date ? clone $this->uptimeCheck->status_last_change_date : null;
-        $downtimePeriod = new Period($lastStatusChangeDate, now());
+
+        $lastRecoveryDate = $this->uptimeCheck->last_recovery_time ? clone $this->uptimeCheck->last_recovery_time : null;
+
+        $downtimePeriod = new Period($lastStatusChangeDate, $lastRecoveryDate);
 
         event(new UptimeCheckRecoveredEvent($this->uptimeCheck, $downtimePeriod));
 
